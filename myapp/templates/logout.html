@@ -1,0 +1,30 @@
+<!-- {% extends 'base.html' %} -->
+{% load crispy_forms_tags %}
+
+{% block content %}
+<h3 class="text-center" style="font-family: 'Times New Roman', Times, serif;">Logged out</h3>
+<p>
+    Are you sure you want to logout.
+    You can <a href="{% url 'login' %}">login again.</a> 
+</p>
+<br>
+<!-- <div class="container">
+    <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <p>Forgot password</p>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+</div> -->
+
+<style>
+    .container {
+        padding-top: 20px;
+        max-width: 800px;
+        margin: 0 auto; 
+        background-color: #efefd0;
+        padding: 20px;
+            }
+</style>
+
+{% endblock %}

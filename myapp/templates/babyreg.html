@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<h3 class="text-center" style="font-family: 'Times New Roman', Times, serif;">BABY REGISTRATION FORM</h3>
+
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <br>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>
+
+<style>
+    .container {
+        padding-top: 20px;
+        max-width: 900px;
+        /* width: 100%; */
+        margin: 0 auto; 
+        /* background-color: #efefd0; */
+        background-color: rgba(153, 198, 165, 0.55);
+        padding: 20px;
+            }
+</style>
+
+{% endblock %}

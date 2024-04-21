@@ -1,0 +1,49 @@
+<!-- {% extends 'base.html' %} -->
+{% load crispy_forms_tags %}
+
+{% block content %}
+<!-- <h3 class="text-center" style="font-family: 'Times New Roman', Times, serif;">Account login</h3>
+<p>Welcome back!,please login to your account</p> -->
+
+<div class="container">
+    <h2>LOGIN</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <br>
+        <button type="submit" class="btn btn-primary" style="background-color: green; border-radius: 5px; border: #B4BDFF; width: 20%; height: 5%;">Login</button>
+        <!-- <button type="submit" class="btn btn-primary"><a href="{% url 'index' %}">Logout</a></button> -->
+        <br><br>
+        <a class ms-2 href="{% url 'reset_password' %}" style="color: black;">Forgot password?</a>
+    </form>
+</div>
+
+
+<style>
+    .container {
+        padding-top: 20px;
+        max-width: 300px;
+        margin: 0 auto; 
+        /* background-color: #efefd0; */
+        background-color: white;
+        padding: 20px;
+        margin-top: 10%;
+        /* text-align: center; */
+        /* box-shadow: none; */
+        
+            }
+    body{
+        background-color: rgba(153, 198, 165, 0.55);
+        
+    }
+
+    .footer {
+            background-color: rgba(7, 7, 7, 0.05);
+            text-align: center;
+            padding: 10px;
+            margin-top: 8%;
+            font-weight: 900;
+        }
+</style>
+
+{% endblock %}

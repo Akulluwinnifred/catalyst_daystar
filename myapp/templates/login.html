@@ -1,5 +1,6 @@
 
 {% load crispy_forms_tags %}
+{% load static %}
 
 {% block content %}
 <!-- <h3 class="text-center" style="font-family: 'Times New Roman', Times, serif;">Account login</h3>
@@ -14,7 +15,6 @@
         <button type="submit" class="btn btn-primary" style="background-color: green; border-radius: 5px; border: #B4BDFF; width: 20%; height: 5%;">Login</button>
         <!-- <button type="submit" class="btn btn-primary"><a href="{% url 'index' %}">Logout</a></button> -->
         <br><br>
-        <a class ms-2 href="{% url 'reset_password' %}" style="color: black;">Forgot password?</a>
     </form>
 </div>
 <footer class="footer">

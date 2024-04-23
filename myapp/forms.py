@@ -3,11 +3,6 @@ from .models import *
 from django import forms
 from django.contrib.auth.forms import PasswordChangeForm,PasswordResetForm
 from django.forms import CharField, PasswordInput,TextInput,EmailField, PasswordInput
-# class Sitterreg_form(forms.ModelForm):
-#     class Meta:
-#         model = Sitterreg
-#         fields=['first_name','last_name','Date_of_birth','contact','location','Gender','Level_of_education','Next_of_kin','Sitter_number','NIN','Recommenders_name','Religion']
-
 
 class Babyreg_form(forms.ModelForm):
     class Meta:
@@ -18,10 +13,12 @@ class Sitterreg_form(forms.ModelForm):
     class Meta:
         model = BabySitter
         fields = '__all__'
-        # fields = [
-        #     'c_fee','name','c_stay','gender','age','DateOfBirth','location','BabyNumber','Parents_Name','NameOfThePersonThatHasBroughtTheBaby','NameOfThePersonThatHasTakenTheBaby','TimeIn','TimeOut',
-        #     'Comment'
-        # ]
+
+class Departure_form(forms.ModelForm):
+    class Meta:
+        model = Departure
+        fields = '__all__'
+      
  
 
 

@@ -116,8 +116,22 @@ def babyreg(request):
          return redirect('/babyreg')
    else:
       form = Babyreg_form()
-#    return render(request,'all_babies.html',{'form':form})
       return render(request,'babyreg.html',{'form':form})
+   
+def departure(request):
+   form = Departure_form()
+   
+   if request.method == 'POST':
+   
+      form = Departure_form(request.POST)
+      
+      if form.is_valid():
+         form.save()
+         print(form)
+         return redirect('/departure')
+   else:
+      form = Departure_form()
+      return render(request,'departure.html',{'form':form})
 
 
 def read(request,id):

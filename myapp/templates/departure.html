@@ -2,23 +2,26 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<!-- <h3 class="text-center" style="font-family: 'Times New Roman', Times, serif;">FILL THE FORM TO BORROW A BOOK</h3> -->
+<h3 class="text-center" style="font-family: 'Times New Roman', Times, serif;">BABIES DEPARTURE FORM</h3>
 <hr>
 <div class="container">
     <form method="post">
         {% csrf_token %}
         {{ form|crispy }}<br>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary" style="background-color: green;">Submit</button>
     </form>
 </div>
 
 <style>
-    .container {
+   .container {
         padding-top: 20px;
-        max-width: 800px;
-        margin: 0 auto; 
-        background-color: #efefd0;
+        margin-top: 20px;
+        max-width: 500px;
+      
+        background-color: rgba(153, 198, 165, 0.55);
         padding: 20px;
+        margin-left: 250px;
+      
             }
 </style>
 

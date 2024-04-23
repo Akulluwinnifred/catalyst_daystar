@@ -14,6 +14,7 @@ urlpatterns = [
     path("babyreg/",views.babyreg,name="babyreg"),
     path("sitterreg/",views.Sitterreg,name="sitterreg"),
     path("read/",views.read,name="read"),
+    path("departure/",views.departure,name="departure"),
     path('logout/',auth_views.LogoutView.as_view(template_name ='logout.html'), name = 'logout'),
      
 ]

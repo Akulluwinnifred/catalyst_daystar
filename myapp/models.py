@@ -43,11 +43,10 @@ class RegisterBaby(models.Model):
     location = models.CharField(max_length=100, null=True, blank=True)
     Baby_Number = models.CharField(max_length=200,null=True, blank=True, default=0)
     Parents_Name = models.CharField(max_length=200,null=True, blank=True)
-    Name_Of_The_Person_That_Has_Brought_The_Baby = models.CharField(max_length=200, null=True, blank=True)
-    Name_Of_The_Person_That_Has_Taken_The_Baby = models.CharField(max_length=200, null=True, blank=True)
+    Brought_by = models.CharField(max_length=200, null=True, blank=True)
+    Picked_up_by = models.CharField(max_length=200, null=True, blank=True)
     TimeIn = models.DateTimeField(null=True, blank=True)
     TimeOut = models.DateTimeField(null=True, blank=True)
-    Comment = models.TextField(max_length=300, null=True, blank=True)
     def __str__(self):
         return self.name
 

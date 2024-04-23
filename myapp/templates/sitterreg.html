@@ -5,7 +5,7 @@
 <h3 class="text-center" style="font-family: 'Times New Roman', Times, serif;">SITTER REGISTRATION FORM</h3>
 <hr>
 <div class="container">
-    <form method="POST">
+    <form method="POST" class="sitterreg-form">
         {% csrf_token %}
         {{ getsitterform|crispy }}<br>
         <button type="submit" class="btn btn-primary">Submit</button>
@@ -29,6 +29,28 @@
         grid-gap: 20px; */
         /* margin: 20%; */
             }
+
+            .sitterreg-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 20px;
+            /* Adjust gap between columns */
+        }
+
+        .sitterreg-form button {
+            grid-column: span 2; 
+            align-items: center;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4caf50;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+
 </style>
 
 {% endblock %}

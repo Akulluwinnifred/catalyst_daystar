@@ -2,55 +2,84 @@
 <!-- {% load crispy_forms_tags %} -->
 
 {% block content %}
+<button class="p-2 bg-teal-500 rounded-lg shadow-lg"
+    style="margin-left: 10px;background-color: green; border-radius: 5px; border: #B4BDFF; width: 20%; height: 5%;"><a
+        href="/babyreg"></a> Add new baby</a></button>
+<h4 class="text-center">List of registered babies</h4>
 
-<h4 class="">Welcome to Babiesregistrationform</h4>
-  
-        <a href="/babyreg" class="p-2 bg-teal-500 rounded-lg shadow-lg">Add new baby</a>
-
-    <div class=>
+<div class="container">
     <table class="table table-bordered">
         <thead>
             <tr class=>
                 <th>#</th>
                 <th>Categorystay</th>
-                <th>Categoryfees</th>
+                <!-- <th>Categoryfees</th> -->
                 <th>name</th>
                 <th>gender</th>
-                <th>age</th>
+                <!-- <th>age</th> -->
                 <th>parents_name</th>
-                <th>person'sname</th>
-                <th>location</th>
-                <th>babysnumber</th>
-                <th>comment</th>
-                <th>timein</th>
-                <th>timeout</th>
+                <!-- <th>person'sname</th> -->
+                <!-- <th>location</th> -->
+                <!-- <th>babysnumber</th> -->
+                <!-- <th>comment</th> -->
+                <!-- <th>timein</th> -->
+                <!-- <th>timeout</th> -->
                 <th>action</th>
             </tr>
         </thead>
         <tbody>
- {% for each in babies %}           
-            <tr >
+            {% for each in babies %}
+            <tr>
                 <td> {{each.id}}</td>
-               <td>{{each.c_stay}}</td>
-                <td>{{each.c_fees}}</td>
+                <td>{{each.c_stay}}</td>
+                <!-- <td>{{each.c_fees}}</td> -->
                 <td>{{each.name_of_the_baby}}</td>
                 <td>{{each.gender}}</td>
-                <td>{{each.age}}</td>
+                <!-- <td>{{each.age}}</td> -->
                 <td>{{ each.parents_name}}</td>
-                <td>{{each.name_of_the_person_brought_by_the_baby}}</td>
-                <td>{{each.location}}</td>
-                <td>{{each.babys_number}}</td>
-                <td>{{each.comment}}</td>
-                <td>{{ each.timein}}</td>
-                <td>{{ each.timeout}}</td>
-              <td>
-                    <a href="read/{{each.id}}" >read</a>
-                    
+                <!-- <td>{{each.name_of_the_person_brought_by_the_baby}}</td> -->
+                <!-- <td>{{each.location}}</td> -->
+                <!-- <td>{{each.babys_number}}</td> -->
+                <!-- <td>{{each.comment}}</td> -->
+                <!-- <td>{{ each.timein}}</td> -->
+                <!-- <td>{{ each.timeout}}</td> -->
+                <td>
+                    <a href="read/{{each.id}}">read</a>
+
                 </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+</div>
+<style>
+    .container {
+        padding-top: 20px;
+        max-width: 300px;
+        margin: 0 auto;
+        /* background-color: #efefd0; */
+        /* background-color: white; */
+        background-color: rgba(153, 198, 165, 0.55);
+        padding: 20px;
+        margin-top: 10%;
+        /* text-align: center; */
+        /* box-shadow: none; */
+
+    }
+
+
+
+    .footer {
+        background-color: rgba(7, 7, 7, 0.05);
+        text-align: center;
+        padding: 10px;
+        margin-top: 8%;
+        font-weight: 900;
+        /* position:relative */
+    }
+</style>
+
+
 </div>
 
 

@@ -1,73 +1,321 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daystar Daycare</title>
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daystar Daycare</title>
+  <!-- <link rel="stylesheet" href="{% static 'css/base.css' %}"> -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
+  <link rel="stylesheet" href="../static/styles/bootstrap/css/bootstrap.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    .sidebar {
+      width: 350px;
+      padding: 20px;
+      /* background-color: #0e98e7; */
+      background-color: #1b4965;
+      color: white;
+      float: left;
+    }
 
-.footer {
-            background-color: rgba(7, 7, 7, 0.05);
-            text-align: center;
-            padding: 10px;
-            margin-top: auto;
-            font-weight: 900;
-        }
+    .content {
+      margin-left: 290px;
+      padding: 20px;
+    }
 
-    </style>
-    {% load bootstrap5 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
-    
+    .profile-container {
+      display: flex;
+      align-items: center;
+      /* margin-bottom: 20px; */
+      /* background-color: #58C92C; */
+      padding: 20px;
+      margin-bottom: 10px;
+    }
 
+    .profile-picture {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .profile-container h3 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .search-container {
+      margin-bottom: 20px;
+    }
+
+    .sidebar ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .sidebar a:hover {
+      color: white;
+      background-color: darkblue;
+    }
+
+    .sidebar-footer {
+      margin-top: auto;
+    }
+
+    .sidebar-footer a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .sidebar-footer a:hover {
+      text-decoration: underline;
+    }
+
+    .footer {
+      /* background-color: rgba(7, 7, 7, 0.05); */
+      background-color: #1b4965;
+      text-align: center;
+      padding: 10px;
+      /* margin-top: 8%; */
+      font-weight: 900;
+      bottom: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
+  {% load bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
 </head>
+
 <body>
-    
-    <div class="sidebar">
-        <img src="{% static 'images/profile.jpg' %}" alt="Profile Picture" class="profile-picture">
+  <div class="sidebar">
+    <div class="profile-container">
+      <img src="{% static 'images/winlogo.gif' %}" alt="Profile Picture" class="profile-picture">
+      <h3>Daystar Daycare</h3>
+    </div>
+    <div class="search-container">
+      <input type="text" id="sidebarSearchInput" placeholder="Search...">
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 " style="width: 250px">
+          <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
+            id="sidebarList">
+            <li class="nav-item">
+              <a href="#" class="nav-link align-middle px-0">
+                <i class="fs-4 bi-house"></i>
+                <span class="ms-1 d-none d-sm-inline" style="color: white !important"><i class="fa-solid fa-gauge"
+                    style="margin-right: 10px"></i>Dashboard</span>
+              </a>
+            </li>
+            <!-- Add your menu items here -->
+            <li>
+              <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                <i class="fs-4 bi-speedometer2"></i>
+                <span class="ms-1 d-none d-sm-inline" style="color: white !important"><i class="fa-solid fa-users"
+                    style="margin-right: 10px"></i>
+                  Sitters Management</span>
+              </a>
+              <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                <li class="w-100">
+                  <a href="{% url 'sitterreg' %}" class="nav-link px-0">
+                    <span class="d-none d-sm-inline" style="color: white !important">Sitters Registration</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="nav-link px-0">
+                    <span class="d-none d-sm-inline" style="color:white !important">List of Sitters</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="nav-link px-0">
+                    <span class="d-none d-sm-inline" style="color: white !important">Sitter details</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                <i class="fs-4 bi-speedometer2"></i>
+                <span class="ms-1 d-none d-sm-inline" style="color: white !important"><i class="fa-solid fa-users"
+                    style="margin-right: 10px"></i>Babies Management</span>
+              </a>
+              <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+                <li class="w-100">
+                  <a href="babyreg/" class="nav-link px-0">
+                    <span class="d-none d-sm-inline" style="color: white !important">Babies Registration</span>
+                  </a>
+                </li>
+                <li class="w-100">
+                  <a href="all_babies/" class="nav-link px-0">
+                    <span class="d-none d-sm-inline" style="color: white !important">List of Babies</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="read/" class="nav-link px-0">
+                    <span class="d-none d-sm-inline" style="color: white !important">Babies details</span>
+                  </a>
+                </li>
 
-        <div class="search-container">
-            <input type="text" id="sidebarSearchInput" placeholder="Search...">
+              </ul>
+            </li>
+            <li>
+              <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                <i class="fs-4 bi-speedometer2"></i>
+                <span class="ms-1 d-none d-sm-inline" style="color: white !important"><i
+                    class="fa-solid fa-file-invoice-dollar" style="margin-right: 10px"></i>Payment</span>
+              </a>
+              <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
+                <li class="w-100">
+                  <a href="#" class="nav-link px-0">
+                    <span class="d-none d-sm-inline" style="color: white !important">Record Payments</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="nav-link px-0">
+                    <span class="d-none d-sm-inline" style="color: white !important">View Payments</span>
+                  </a>
+                </li>
+
+              </ul>
+            </li>
+            <li>
+              <a href="#submenu4" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                <i class="fs-4 bi-speedometer2"></i>
+                <span class="ms-1 d-none d-sm-inline" style="color: white !important"><i
+                    class="fa-solid fa-clipboard-user" style="margin-right: 10px"></i>Daily operation</span>
+              </a>
+              <ul class="collapse nav flex-column ms-1" id="submenu4" data-bs-parent="#menu">
+                <li class="w-100">
+                  <a href="#" class="nav-link px-0">
+                    <span class="d-none d-sm-inline" style="color: white !important">Daily Attendance</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#submenu4" class="nav-link px-0">
+                    <span class="d-none d-sm-inline" style="color: white !important">Baby's departure</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="#submenu5" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                <i class="fs-4 bi-speedometer2"></i>
+                <span class="ms-1 d-none d-sm-inline" style="color: white !important"><i class="fa-solid fa-warehouse"
+                    style="margin-right: 10px"></i>Procurement</span>
+              </a>
+              <ul class="collapse nav flex-column ms-1" id="submenu5" data-bs-parent="#menu">
+                <li class="w-100">
+                  <a href="#" class="nav-link px-0">
+                    <span class="d-none d-sm-inline" style="color: white !important">Purchase Items</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="nav-link px-0">
+                    <span class="d-none d-sm-inline" style="color: white !important">Manage doll inventory</span>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#" class="nav-link px-0">
+                    <span class="d-none d-sm-inline" style="color: white !important">View History</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="#submenu6" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                <i class="fs-4 bi-speedometer2"></i>
+                <span class="ms-1 d-none d-sm-inline" style="color: white !important"><i class="fa-solid fa-file"
+                    style="margin-right: 10px"></i>Reports</span>
+              </a>
+              <ul class="collapse nav flex-column ms-1" id="submenu6" data-bs-parent="#menu">
+                <li class="w-100">
+                  <a href="#" class="nav-link px-0">
+                    <span class="d-none d-sm-inline" style="color: white !important">Attendance Reports</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="nav-link px-0">
+                    <span class="d-none d-sm-inline" style="color: white !important">Inventory Reports</span>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#" class="nav-link px-0">
+                    <span class="d-none d-sm-inline" style="color: white !important">Payment Reports</span>
+                  </a>
+                </li>
+              </ul>
+            <li>
+              <a href="{% url 'change-password' %}" class="nav-link px-0">
+                <span class="d-none d-sm-inline" style="color: white !important">Change password</span>
+              </a>
+            </li>
+          </ul>
+          </li>
+
+          <div class="sidebar-footer">
+            <a href="#">Settings</a> | <a href="#">About</a> | <a href="{% url 'logout' %}">Log out</a>
+          </div>
         </div>
-        <ul id="sidebarList">
-            <li><a href="#">Babies arrival</a></li>
-            <li><a href="#">Sitter registration</a></li>
-            <li><a href="/read">Baby details</a></li>
-            <li><a href="/all_babies">Babies</a></li>
-            <li><a href="/babyreg">Baby registration</a></li>
-            <li><a href="#">Babies departure</a></li>
-            <li><a href="{% url 'change-password' %}">Change password</a></li>
-            <li><a href="{% url 'logout' %}">Logout</a></li>
-           
         </ul>
-    </div>
-    <div class="content">
-        {% block content %}
-        
-        {% endblock %}
-    </div>
-    <footer class="footer">
-        © 2024 Daystar daycare, designed by Winnifred Akullu.All rights reserved
-        <!-- <a class="text-body" href="https://mdbootstrap.com/">All rights reserved</a> -->
-    </footer>
 
-    <script>
-        const searchInput = document.getElementById('sidebarSearchInput');
-        const sidebarList = document.getElementById('sidebarList').getElementsByTagName('li');
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
 
-        searchInput.addEventListener('input', function() {
-            const searchTerm = searchInput.value.toLowerCase();
-            for (const item of sidebarList) {
-                const text = item.textContent.toLowerCase();
-                if (text.includes(searchTerm)) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-            }
-        });
-    </script>
+
+  </div>
+  </div>
+  </div>
+  </div>
+  <div class="content">
+    {% block content %}
+    {% endblock %}
+  </div>
+
+  <footer class="footer">
+    © 2024 Daystar daycare,All rights reserved.Designed by Akullu Winnifred
+
+  </footer>
+
+  <script>
+    const searchInput = document.getElementById('sidebarSearchInput');
+    const sidebarList = document.getElementById('sidebarList').getElementsByTagName('li');
+
+    searchInput.addEventListener('input', function () {
+      const searchTerm = searchInput.value.toLowerCase();
+      for (const item of sidebarList) {
+        const text = item.textContent.toLowerCase();
+        if (text.includes(searchTerm)) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      }
+    });
+  </script>
 </body>
+
 </html>

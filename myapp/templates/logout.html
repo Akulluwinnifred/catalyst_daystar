@@ -2,12 +2,22 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<h3 class="text-center" style="font-family: 'Times New Roman', Times, serif;">Logged out</h3>
+<!-- <h3 class="text-center" style="font-family: 'Times New Roman', Times, serif;">Logged out</h3> -->
+<div class="container">
 <p>
-    Are you sure you want to logout.
-    You can <a href="{% url 'login' %}">login again.</a> 
+    Are you sure you want to logout?
+    <!-- You can <a href="{% url 'login' %}">login again.</a>  -->
 </p>
 <br>
+<div class="form-buttons">
+    <!-- <input type="submit" value="Yes" class="btn btn-primary" style="background-color: green;"> -->
+    <br><br>
+    <a href="{% url 'index' %}" class="btn btn-primary"
+        style="background-color: green; margin-left: 20px;padding: 10px;">Yes</a>
+    <a href="{% url 'base' %}" class="btn btn-primary"
+        style="background-color: green; margin-left: 20px;padding: 10px;">No</a>
+</div>
+</div>
 <!-- <div class="container">
     <form method="post">
         {% csrf_token %}
@@ -22,9 +32,16 @@
         padding-top: 20px;
         max-width: 800px;
         margin: 0 auto; 
-        background-color: #efefd0;
+        /* background-color: #efefd0; */
+        background-color: rgba(153, 198, 165, 0.55);
         padding: 20px;
             }
+
+            .form-buttons {
+            display: flex;
+            flex-direction: row;
+            margin-left: 20px;
+        }
 </style>
 
 {% endblock %}

@@ -12,6 +12,7 @@ urlpatterns = [
     path('read/<int:id>/',views.read,name='read'),
     path('all_babies/',views.all_babies,name='all_babies'),
     path("babyreg/",views.babyreg,name="babyreg"),
+    path("sitterreg/",views.Sitterreg,name="sitterreg"),
     path("read/",views.read,name="read"),
     path('logout/',auth_views.LogoutView.as_view(template_name ='logout.html'), name = 'logout'),
      

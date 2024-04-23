@@ -13,6 +13,11 @@ class Babyreg_form(forms.ModelForm):
     class Meta:
         model = RegisterBaby
         fields = '__all__'
+
+class Sitterreg_form(forms.ModelForm):
+    class Meta:
+        model = BabySitter
+        fields = '__all__'
         # fields = [
         #     'c_fee','name','c_stay','gender','age','DateOfBirth','location','BabyNumber','Parents_Name','NameOfThePersonThatHasBroughtTheBaby','NameOfThePersonThatHasTakenTheBaby','TimeIn','TimeOut',
         #     'Comment'

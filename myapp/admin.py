@@ -12,3 +12,4 @@ from . models import *
 admin.site.register(Categorystay)
 admin.site.register(RegisterBaby)
 admin.site.register(Payment)
+admin.site.register(BabySitter)

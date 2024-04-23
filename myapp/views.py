@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from django.utils import timezone
 from . forms import *
 from django.contrib.auth import authenticate, login
+from django.core.mail import send_mail
+from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
@@ -110,7 +112,7 @@ def all_babies(request):
   
 def babyreg(request):
    form = Babyreg_form()
-   return render(request,'babyreg.html',{'form':form})
+   
    if request.method == 'POST':
    
       form = Babyreg_form(request.POST)
@@ -121,12 +123,18 @@ def babyreg(request):
          return redirect('/babyreg')
    else:
       form = Babyreg_form()
-   return render(request,'all_babies.html',{'form':form})
+#    return render(request,'all_babies.html',{'form':form})
+      return render(request,'babyreg.html',{'form':form})
 
 
 def read(request,id):
     babies_informations =Babyreg_form.objects.get(id=id)
     return render(request,'read.html',{'babies_informations':babies_informations})
+
+
+def Sitterreg(request):
+    getsitterform = Sitterreg_form()
+    return render(request, 'sitterreg.html', {'getsitterform': getsitterform})
 
 
 # def edit(request,id):

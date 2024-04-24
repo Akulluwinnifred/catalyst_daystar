@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from . models import *
 
 
 def index(request):
@@ -85,8 +86,23 @@ def Sitterreg(request):
     else:
         getsitterform = Sitterreg_form()
         return render(request, 'sitterreg.html', {'getsitterform': getsitterform})
+    
 
+def sittersattendance(request):
+    if request.method == 'POST':
+        form = Sittersattendance_form(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Attendance status registered successfully')
+            return redirect('/tracking')
+    else:
+        form = Sittersattendance_form()
+        return render(request, 'sittersattendance.html', {'form': form})
+    
 
+def sitters(request):
+    sitters = BabySitter.objects.all()
+    return render(request,'all_sitters.html',{'sitters':sitters})
 
 
 

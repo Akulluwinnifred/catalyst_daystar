@@ -4,20 +4,24 @@
 {% load crispy_forms_tags %}
 {% static 'css/styles.css' %}
 
+
 {% block content %}
 
 <div class="container">
 
+
+<!-- 
     <p>
         Are you sure you want to logout?
-    </p>
+    </p> -->
     <br>
     <div class="form-buttons">
+        <button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover"  data-bs-title="Popover title" style="background-color: green;border-color: green;">Logging out?</button>
         <br><br>
         <a href="{% url 'index' %}" class="btn btn-primary"
-            style="background-color: green; margin-left: 20px;padding: 10px;">Yes</a>
-        <a href="{% url 'base' %}" class="btn btn-primary"
-            style="background-color: green; margin-left: 20px;padding: 10px;">No</a>
+            style="background-color: green; margin-left: 20px;padding: 10px;border-color: green;">Yes</a>
+        <!-- <a href="{% url 'base' %}" class="btn btn-primary"
+            style="background-color: green; margin-left: 20px;padding: 10px;border-color: green;">No</a> -->
     </div>
 
 </div>
@@ -42,5 +46,7 @@
 
     
 </style>
+
+
 
 {% endblock %}

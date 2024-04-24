@@ -19,6 +19,12 @@ class Sitterreg_form(forms.ModelForm):
         fields = '__all__'
 
 
+class Sittersattendance_form(forms.ModelForm):
+    class Meta:
+        model = BabySitterattendance
+        fields = '__all__'
+
+
 class Departure_form(forms.ModelForm):
     class Meta:
         model = Departure

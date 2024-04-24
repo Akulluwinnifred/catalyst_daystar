@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<hr>
+
+<div class="container">
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}<br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+</div>
+
+<style>
+
+.container {
+        padding-top: 20px;
+        margin-top: 20px;
+        max-width: 500px;
+        background-color: rgba(153, 198, 165, 0.55);
+        padding: 20px;
+        margin-left: 250px;
+
+    }
+    
+</style>
+
+{% endblock %}

@@ -10,43 +10,28 @@
 
 <div class="container">
 
-    <table class="table table-bordered">
-
+    <table class="table table-striped" style="width: 90%; margin-left: 20px;" >
         <thead>
-            <tr class=>
+          <tr>
                 <th>#</th>
-                <th>Categorystay</th>
-                <!-- <th>Categoryfees</th> -->
-                <th>name</th>
-                <th>gender</th>
-                <!-- <th>age</th> -->
-                <th>parents_name</th>
-                <!-- <th>person'sname</th> -->
-                <!-- <th>location</th> -->
-                <!-- <th>babysnumber</th> -->
-                <!-- <th>comment</th> -->
-                <!-- <th>timein</th> -->
-                <!-- <th>timeout</th> -->
+                <th>Period of stay</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <th>Parents Name</th>
                 <th>action</th>
-            </tr>
-        </thead>
+           </tr>
+           </thead>
 
         <tbody>
             {% for each in babies %}
             <tr>
                 <td> {{each.id}}</td>
-                <td>{{each.c_stay}}</td>
-                <!-- <td>{{each.c_fees}}</td> -->
-                <td>{{each.name_of_the_baby}}</td>
+                <td>{{each.Period_of_stay}}</td>
+                <td>{{each.name}}</td>
                 <td>{{each.gender}}</td>
-                <!-- <td>{{each.age}}</td> -->
-                <td>{{ each.parents_name}}</td>
-                <!-- <td>{{each.name_of_the_person_brought_by_the_baby}}</td> -->
-                <!-- <td>{{each.location}}</td> -->
-                <!-- <td>{{each.babys_number}}</td> -->
-                <!-- <td>{{each.comment}}</td> -->
-                <!-- <td>{{ each.timein}}</td> -->
-                <!-- <td>{{ each.timeout}}</td> -->
+                <td>{{each.age}}</td>
+                <td>{{ each.Parents_Name}}</td>
                 <td>
                     <a href="read/{{each.id}}">read</a>
 
@@ -60,15 +45,23 @@
 </div>
 
 <style>
-    .container {
+
+.container {
         padding-top: 20px;
-        max-width: 300px;
-        margin: 0 auto;
+        margin-top: 20px;
+        max-width: 800px;
+
         background-color: rgba(153, 198, 165, 0.55);
         padding: 20px;
-        margin-top: 10%;
+        margin-left: 100px;
 
     }
+
+ h2{
+
+    text-align: center;
+ }
+
 </style>
 
 

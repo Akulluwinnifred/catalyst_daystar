@@ -3,10 +3,9 @@ from django.http import HttpResponse
 from django.utils import timezone
 from . forms import *
 from django.contrib.auth import authenticate, login
-# from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
-# from django.urls import reverse_lazy
+from django.contrib import messages
 def index(request):
     return render(request,'index.html')
 
@@ -112,26 +111,27 @@ def babyreg(request):
       
       if form.is_valid():
          form.save()
-         print(form)
+         messages.success(request,'Baby signed in successfully')
+        #  print(form)
          return redirect('/babyreg')
    else:
       form = Babyreg_form()
       return render(request,'babyreg.html',{'form':form})
    
 def departure(request):
-   form = Departure_form()
+    form = Departure_form()
    
-   if request.method == 'POST':
+    if request.method == 'POST':
    
-      form = Departure_form(request.POST)
+       form = Departure_form(request.POST)
       
-      if form.is_valid():
-         form.save()
-         print(form)
-         return redirect('/departure')
-   else:
-      form = Departure_form()
-      return render(request,'departure.html',{'form':form})
+       if form.is_valid():
+          form.save()
+          messages.success(request,"Baby signed out successfully")
+          return redirect('/departure')
+    else:
+        form = Departure_form()
+    return render(request,'departure.html',{'form':form})
 
 
 def read(request,id):
@@ -140,8 +140,15 @@ def read(request,id):
 
 
 def Sitterreg(request):
-    getsitterform = Sitterreg_form()
-    return render(request, 'sitterreg.html', {'getsitterform': getsitterform})
+    if request.method == 'POST':
+        getsitterform = Sitterreg_form(request.POST)
+        if getsitterform.is_valid():
+            getsitterform.save()
+            messages.success(request, 'Sitter registered successfully')
+            return redirect('/sitterreg')
+    else:
+        getsitterform = Sitterreg_form()
+        return render(request, 'sitterreg.html', {'getsitterform': getsitterform})
 
 
 # def edit(request,id):

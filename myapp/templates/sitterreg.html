@@ -5,8 +5,16 @@
 {% static 'css/styles.css' %}
 
 {% block content %}
+
 <h3 class="text-center" style="font-family: 'Times New Roman', Times, serif;">SITTER REGISTRATION FORM</h3>
 <hr>
+{% for message in messages %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert" style="background-color: #4caf50; width: 40%; margin-left: 40px;">
+    {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+{% endfor %}
+
 <div class="container">
     <form method="POST" class="sitterreg-form">
         {% csrf_token %}
@@ -17,7 +25,6 @@
 
 <style>
     .container {
-        /* width: 100%; */
         padding-top: 20px;
         margin-top: 20px;
         max-width: 500px;

@@ -4,6 +4,7 @@ from django import forms
 from django.contrib.auth.forms import PasswordChangeForm,PasswordResetForm
 from django.forms import CharField, PasswordInput,TextInput,EmailField, PasswordInput
 
+
 class Babyreg_form(forms.ModelForm):
     class Meta:
         model = RegisterBaby
@@ -11,10 +12,12 @@ class Babyreg_form(forms.ModelForm):
         widgets = {
             'Time_In': forms.DateTimeInput(attrs={'type': 'datetime-local'}),}
 
+
 class Sitterreg_form(forms.ModelForm):
     class Meta:
         model = BabySitter
         fields = '__all__'
+
 
 class Departure_form(forms.ModelForm):
     class Meta:

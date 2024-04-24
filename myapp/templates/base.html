@@ -6,34 +6,46 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Daystar Daycare</title>
-  <!-- <link rel="stylesheet" href="{% static 'css/base.css' %}"> -->
+
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
     rel="stylesheet" />
+
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
+
   <link rel="stylesheet" href="../static/styles/bootstrap/css/bootstrap.css" />
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="../static/css/base.css">
+
+  <link rel="stylesheet" href="../static/css/base.css">
+
   {% load bootstrap5 %}
   {% bootstrap_css %}
   {% bootstrap_javascript %}
+
 </head>
 
 <body>
   <div class="sidebar">
+
     <div class="profile-container">
       <img src="{% static 'images/winlogo.gif' %}" alt="Profile Picture" class="profile-picture">
       <h3>Daystar Daycare</h3>
     </div>
+
     <div class="search-container">
       <input type="text" id="sidebarSearchInput" placeholder="Search...">
     </div>
+
     <div class="container-fluid">
+
       <div class="row">
+
         <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 " style="width: 250px">
           <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
             id="sidebarList">
+
             <li class="nav-item">
               <a href="#" class="nav-link align-middle px-0">
                 <i class="fs-4 bi-house"></i>
@@ -41,49 +53,54 @@
                     style="margin-right: 10px"></i>Dashboard</span>
               </a>
             </li>
-            <!-- Add your menu items here -->
+
             <li>
               <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
                 <i class="fs-4 bi-speedometer2"></i>
-                <span class="ms-1 d-none d-sm-inline" style="color: white !important"><i class="fa fa-address-card" aria-hidden="true"
-                    style="margin-right: 10px"></i>
+                <span class="ms-1 d-none d-sm-inline" style="color: white !important"><i class="fa fa-address-card"
+                    aria-hidden="true" style="margin-right: 10px"></i>
                   Sitters</span>
               </a>
+
               <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+
                 <li class="w-100">
                   <a href="{% url 'sitterreg' %}" class="nav-link px-0">
                     <span class="d-none d-sm-inline" style="color: white !important">Sitters Registration</span>
                   </a>
                 </li>
+
                 <li>
                   <a href="#" class="nav-link px-0">
                     <span class="d-none d-sm-inline" style="color:white !important">List of Sitters</span>
                   </a>
                 </li>
+
                 <li>
                   <a href="#" class="nav-link px-0">
                     <span class="d-none d-sm-inline" style="color: white !important">Sitter details</span>
                   </a>
                 </li>
+
               </ul>
+
             </li>
+
             <li>
               <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
                 <i class="fs-4 bi-speedometer2"></i>
-                <span class="ms-1 d-none d-sm-inline" style="color: white !important"><i class="fa fa-address-card" aria-hidden="true"
-                    style="margin-right: 10px"></i>Babies</span>
+                <span class="ms-1 d-none d-sm-inline" style="color: white !important"><i class="fa fa-address-card"
+                    aria-hidden="true" style="margin-right: 10px"></i>Babies</span>
               </a>
+
               <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
-                <!-- <li class="w-100">
-                  <a href="#" class="nav-link px-0">
-                    <span class="d-none d-sm-inline" style="color: white !important">Babies </span>
-                  </a>
-                </li> -->
+
                 <li class="w-100">
                   <a href="all_babies/" class="nav-link px-0">
                     <span class="d-none d-sm-inline" style="color: white !important">List of Babies</span>
                   </a>
                 </li>
+
                 <li>
                   <a href="read/" class="nav-link px-0">
                     <span class="d-none d-sm-inline" style="color: white !important">Babies details</span>
@@ -92,18 +109,21 @@
 
               </ul>
             </li>
+
             <li>
               <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
                 <i class="fs-4 bi-speedometer2"></i>
-                <span class="ms-1 d-none d-sm-inline" style="color: white !important"><i
-                    class="fa fa-shopping-cart" aria-hidden="true" style="margin-right: 10px"></i>Payment</span>
+                <span class="ms-1 d-none d-sm-inline" style="color: white !important"><i class="fa fa-shopping-cart"
+                    aria-hidden="true" style="margin-right: 10px"></i>Payment</span>
               </a>
+
               <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
                 <li class="w-100">
                   <a href="#" class="nav-link px-0">
                     <span class="d-none d-sm-inline" style="color: white !important">Record Payments</span>
                   </a>
                 </li>
+
                 <li>
                   <a href="#" class="nav-link px-0">
                     <span class="d-none d-sm-inline" style="color: white !important">View Payments</span>
@@ -112,24 +132,30 @@
 
               </ul>
             </li>
+
             <li>
               <a href="#submenu4" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
                 <i class="fs-4 bi-speedometer2"></i>
                 <span class="ms-1 d-none d-sm-inline" style="color: white !important"><i
                     class="fa-solid fa-clipboard-user" style="margin-right: 10px"></i>Daily operation</span>
               </a>
+
               <ul class="collapse nav flex-column ms-1" id="submenu4" data-bs-parent="#menu">
+
                 <li class="w-100">
                   <a href="babyreg/" class="nav-link px-0">
                     <span class="d-none d-sm-inline" style="color: white !important">Baby registration</span>
                   </a>
                 </li>
+
                 <li>
                   <a href="departure/" class="nav-link px-0">
                     <span class="d-none d-sm-inline" style="color: white !important">Baby departure</span>
                   </a>
                 </li>
+
               </ul>
+
             </li>
 
             <li>
@@ -138,12 +164,14 @@
                 <span class="ms-1 d-none d-sm-inline" style="color: white !important"><i class="fa-solid fa-warehouse"
                     style="margin-right: 10px"></i>Procurement</span>
               </a>
+
               <ul class="collapse nav flex-column ms-1" id="submenu5" data-bs-parent="#menu">
                 <li class="w-100">
                   <a href="#" class="nav-link px-0">
                     <span class="d-none d-sm-inline" style="color: white !important">Purchase Items</span>
                   </a>
                 </li>
+
                 <li>
                   <a href="#" class="nav-link px-0">
                     <span class="d-none d-sm-inline" style="color: white !important">Manage doll inventory</span>
@@ -155,6 +183,7 @@
                     <span class="d-none d-sm-inline" style="color: white !important">View History</span>
                   </a>
                 </li>
+
               </ul>
             </li>
 
@@ -164,12 +193,14 @@
                 <span class="ms-1 d-none d-sm-inline" style="color: white !important"><i class="fa-solid fa-file"
                     style="margin-right: 10px"></i>Reports</span>
               </a>
+
               <ul class="collapse nav flex-column ms-1" id="submenu6" data-bs-parent="#menu">
                 <li class="w-100">
                   <a href="#" class="nav-link px-0">
                     <span class="d-none d-sm-inline" style="color: white !important">Attendance Reports</span>
                   </a>
                 </li>
+
                 <li>
                   <a href="#" class="nav-link px-0">
                     <span class="d-none d-sm-inline" style="color: white !important">Inventory Reports</span>
@@ -182,17 +213,24 @@
                   </a>
                 </li>
               </ul>
+
             <li>
+
               <a href="{% url 'change-password' %}" class="nav-link px-0">
-                <span class="d-none d-sm-inline" style="color: white !important"><i class="fa fa-key" aria-hidden="true" style="margin-right: 10px"></i>Change password</i></span>
+                <span class="d-none d-sm-inline" style="color: white !important"><i class="fa fa-key" aria-hidden="true"
+                    style="margin-right: 10px"></i>Change password</i></span>
               </a>
             </li>
+
           </ul>
           </li>
+
           <br><br>
+
           <div class="sidebar-footer">
             <a href="#">Settings</a> | <a href="#">About</a> | <a href="{% url 'logout' %}">Log out</a>
           </div>
+
         </div>
         </ul>
 
@@ -202,11 +240,11 @@
   </div>
   </div>
 
-
+<!-- 
   </div>
   </div>
   </div>
-  </div>
+  </div> -->
   <div class="content">
     {% block content %}
     {% endblock %}

@@ -5,55 +5,63 @@
 {% static 'css/styles.css' %}
 
 {% block content %}
+
 <h3 class="text-center" style="font-family: 'Times New Roman', Times, serif;">BABY REGISTRATION FORM</h3>
 <hr>
+
 {% for message in messages %}
-<div class="alert alert-warning alert-dismissible fade show" role="alert" style="background-color: #4caf50; width: 40%; margin-left: 40px;">
+
+<div class="alert alert-warning alert-dismissible fade show" role="alert"
+    style="background-color: #4caf50; width: 40%; margin-left: 40px;">
     {{ message }}
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
+</div>
+
 {% endfor %}
+
 <div class="container">
+
     <form method="POST" class="babereg-form">
         {% csrf_token %}
         {{ form|crispy }}
         <br>
         <button type="submit" class="btn btn-primary">Save</button>
     </form>
+
 </div>
 
 <style>
+    
     .container {
         padding-top: 20px;
         margin-top: 20px;
         max-width: 500px;
-      
+
         background-color: rgba(153, 198, 165, 0.55);
         padding: 20px;
         margin-left: 250px;
-      
-            }
 
-            .babereg-form {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-gap: 20px;
-            
-        }
+    }
 
-        .babereg-form button {
-            grid-column: span 2; 
-            align-items: center;
-            width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            background-color: #4caf50;
-            color: #fff;
-            font-size: 16px;
-            cursor: pointer;
-        }
+    .babereg-form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 20px;
 
+    }
+
+    .babereg-form button {
+        grid-column: span 2;
+        align-items: center;
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #4caf50;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+    }
 
 </style>
 

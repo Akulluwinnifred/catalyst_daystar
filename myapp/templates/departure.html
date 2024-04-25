@@ -1,43 +1,76 @@
+
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
+{% load static %}
 
 {% block content %}
+<style>
+  body {
+    background-color: #f8f9fa;
+  }
 
-<h3 class="text-center" style="font-family: 'Times New Roman', Times, serif;">BABIES DEPARTURE FORM</h3>
-<hr>
+  .form-container {
+    background-color: #ffffff;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+  
+  }
 
+  h1 {
+    color: #007bff;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  label {
+    /* color: #495057; */
+    font-weight: bold;
+  }
+
+  input[type="text"],
+  input[type="datetime-local"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    /* border: 1px solid #ced4da; */
+    /* border-radius: 5px; */
+    /* box-sizing: border-box; */
+  }
+
+  button[type="submit"] {
+    background-color: green;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+</style>
 {% for message in messages %}
-
-<div class="alert alert-warning alert-dismissible fade show" role="alert" style="background-color: #4caf50; width: 40%; margin-left: 40px;">
-    {{ message }}
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
-
+<div class="alert alert-warning alert-dismissible fade show" role="alert"
+  style="background-color: #4caf50; width: 40%; margin-left: 40px;">
+  {{ message }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
 {% endfor %}
 
-<div class="container">
-
-    <form method="post">
-        {% csrf_token %}
-        {{ form|crispy }}<br>
-        <button type="submit" class="btn btn-primary" style="background-color: green;">Submit</button>
-    </form>
-
+<h1 style="color: black">Baby Departure Form</h1>
+<div class="form-container" style="background-color: rgba(153, 198, 165, 0.55);">
+ 
+  <form method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit">Submit</button>
+  </form>
 </div>
-
-<style>
-
-   .container {
-        padding-top: 20px;
-        margin-top: 20px;
-        max-width: 500px;
-      
-        background-color: rgba(153, 198, 165, 0.55);
-        padding: 20px;
-        margin-left: 250px;
-      
-            }
-            
-</style>
-
 {% endblock %}

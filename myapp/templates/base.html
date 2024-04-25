@@ -24,13 +24,70 @@
   {% bootstrap_css %}
   {% bootstrap_javascript %}
 
+
+<style>
+   /* Add your custom CSS styles here */
+
+/* Media Query for smaller screens */
+@media (max-width: 992px) {
+  .sidebar {
+    /* Adjust sidebar layout for smaller screens */
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 250px;
+    overflow-y: auto;
+    background-color: #f8f9fa;
+    padding: 20px;
+  }
+
+ 
+  .nav-link {
+    /* Adjust sidebar link styles for smaller screens */
+    padding: 10px 15px;
+    color: #212529;
+  }
+
+  .content {
+    /* Adjust content margin to make space for sidebar */
+    margin-left: 250px;
+  }
+}
+
+/* Make images responsive */
+img {
+  max-width: 100%; /* Ensure images don't overflow their containers */
+  height: auto; /* Maintain aspect ratio */
+}
+
+/* Responsive typography */
+body {
+  font-size: 16px; /* Base font size */
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 14px; /* Decrease font size for smaller screens */
+  }
+}
+
+@media (max-width: 576px) {
+  body {
+    font-size: 12px; /* Further decrease font size for even smaller screens */
+  }
+}
+  </style>
+
+
+
 </head>
 
 <body>
   <div class="sidebar">
 
     <div class="profile-container">
-      <img src="{% static 'images/winlogo.gif' %}" alt="Profile Picture" class="profile-picture">
+      <img src="{% static 'images/daphine_logo.gif' %}" alt="Profile Picture" class="profile-picture">
       <h3>Daystar Daycare</h3>
     </div>
 
@@ -47,12 +104,45 @@
             id="sidebarList">
 
             <li class="nav-item">
-              <a href="#" class="nav-link align-middle px-0">
+              <a href="/home" class="nav-link align-middle px-0">
                 <i class="fs-4 bi-house"></i>
                 <span class="ms-1 d-none d-sm-inline" style="color: white !important"><i class="fa-solid fa-gauge"
                     style="margin-right: 10px"></i>Dashboard</span>
               </a>
             </li>
+            <li>
+              <a href="#submenu4" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                <i class="fs-4 bi-speedometer2"></i>
+                <span class="ms-1 d-none d-sm-inline" style="color: white !important"><i
+                    class="fa-solid fa-clipboard-user" style="margin-right: 10px"></i>Daily operation</span>
+              </a>
+
+              <ul class="collapse nav flex-column ms-1" id="submenu4" data-bs-parent="#menu">
+
+                <li class="w-100">
+                  <a href="babyreg/" class="nav-link px-0">
+                    <span class="d-none d-sm-inline" style="color: white !important">Baby registration</span>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="departure/" class="nav-link px-0">
+                    <span class="d-none d-sm-inline" style="color: white !important">Baby departure</span>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="{% url 'sittersattendance' %}" class="nav-link px-0">
+                    <span class="d-none d-sm-inline" style="color:white !important">Sitters tracking</span>
+                  </a>
+                </li>
+
+
+              </ul>
+
+            </li>
+
+
 
             <li>
               <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
@@ -76,11 +166,7 @@
                   </a>
                 </li>
 
-                <li>
-                  <a href="{% url 'sittersattendance' %}" class="nav-link px-0">
-                    <span class="d-none d-sm-inline" style="color:white !important">Sitters tracking</span>
-                  </a>
-                </li>
+               
 
                 <li>
                   <a href="#" class="nav-link px-0">
@@ -139,31 +225,7 @@
               </ul>
             </li>
 
-            <li>
-              <a href="#submenu4" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                <i class="fs-4 bi-speedometer2"></i>
-                <span class="ms-1 d-none d-sm-inline" style="color: white !important"><i
-                    class="fa-solid fa-clipboard-user" style="margin-right: 10px"></i>Daily operation</span>
-              </a>
-
-              <ul class="collapse nav flex-column ms-1" id="submenu4" data-bs-parent="#menu">
-
-                <li class="w-100">
-                  <a href="babyreg/" class="nav-link px-0">
-                    <span class="d-none d-sm-inline" style="color: white !important">Baby registration</span>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="departure/" class="nav-link px-0">
-                    <span class="d-none d-sm-inline" style="color: white !important">Baby departure</span>
-                  </a>
-                </li>
-
-              </ul>
-
-            </li>
-
+            
             <li>
               <a href="#submenu5" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
                 <i class="fs-4 bi-speedometer2"></i>
@@ -253,7 +315,7 @@
     {% endblock %}
   </div>
 
-  <footer class="footer">
+  <footer class="footer" style="color: white;">
     © 2024 Daystar daycare.Designed by Akullu Winnifred
 
   </footer>

@@ -7,6 +7,7 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from . models import *
+from django.template import loader
 
 
 def index(request):
@@ -104,6 +105,17 @@ def sitters(request):
     sitters = BabySitter.objects.all()
     return render(request,'all_sitters.html',{'sitters':sitters})
 
+
+def home(request):
+    # Statistics
+    count_babies = RegisterBaby.objects.count()
+    count_sitters = BabySitter.objects.count()
+    context = {
+        "count_babies": count_babies,
+        "count_sitters": count_sitters,
+    }
+    template = loader.get_template("home.html")
+    return HttpResponse(template.render(context))
 
 
 

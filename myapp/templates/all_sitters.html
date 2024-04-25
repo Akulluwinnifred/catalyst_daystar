@@ -3,21 +3,28 @@
 
 {% block content %}
 
+<div class="flex gap-2 p-4">
+  <input type="text" placeholder="Search Student" class="p-2 rounded-lg border w-full">
+  <button class="p-2  text-white rounded-lg" style="background-color: green;"> Search </button>
+</div>
+
 <h2>List of registered sitters</h2>
 <div class="container">
+
+
 <table class="table table-striped" style="width: 90%; margin-left: 20px;" >
     <thead>
       <tr>
-        <th scope="col">#</th>
+        <th scope="col">Sitter Number</th>
         <th scope="col">Name</th>
-        <th scope="col">Location</th>
-        <th scope="col">Number</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Contact</th>
       </tr>
     </thead>
     <tbody>
         {% for sitter in sitters %}
       <tr>
-        <th scope="row">1</th>
+        <th scope="row">{{ sitter.Sitter_Number }}</th>
         <td>{{ sitter.name }}</td>
         <td>{{ sitter.gender }}</td>
         <td>{{ sitter.Contact }}</td>

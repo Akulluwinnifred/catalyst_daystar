@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card w-50 mb-3">
+    <div class="card-body">
+      <h5 class="card-title">Babies</h5>
+      <p class="card-text">{{ count_babies }} </p>
+      <a href="/babyreg" class="btn btn-primary" style="background-color: green;">Add baby</a>
+    </div>
+  </div>
+  
+  <div class="card w-50">
+    <div class="card-body">
+      <h5 class="card-title">Sitters</h5>
+      <p class="card-text">{{ count_sitters }}</p>
+      <a href="/sitterreg" class="btn btn-primary" style="background-color: green;">Add sitter</a>
+    </div>
+  </div>
+
+  <style>
+
+.card-body{
+
+        padding-top: 20px;
+        margin-top: 20px;
+        max-width: 500px;
+
+        background-color: rgba(153, 198, 165, 0.55);
+        padding: 20px;
+        margin-left: 250px;
+}
+.card{
+
+    background-color: rgba(153, 198, 165, 0.55);
+    padding-top: 20px;
+        margin-top: 20px;
+        max-width: 500px;
+        padding: 20px;
+        margin-left: 250px;
+}
+
+
+  </style>
+
+
+    {% endblock %}

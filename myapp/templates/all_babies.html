@@ -6,14 +6,21 @@
     style="margin-left: 10px;background-color: green; border-radius: 5px; border: #B4BDFF; width: 20%; height: 5%;"><a
         href="/babyreg"></a> Add new baby</a></button>
 
+        <div class="flex gap-2 p-4">
+            <input type="text" placeholder="Search Student" class="p-2 rounded-lg border w-full">
+            <button class="p-2 text-white rounded-lg" style="background-color: green;"> Search </button>
+        </div>
+
 <h4 class="text-center">List of registered babies</h4>
 
 <div class="container">
+
 
     <table class="table table-striped" style="width: 90%; margin-left: 20px;" >
         <thead>
           <tr>
                 <th>#</th>
+                <!-- <th>Baby Number</th> -->
                 <th>Period of stay</th>
                 <th>Name</th>
                 <th>Gender</th>
@@ -26,14 +33,15 @@
         <tbody>
             {% for each in babies %}
             <tr>
-                <td> {{each.id}}</td>
+                <!-- <td> {{each.id}}</td> -->
+                <td> {{each.Baby_Number}}</td>
                 <td>{{each.Period_of_stay}}</td>
                 <td>{{each.name}}</td>
                 <td>{{each.gender}}</td>
                 <td>{{each.age}}</td>
                 <td>{{ each.Parents_Name}}</td>
                 <td>
-                    <a href="read/{{each.id}}">read</a>
+                    <a href="read/{{each.Baby_Number}}">read</a>
 
                 </td>
             </tr>

@@ -8,10 +8,17 @@ class Categorystay(models.Model):
     def __str__(self):
         return self.name
     
+class Paymenttype(models.Model):
+    name = models.CharField(max_length=50, null=True,blank=True)
+
+    def __str__(self):
+        return self.name
+    
     
 class Payment(models.Model):
     period_of_stay = models.ForeignKey(Categorystay, on_delete=models.CASCADE, null=True,blank=True)
     payment_number = models.IntegerField()
+    payment_type = models.ForeignKey(Paymenttype, on_delete=models.CASCADE)
     amount = models.IntegerField(default=0)
     currency = models.CharField(max_length=5,default='Ugx')
     paid_by = models.CharField(max_length=200,)
@@ -39,8 +46,13 @@ class BabySitter(models.Model):
     location = models.ForeignKey(FixedLocation, on_delete=models.CASCADE)
     Date_Of_Birth = models.DateTimeField()
     NIN = models.CharField(max_length=14)
-    Religion = models.CharField(max_length=30, null=True, blank=True)
-    Level_Of_Education = models.CharField(max_length=200)
+    Religion = models.CharField(max_length=30, null=True, blank=True,verbose_name="Religion(optional)")
+    Level_Of_Education = models.CharField(max_length=200,choices=(
+        ('Certificate', 'Certificate'),
+        ('Diploma', 'Diploma'),
+        ('Degree', 'Degree'),
+        ('Others', 'Others'),
+    ))
     Contact = models.CharField(max_length=15)
     Sitter_Number = models.CharField(max_length=200)
     Next_Of_Kin = models.CharField(max_length=200)
@@ -79,11 +91,11 @@ class Departure(models.Model):
     baby_name = models.CharField(max_length=100)
     departure_time = models.DateTimeField()
     picked_up_by = models.CharField(max_length=100)
-    comment = models.TextField(blank=True)
+    comment = models.TextField(blank=True,verbose_name="Comment(optional)")
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.name
+        return self.baby_name
     
 
 

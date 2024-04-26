@@ -3,13 +3,9 @@
 
 {% block content %}
 <button class="p-2 bg-teal-500 rounded-lg shadow-lg"
-    style="margin-left: 10px;background-color: green; border-radius: 5px; border: #B4BDFF; width: 20%; height: 5%;"><a
-        href="/babyreg"></a> Add new baby</a></button>
+    style="margin-left: 10px;background-color: green; border-radius: 5px; border: #B4BDFF; width: 20%; height: 5%;"><a style="color: black; text-decoration: none;"
+        href="/babyreg">Add new baby</a></button>
 
-        <div class="flex gap-2 p-4">
-            <input type="text" placeholder="Search Student" class="p-2 rounded-lg border w-full">
-            <button class="p-2 text-white rounded-lg" style="background-color: green;"> Search </button>
-        </div>
 
 <h4 class="text-center">List of registered babies</h4>
 
@@ -20,7 +16,7 @@
         <thead>
           <tr>
                 <th>#</th>
-                <!-- <th>Baby Number</th> -->
+                <th>Baby Number</th>
                 <th>Period of stay</th>
                 <th>Name</th>
                 <th>Gender</th>
@@ -33,7 +29,7 @@
         <tbody>
             {% for each in babies %}
             <tr>
-                <!-- <td> {{each.id}}</td> -->
+                <td> {{each.id}}</td>
                 <td> {{each.Baby_Number}}</td>
                 <td>{{each.Period_of_stay}}</td>
                 <td>{{each.name}}</td>
@@ -41,7 +37,11 @@
                 <td>{{each.age}}</td>
                 <td>{{ each.Parents_Name}}</td>
                 <td>
-                    <a href="read/{{each.Baby_Number}}">read</a>
+                    <button class="p-2 bg-teal-500 rounded-lg shadow-lg"
+                    style="margin-left: 10px;background-color: green; border-radius: 5px; border: #B4BDFF; width: 90%; height: 5%;"><a style="color: black; text-decoration: none;"
+                        href="read/{{each.id}}">read</a></button>
+
+                    <!-- <a href="read/{{each.id}}">read</a> -->
 
                 </td>
             </tr>
@@ -61,7 +61,7 @@
 
         background-color: rgba(153, 198, 165, 0.55);
         padding: 20px;
-        margin-left: 100px;
+        /* margin-left: 100px; */
 
     }
 
@@ -69,6 +69,7 @@
 
     text-align: center;
  }
+
 
 </style>
 

@@ -102,11 +102,12 @@ class Departure(models.Model):
 class BabySitterattendance(models.Model):
      STATUS_CHOICES = (
          ('On_duty', 'On_duty'),
-        ('Off_duty', 'Off_duty'),
      )
+     sitter_Number = models.CharField(max_length=200)
      name = models.CharField(max_length=100)
      date = models.DateTimeField()
      attendance_status = models.CharField(max_length=10,choices=STATUS_CHOICES)
+     created_at = models.DateTimeField(auto_now_add=True)
 
 
 

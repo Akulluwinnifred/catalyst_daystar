@@ -4,29 +4,29 @@
 {% block content %}
 
 <button class="p-2 bg-teal-500 rounded-lg shadow-lg"
-style="margin-left: 10px;background-color: green; border-radius: 5px; border: #B4BDFF; width: 20%; height: 5%;"><a
-    href="/babyreg"></a> Add new sitter</a></button>
+    style="margin-left: 10px;background-color: green; border-radius: 5px; border: #B4BDFF; width: 20%; height: 5%;"><a
+        href="/babyreg"></a> Signout new baby</a></button>
 
-<h2>List of registered sitters</h2>
+<h2>List of Babies signed out</h2>
 <div class="container">
+
+
 <table class="table table-striped" style="width: 90%; margin-left: 20px;" >
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Sitter Number</th>
         <th scope="col">Name</th>
-        <th scope="col">Gender</th>
-        <th scope="col">Contact</th>
+        <th scope="col">Picked by</th>
+        <th scope="col">Time out</th>
       </tr>
     </thead>
     <tbody>
-        {% for sitter in sitters %}
+        {% for baby in babiesdeparture %}
       <tr>
-        <th scope="row">{{ sitter.Sitter_id }}</th>
-        <th>{{ sitter.Sitter_Number }}</th>
-        <td>{{ sitter.name }}</td>
-        <td>{{ sitter.gender }}</td>
-        <td>{{ sitter.Contact }}</td>
+        <th scope="row">{{ baby.id }}</th>
+        <td>{{ baby.baby_name }}</td>
+        <td>{{ baby.departure_time }}</td>
+        <td>{{ baby.picked_up_by }}</td>
       </tr>
       {% endfor %}
     </tbody>

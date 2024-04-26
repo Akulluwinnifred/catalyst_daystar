@@ -23,6 +23,8 @@ class Sittersattendance_form(forms.ModelForm):
     class Meta:
         model = BabySitterattendance
         fields = '__all__'
+        widgets = {
+            'Date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),}
 
 
 class Departure_form(forms.ModelForm):

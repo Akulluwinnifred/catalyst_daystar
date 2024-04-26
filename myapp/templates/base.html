@@ -32,28 +32,8 @@
 @media (max-width: 992px) {
   .sidebar {
     /* Adjust sidebar layout for smaller screens */
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 250px;
-    overflow-y: auto;
-    background-color: #f8f9fa;
-    padding: 20px;
+    display: none;
   }
-
- 
-  .nav-link {
-    /* Adjust sidebar link styles for smaller screens */
-    padding: 10px 15px;
-    color: #212529;
-  }
-
-  .content {
-    /* Adjust content margin to make space for sidebar */
-    margin-left: 250px;
-  }
-}
 
 /* Make images responsive */
 img {
@@ -61,21 +41,11 @@ img {
   height: auto; /* Maintain aspect ratio */
 }
 
-/* Responsive typography */
-body {
-  font-size: 16px; /* Base font size */
-}
-
 @media (max-width: 768px) {
   body {
     font-size: 14px; /* Decrease font size for smaller screens */
   }
 }
-
-@media (max-width: 576px) {
-  body {
-    font-size: 12px; /* Further decrease font size for even smaller screens */
-  }
 }
   </style>
 
@@ -88,7 +58,7 @@ body {
 
     <div class="profile-container">
       <img src="{% static 'images/daphine_logo.gif' %}" alt="Profile Picture" class="profile-picture">
-      <h3>Daystar Daycare</h3>
+      <!-- <h3>Daystar Daycare</h3> -->
     </div>
 
     <div class="search-container">
@@ -162,12 +132,17 @@ body {
 
                 <li>
                   <a href="{% url 'sitters' %}" class="nav-link px-0">
-                    <span class="d-none d-sm-inline" style="color:white !important">List of Sitters</span>
+                    <span class="d-none d-sm-inline" style="color:white !important">List of enrolled Sitters</span>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="{% url 'onduty' %}" class="nav-link px-0">
+                    <span class="d-none d-sm-inline" style="color:white !important">List of onduty Sitters</span>
                   </a>
                 </li>
 
                
-
                 <li>
                   <a href="#" class="nav-link px-0">
                     <span class="d-none d-sm-inline" style="color: white !important">Sitter details</span>
@@ -189,7 +164,12 @@ body {
 
                 <li class="w-100">
                   <a href="all_babies/" class="nav-link px-0">
-                    <span class="d-none d-sm-inline" style="color: white !important">List of Babies</span>
+                    <span class="d-none d-sm-inline" style="color: white !important">List of signed in Babies</span>
+                  </a>
+                </li>
+                <li class="w-100">
+                  <a href="signedout/" class="nav-link px-0">
+                    <span class="d-none d-sm-inline" style="color: white !important">List of signed out Babies</span>
                   </a>
                 </li>
 

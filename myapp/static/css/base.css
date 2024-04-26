@@ -1,7 +1,6 @@
 .sidebar {
-    width: 350px;
+    width: 250px;
     padding: 20px;
-    /* background-color: #0e98e7; */
     background-color: #1b4965;
     color: white;
     float: left;
@@ -16,7 +15,6 @@
   .profile-container {
     display: flex;
     align-items: center;
-    padding: 20px;
     margin-bottom: 10px;
   }
 

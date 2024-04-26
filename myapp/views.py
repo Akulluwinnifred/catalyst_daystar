@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import get_object_or_404, render,redirect
 from django.http import HttpResponse
 from django.utils import timezone
 from . forms import *
@@ -73,7 +73,7 @@ def departure(request):
 
 
 def read(request,id):
-    babies_informations =Babyreg_form.objects.get(id=id)
+    babies_informations =RegisterBaby.objects.get(id=id)
     return render(request,'read.html',{'babies_informations':babies_informations})
 
 
@@ -106,20 +106,38 @@ def sitters(request):
     return render(request,'all_sitters.html',{'sitters':sitters})
 
 
+def onduty(request):
+    sitters = BabySitterattendance.objects.all()
+    return render(request,'onduty.html',{'sitters':sitters})
+
+def babiesdeparture(request):
+    babiesdeparture = Departure.objects.all()
+    return render(request,'signedout.html',{'babiesdeparture':babiesdeparture})
+
 def home(request):
     # Statistics
     count_babies = RegisterBaby.objects.count()
     count_sitters = BabySitter.objects.count()
+    count_departure = Departure.objects.count()
     context = {
         "count_babies": count_babies,
         "count_sitters": count_sitters,
+        "count_departure": count_departure,
     }
     template = loader.get_template("home.html")
     return HttpResponse(template.render(context))
 
 
-
-
+def edit(request,id):
+    baby=get_object_or_404(RegisterBaby,id=id)
+    if request.method == 'POST':
+       form=Babyreg_form(request.POST,instance=baby)
+       if form.is_valid():
+           form.save()
+           return redirect('read/<int:id>')
+    else:
+        form=Babyreg_form(instance=baby)
+    return render(request,'edit.html',{'form':form,'baby':baby})
 
 
 

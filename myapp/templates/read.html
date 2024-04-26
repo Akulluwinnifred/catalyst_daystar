@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,27 +10,56 @@
 </head>
 <body>
    
+
+    <style>
+.container {
+        padding-top: 20px;
+        margin-top: 20px;
+        /* max-width: 800px; */
+
+        background-color: rgba(153, 198, 165, 0.55);
+        padding: 20px;
+        /* margin-left: 100px; */
+
+    }
+
+    table table-bordered{
+        background-color: rgba(153, 198, 165, 0.55);
+        
+    }
+
+ h2{
+
+    text-align: center;
+ }
+
+        
+        </style>
+        
+
+
     
 
-    <h2>Baby Information</h2>
+    <div class="container">
+    <h2>Baby details</h2>
     
 
     <table class="table table-bordered">
         <thead>
             <tr class="table_dark">
                 <th>#</th>
-                <th>Categorystay</th>
-                <th>Categoryfees</th>
-                <th>name</th>
-                <th>gender</th>
-                <th>age</th>
-                <th>parents_name</th>
-                <th>person'sname</th>
+                <th>Period of stay</th>
+                <!-- <th>Fee</th> -->
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <th>parents Name</th>
+                <th>Brought by</th>
                 <th>location</th>
-                <th>babysnumber</th>
-                <th>comment</th>
+                <th>Baby number</th>
+                <!-- <th>comment</th> -->
                 <th>timein</th>
-                <th>timeout</th>
+                <th>Action</th>
                
             </tr>
         </thead>
@@ -37,25 +67,30 @@
     
         <tr>
             <td>{{babies_informations.id}}</td>
-            <td>{{babies_informations.c_stay}}</td>
-            <td>{{babies_informations.c_fees}}</td>
-            <td>{{babies_informations.name_of_the_baby}}</td>
+            <!-- <td>{{babies_informations.c_stay}}</td> -->
+            <td>{{babies_informations.Period_of_stay}}</td>
+            <td>{{babies_informations.name}}</td>
             <td>{{babies_informations.gender}}</td>
             <td>{{babies_informations.age}}</td>
-            <td>{{babies_informations.parents_name}}</td>
-           <td>{{babies_informations.name_of_the_person_brought_by_the_baby}}</td>
+            <td>{{babies_informations.Parents_Name}}</td>
+           <td>{{babies_informations.Brought_by}}</td>
            <td>{{babies_informations.location}}</td>
-           <td>{{babies_informations.babys_number}}</td>
-           <td>{{babies_informations.comment}}</td>
-           <td>{{babies_informations.timein}}</td>
-           <td>{{babies_informations.timeout}}</td>
+           <td>{{babies_informations.Baby_Number}}</td>
+           <!-- <td>{{babies_informations.comment}}</td> -->
+           <td>{{babies_informations.Time_In}}</td>
+           <!-- <td>{{babies_informations.timeout}}</td> -->
+           <td>
+            <a href="{% url 'delete' id=babies_informations.id % }"><button class="btn btn-primary" style="margin-bottom: 5px; background-color: green; border: none;">Delete</button></a>
+            <br>
+      <a href="{% url 'edit' id=babies_informations.id % }"><button class="btn btn-primary" style="margin-bottom: 5px; background-color: green; border: none;">Edit</button></a>
+            </td>
         </tr>
-        
+   
     
  </tbody>   
-  <a href="/"><button class="btn btn-primary">Go back</button></a>
-  <a href="/edit{{each.id}}"><button class="btn btn-primary">Edit</button></a>
+ <a href="{% url 'all_babies' %}"><button class="btn btn-primary" style="margin-bottom: 5px; background-color: green; border: none;">Go back</button></a>
 
+</div>
 
      
        

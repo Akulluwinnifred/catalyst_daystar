@@ -18,16 +18,19 @@ urlpatterns = [
 
        #babies urls
     path('read/<int:id>/',views.read,name='read'),
+    path('edit/<int:id>/',views.edit,name='edit'),
     path('all_babies/',views.all_babies,name='all_babies'),
     path("babyreg/",views.babyreg,name="babyreg"),
     path("read/",views.read,name="read"),
     path("departure/",views.departure,name="departure"),
+    path("signedout/",views.babiesdeparture,name="babiesdeparture"),
 
      
      #sitters urls
     path("sitterreg/",views.Sitterreg,name="sitterreg"),
     path("sitters/",views.sitters,name="sitters"),
     path("tracking/",views.sittersattendance,name="sittersattendance"),
+    path("onduty/",views.onduty,name="onduty"),
     
 ]
 

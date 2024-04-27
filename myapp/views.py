@@ -66,7 +66,7 @@ def babyarrival(request):
       if form.is_valid():
          form.save()
          messages.success(request,'Baby signed in successfully')
-         return redirect('/babyreg')
+         return redirect('/arrival')
    else:
       form = Babyarrivalform()
       return render(request,'babies/arrival.html',{'form':form})
@@ -110,11 +110,11 @@ def sittersattendance(request):
         form = Sittersattendance_form(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Attendance status registered successfully')
+            messages.success(request, ' Sitters attendance registered successfully')
             return redirect('/tracking')
     else:
         form = Sittersattendance_form()
-        return render(request, 'sitters/sittersattendance.html', {'form': form})
+    return render(request, 'sitters/sittersattendance.html', {'form': form})
     
 
 def sitters(request):
@@ -139,10 +139,14 @@ def home(request):
     count_babies = RegisterBaby.objects.count()
     count_sitters = BabySitter.objects.count()
     count_departure = Departure.objects.count()
+    count_arrival = Arrivalbaby.objects.count()
+    count_sitterattendance = BabySitterattendance.objects.count()
     context = {
         "count_babies": count_babies,
         "count_sitters": count_sitters,
         "count_departure": count_departure,
+        "count_arrival": count_arrival,
+        "count_sitterattendance": count_sitterattendance,
     }
     template = loader.get_template("home.html")
     return HttpResponse(template.render(context))

@@ -18,7 +18,6 @@ urlpatterns = [
 
        #babies urls
     path('read/<int:id>/',views.read,name='read'),
-    # path('edit/<int:id>/',views.edit,name='edit'),
     path('all_babies/',views.all_babies,name='all_babies'),
     path("babyreg/",views.babyreg,name="babyreg"),
     path("read/<int:id>",views.read,name="read"),
@@ -26,7 +25,6 @@ urlpatterns = [
     path("signedout/",views.babiesdeparture,name="babiesdeparture"),
     path("arrival/",views.babyarrival,name="babyarrival"),
     path("signedin/",views.babysignin,name="babysignin"),
-    # path("baby_edit/", views.baby_edit, name="baby_edit"),
      path('baby_edit/<int:id>/', views.baby_edit, name='baby_edit'),
 
      

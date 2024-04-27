@@ -43,19 +43,6 @@ class Departure_form(forms.ModelForm):
             'departure_time': forms.DateTimeInput(attrs={'type': 'datetime-local'}),}
       
  
-
-
-
-
-
-
-
-
-  
-
-
-
-
 class PasswordChangeCustomForm(PasswordChangeForm):
     error_css_class = 'has-error'
     error_messages = {'password_incorrect': "The old password is incorrect. Please try again"}
@@ -82,32 +69,3 @@ class PasswordChangeCustomForm(PasswordChangeForm):
     )
 
 
-# class Signup_form(forms.ModelForm):
-#     class Meta:
-#         model = Signup
-#         fields=['Username','Email','Password','Confirm_password']
-
-
-# class Arrival_form(forms.ModelForm):
-#     class Meta:
-#         model = Arrival
-#         fields=['Baby_Name','Brought_by','comment']
-
-# class Departure_form(forms.ModelForm):
-#     class Meta:
-#         model = Departure
-#         fields=['Baby_Name','Picked_by','comment']
-
-# class Forgotpassword_form(forms.ModelForm):
-#     class Meta:
-#         model = Forgotpassword
-#         fields=['Email']
-
-
-class CustomPasswordResetForm(PasswordResetForm):
-    def clean_email(self):
-        # Add custom email validation if needed
-        email = self.cleaned_data.get('email')
-        if not email.endswith('@gmail.com'):
-            raise forms.ValidationError("Email must be from gmail.com domain.")
-        return email

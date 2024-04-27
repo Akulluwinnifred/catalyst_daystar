@@ -74,7 +74,7 @@ img {
             id="sidebarList">
 
             <li class="nav-item">
-              <a href="/home" class="nav-link align-middle px-0">
+              <a href="{% url 'home' %}" class="nav-link align-middle px-0">
                 <i class="fs-4 bi-house"></i>
                 <span class="ms-1 d-none d-sm-inline" style="color: white !important"><i class="fa-solid fa-gauge"
                     style="margin-right: 10px"></i>Dashboard</span>
@@ -90,19 +90,19 @@ img {
               <ul class="collapse nav flex-column ms-1" id="submenu4" data-bs-parent="#menu">
 
                 <li class="w-100">
-                  <a href="babyreg/" class="nav-link px-0">
+                  <a href="{% url 'babyreg' %}" class="nav-link px-0">
                     <span class="d-none d-sm-inline" style="color: white !important">Baby enrollment</span>
                   </a>
                 </li>
 
                 <li>
-                  <a href="arrival/" class="nav-link px-0">
+                  <a href="{% url 'babyarrival' %}" class="nav-link px-0">
                     <span class="d-none d-sm-inline" style="color: white !important">Baby arrival</span>
                   </a>
                 </li>
 
                 <li>
-                  <a href="departure/" class="nav-link px-0">
+                  <a href="{% url 'departure' %}" class="nav-link px-0">
                     <span class="d-none d-sm-inline" style="color: white !important">Baby departure</span>
                   </a>
                 </li>
@@ -169,24 +169,24 @@ img {
               <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
 
                 <li class="w-100">
-                  <a href="all_babies/" class="nav-link px-0">
+                  <a href="{% url 'all_babies' %}" class="nav-link px-0">
                     <span class="d-none d-sm-inline" style="color: white !important">List of enrolled Babies</span>
                   </a>
                 </li>
                 <li class="w-100">
-                  <a href="signedout/" class="nav-link px-0">
+                  <a href="{% url 'babiesdeparture' %}" class="nav-link px-0">
                     <span class="d-none d-sm-inline" style="color: white !important">List of signed out Babies</span>
                   </a>
                 </li>
 
                 <li class="w-100">
-                  <a href="signedin/" class="nav-link px-0">
+                  <a href="{% url 'babysignin' %}" class="nav-link px-0">
                     <span class="d-none d-sm-inline" style="color: white !important">List of signed in Babies</span>
                   </a>
                 </li>
 
                 <li>
-                  <a href="read/" class="nav-link px-0">
+                  <a href="/read" class="nav-link px-0">
                     <span class="d-none d-sm-inline" style="color: white !important"> Enrolled babies details</span>
                   </a>
                 </li>

@@ -9,20 +9,25 @@
     <form method="post">
         {% csrf_token %}
         {{ form|crispy }}<br>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary" style="background-color: #4caf50; border: none;">Submit</button>
     </form>
 
 </div>
 
 <style>
-
-    .container {
+   
+   .container {
         padding-top: 20px;
-        max-width: 800px;
-        margin: 0 auto;
-        background-color: #efefd0;
+        margin-top: 20px;
+        max-width: 500px;
+
+        background-color: rgba(153, 198, 165, 0.55);
         padding: 20px;
+        margin-left: 250px;
+
     }
+
+  
     
 </style>
 

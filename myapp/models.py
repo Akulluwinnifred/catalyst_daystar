@@ -79,13 +79,18 @@ class RegisterBaby(models.Model):
     location = models.CharField(max_length=100)
     Baby_Number = models.CharField(max_length=200,default=0)
     Parents_Name = models.CharField(max_length=200)
-    Brought_by = models.CharField(max_length=200)
-    Time_In = models.DateTimeField()
-    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
     
+class Arrivalbaby(models.Model):
+       baby_name = models.CharField(max_length=200)
+       Brought_by = models.CharField(max_length=200)
+       Time_In = models.DateTimeField()
+       created_at = models.DateTimeField(auto_now_add=True)
+       
+       def __str__(self):
+          return self.baby_name
 
 class Departure(models.Model):
     baby_name = models.CharField(max_length=100)

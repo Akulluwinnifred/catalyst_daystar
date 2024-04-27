@@ -11,6 +11,14 @@ class Babyreg_form(forms.ModelForm):
         fields = '__all__'
         widgets = {
             'Time_In': forms.DateTimeInput(attrs={'type': 'datetime-local'}),}
+        
+
+class Babyarrivalform(forms.ModelForm):
+    class Meta:
+        model = Arrivalbaby
+        fields = '__all__'
+        widgets = {
+            'Time_In': forms.DateTimeInput(attrs={'type': 'datetime-local'}),}
 
 
 class Sitterreg_form(forms.ModelForm):

@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, render,redirect
+from django.shortcuts import get_object_or_404, render,redirect,reverse
 from django.http import HttpResponse
 from django.utils import timezone
 from . forms import *
@@ -14,7 +14,7 @@ def index(request):
     return render(request,'index.html')
 
 def login(request):
-    return render(request,'login.html')
+    return render(request,'access/login.html')
 
 @login_required
 def base(request):
@@ -32,12 +32,12 @@ def change_password(request):
             return redirect('login') 
     else:
         form = PasswordChangeCustomForm(request.user)
-    return render(request, 'change-password.html', {'form': form})
+    return render(request, 'access/change-password.html', {'form': form})
 
 
 def all_babies(request):
    babies =RegisterBaby.objects.all()
-   return render(request,'all_babies.html',{'babies':babies})
+   return render(request,'babies/all_babies.html',{'babies':babies})
 
 
 def babyreg(request):
@@ -49,11 +49,27 @@ def babyreg(request):
       
       if form.is_valid():
          form.save()
-         messages.success(request,'Baby signed in successfully')
+         messages.success(request,'Baby enrolled successfully')
          return redirect('/babyreg')
    else:
       form = Babyreg_form()
-      return render(request,'babyreg.html',{'form':form})
+      return render(request,'babies/babyreg.html',{'form':form})
+   
+
+def babyarrival(request):
+   form = Babyarrivalform()
+   
+   if request.method == 'POST':
+   
+      form = Babyarrivalform(request.POST)
+      
+      if form.is_valid():
+         form.save()
+         messages.success(request,'Baby signed in successfully')
+         return redirect('/babyreg')
+   else:
+      form = Babyarrivalform()
+      return render(request,'babies/arrival.html',{'form':form})
    
    
 def departure(request):
@@ -69,12 +85,12 @@ def departure(request):
           return redirect('/departure')
     else:
         form = Departure_form()
-    return render(request,'departure.html',{'form':form})
+    return render(request,'babies/departure.html',{'form':form})
 
 
 def read(request,id):
     babies_informations =RegisterBaby.objects.get(id=id)
-    return render(request,'read.html',{'babies_informations':babies_informations})
+    return render(request,'babies/read.html',{'babies_informations':babies_informations})
 
 
 def Sitterreg(request):
@@ -86,7 +102,7 @@ def Sitterreg(request):
             return redirect('/sitterreg')
     else:
         getsitterform = Sitterreg_form()
-        return render(request, 'sitterreg.html', {'getsitterform': getsitterform})
+        return render(request, 'sitters/sitterreg.html', {'getsitterform': getsitterform})
     
 
 def sittersattendance(request):
@@ -98,21 +114,25 @@ def sittersattendance(request):
             return redirect('/tracking')
     else:
         form = Sittersattendance_form()
-        return render(request, 'sittersattendance.html', {'form': form})
+        return render(request, 'sitters/sittersattendance.html', {'form': form})
     
 
 def sitters(request):
     sitters = BabySitter.objects.all()
-    return render(request,'all_sitters.html',{'sitters':sitters})
+    return render(request,'sitters/all_sitters.html',{'sitters':sitters})
 
 
 def onduty(request):
     sitters = BabySitterattendance.objects.all()
-    return render(request,'onduty.html',{'sitters':sitters})
+    return render(request,'sitters/onduty.html',{'sitters':sitters})
 
 def babiesdeparture(request):
     babiesdeparture = Departure.objects.all()
-    return render(request,'signedout.html',{'babiesdeparture':babiesdeparture})
+    return render(request,'babies/signedout.html',{'babiesdeparture':babiesdeparture})
+
+def babysignin(request):
+    babysignin = Arrivalbaby.objects.all()
+    return render(request,'babies/signedin.html',{'babysignin':babysignin})
 
 def home(request):
     # Statistics
@@ -128,17 +148,18 @@ def home(request):
     return HttpResponse(template.render(context))
 
 
-def edit(request,id):
-    baby=get_object_or_404(RegisterBaby,id=id)
+
+
+def baby_edit(request, id):  
+    baby = get_object_or_404(RegisterBaby, id=id)  
     if request.method == 'POST':
-       form=Babyreg_form(request.POST,instance=baby)
+       form = Babyreg_form(request.POST, instance=baby)  
        if form.is_valid():
            form.save()
-           return redirect('read/<int:id>')
+           return redirect(reverse('read', kwargs={'id': id})) 
     else:
-        form=Babyreg_form(instance=baby)
-    return render(request,'edit.html',{'form':form,'baby':baby})
-
+        form = Babyreg_form(instance=baby)
+    return render(request, 'babies/baby_edit.html', {'form': form, 'baby': baby})
 
 
 

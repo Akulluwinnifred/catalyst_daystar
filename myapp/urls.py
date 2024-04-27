@@ -10,7 +10,7 @@ urlpatterns = [
 
      
      #authentication urls
-    path('login/',auth_views.LoginView.as_view(template_name ='login.html'), name = 'login'),
+    path('login/',auth_views.LoginView.as_view(template_name ='access/login.html'), name = 'login'),
     path('change-password', views.change_password, name='change-password'),
     path('home', views.home, name='home'),
     path('logout/',auth_views.LogoutView.as_view(template_name ='logout.html'), name = 'logout'),
@@ -18,12 +18,16 @@ urlpatterns = [
 
        #babies urls
     path('read/<int:id>/',views.read,name='read'),
-    path('edit/<int:id>/',views.edit,name='edit'),
+    # path('edit/<int:id>/',views.edit,name='edit'),
     path('all_babies/',views.all_babies,name='all_babies'),
     path("babyreg/",views.babyreg,name="babyreg"),
-    path("read/",views.read,name="read"),
+    path("read/<int:id>",views.read,name="read"),
     path("departure/",views.departure,name="departure"),
     path("signedout/",views.babiesdeparture,name="babiesdeparture"),
+    path("arrival/",views.babyarrival,name="babyarrival"),
+    path("signedin/",views.babysignin,name="babysignin"),
+    # path("baby_edit/", views.baby_edit, name="baby_edit"),
+     path('baby_edit/<int:id>/', views.baby_edit, name='baby_edit'),
 
      
      #sitters urls

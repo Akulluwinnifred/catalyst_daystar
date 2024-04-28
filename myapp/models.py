@@ -115,16 +115,50 @@ class BabySitterattendance(models.Model):
      created_at = models.DateTimeField(auto_now_add=True)
 
 
+# class InventoryTracker(models.Model):
+#     product = models.CharField(max_length=200)
+#     Unit_Price = models.IntegerField(default=0)
+#     Quantity_Price = models.IntegerField(default=0)
+#     Total_Price = models.IntegerField(default=0)
+#     Total_Amount = models.IntegerField(default=0)
 
 
+class Category_doll(models.Model):  
+     name = models.CharField(max_length=100,null=True, blank=True)
+
+     def __str__(self):
+        return self.name  
 
 
-class InventoryTracker(models.Model):
-    product = models.CharField(max_length=200)
-    Unit_Price = models.IntegerField(default=0)
-    Quantity_Price = models.IntegerField(default=0)
-    Total_Price = models.IntegerField(default=0)
-    Total_Amount = models.IntegerField(default=0)
+class Doll(models.Model):
+    c_doll=models.ForeignKey(Category_doll, on_delete=models.CASCADE,null=True, blank=True)
+    name_of_the_doll =models.CharField(max_length=200,null=True, blank=True)
+    quantity=models.IntegerField(default=0)
+    color=models.CharField(max_length=200, null=True,blank=True)
+    size=models.CharField(max_length=200,null=True,blank=True)
+    issued_quantity=models.IntegerField(default=0,blank=True,null=True) 
+    received_quantity=models.IntegerField(default=0,null=True,blank=True)
+    Unit_price=models.IntegerField(default=0,null=True, blank=True)
+    date=models.DateField(default=timezone.now)
 
-
+    def __str__(self):
+        return self.name_of_the_doll
+    
+class Salesrecord(models.Model):    
+    doll=models.ForeignKey(Doll,  on_delete=models.CASCADE,null=False, blank=False)
+    payee=models.ForeignKey(RegisterBaby, on_delete=models.CASCADE,null=False,blank=False)
+    quantity_sold=models.IntegerField(default=0)
+    amount_received=models.IntegerField(default=0)
+    sale_date=models.DateField(default=timezone.now)
+    unit_price=models.IntegerField(default=0)
+     
+    
+    def get_total(self):
+        total= self.quantity_sold * self.unit_price
+        return int( total)
+    
+#here we are getting change.(money to be given to theparent)    
+    def get_change(self):
+        change= self.get_total() - self.amount_received
+        return int(change)#sales is linked to products
 

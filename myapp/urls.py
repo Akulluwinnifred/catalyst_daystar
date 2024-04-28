@@ -33,6 +33,16 @@ urlpatterns = [
     path("sitters/",views.sitters,name="sitters"),
     path("tracking/",views.sittersattendance,name="sittersattendance"),
     path("onduty/",views.onduty,name="onduty"),
+
+
+    #dollscorner urls
+    path('doll/',views.doll,name='doll'),
+    path('dollscorner/<int:doll_id>/', views.dollscorner, name='dollscorner'),
+    path('add_to_stock/<str:pk>', views.add_to_stock, name='add_to_stock'),
+    path('all_sales/',views.all_sales,name='all_sales'),
+    path('issue_item/<str:pk>',views.issue_item,name='issue_item'),
+    path('receipt/',views.receipt,name='receipt'),
+    path('receipt_detail/<int:receipt_id>',views.receipt_detail,name='receipt_detail')
     
 ]
 

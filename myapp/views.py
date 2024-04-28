@@ -167,4 +167,65 @@ def baby_edit(request, id):
 
 
 
+def dollscorner(request, doll_id):
+    doll = get_object_or_404(Doll, id=doll_id)
+    return render(request, 'dolls/dollscorner.html', {'doll': doll})
+
+@login_required
+def receipt(request):
+    sales= Salesrecord.objects.all().order_by('-id') 
+    return render(request,'dolls/receipt.html',{'sales':sales})  
+
+
+@login_required
+def issue_item(request,pk):
+    issued_item=Doll.objects.get(id=pk) 
+    sales_form=SalesrecordForm(request.POST)  
+
+    if request.method == 'POST':
+        if sales_form.is_valid():
+            new_sale=sales_form.save(commit=False)
+            new_sale.doll=issued_item
+            new_sale.unit_price=issued_item.Unit_price
+            new_sale.save()
+            issued_quantity=int(request.POST['quantity_sold'])
+            issued_item.quantity-=issued_quantity
+            issued_item.save()
+            print(issued_item.name_of_the_doll)
+            print(request.POST['quantity_sold'])
+            print(issued_item.quantity)
+            return redirect('receipt')
+    return render(request, 'dolls/issue_item.html',{'sales_form':sales_form} )
+
+@login_required
+def receipt_detail(request, receipt_id):
+            receipt = Salesrecord.objects.get(id=receipt_id)
+            return render(request,'dolls/receipt_detail.html',{'receipt':receipt})
+
+@login_required
+def add_to_stock(request,pk):
+    issued_item=Doll.objects.get(id=pk)
+    form=Addform(request.POST)
+    if request.method == 'POST':
+        if form.is_valid():
+            added_quantity=int(request.POST['received_quantity'])
+            issued_item.quantity+=added_quantity
+            issued_item.save()
+            print(added_quantity)
+            print(issued_item.quantity)
+            return redirect('doll')
+    return render(request, 'dolls/add_to_stock.html',{'form':form})
+
+@login_required
+def all_sales(request):
+    sales=Salesrecord.objects.all()
+    total=sum([items.amount_received for items in sales])
+    change=sum([items.get_change() for items in sales])
+    net=total-change
+    return render(request,'dolls/all_sales.html',{'sales':sales,'total':total,'change':change,'net':net})
+
+
+def doll(request):
+    dolls=Doll.objects.all()
+    return render(request,'dolls/doll.html',{'dolls':dolls})
 

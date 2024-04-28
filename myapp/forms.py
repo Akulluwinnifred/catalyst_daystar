@@ -69,3 +69,17 @@ class PasswordChangeCustomForm(PasswordChangeForm):
     )
 
 
+class  DollForm(ModelForm):
+    class Meta:
+        model = Doll
+        fields = '__all__'
+
+class Addform(ModelForm):
+    class Meta:
+        model = Doll
+        fields = ['received_quantity']
+
+class SalesrecordForm(ModelForm):
+    class Meta:
+        model = Salesrecord
+        fields = [ 'quantity_sold', 'amount_received', 'payee']

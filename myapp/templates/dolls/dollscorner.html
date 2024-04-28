@@ -1,0 +1,51 @@
+{%extends 'base.html' %}
+{%load static %}
+{% block content %}
+
+<div>
+    <a href="{% url 'issue_item'  doll.id %}" class="hover_button" ><input type="submit" value="sell doll" class="btn btn-dark" placeholder="sell doll"/></a>
+    <a href="{% url 'add_to_stock' doll.id %}"  class="hover-button"><input type= "submit" value="Add to Stock" class="btn btn-dark" type="button"/></a>
+</div>
+
+<br><br>
+
+<div class="card-header" style="background-color:white;">
+    <h4> Dolls Details </h4>
+</div>
+
+
+<table class="table ">
+    <thead class="thead-dark table-">
+        <tr>
+            <th scope="col" class="project-h1">Category</th>
+            <th scope="col" class="project-h1">Dolls name</th>
+            <th scope="col" class="project-h1">Size</th>
+            <th scope="col" class="project-h1">Color</th>
+            <th scope="col" class="project-h1">Quantity</th>
+            <th scope="col" class="project-h1">Unit Price(UGX)</th>
+        
+        </tr>
+    </thead>
+    
+    <tbody>
+        <tr>
+            <td>{{doll.c_doll}}</td>
+            <td>{{doll.name_of_the_doll}}</td>
+            <td>{{doll.size}}</td>
+            <td>{{doll.color}}</td>
+            <td>{{doll.quantity}}</td>
+            <td>UGX{{doll.Unit_price}}</td>
+
+        
+
+        </div>
+
+
+        </tr>
+    </tbody>
+
+</table>
+</div>
+</div>
+</div>
+{% endblock %}

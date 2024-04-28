@@ -1,11 +1,9 @@
 {% extends 'base.html'%} {% block content%}
 <br></br>
 
-<div class="container">
-  <div class="card-header" style="background-color: white; width:40%;">
+<div class="container" style=" background-color: rgba(153, 198, 165, 0.55);">
     <h1 class="text-center" style="color: black;">TOTAL SALES MADE</h1>
-  </div><br>
-
+ <hr>
   <table class="table">
     <thead class="thead-dark">
       <tr>
@@ -25,7 +23,7 @@
 </div>
 <br><br>
 
-<div class="container">
+<div class="container" style=" background-color: rgba(153, 198, 165, 0.55);">
   <table class="table">
     <thead class="thead-dark">
       <tr>
@@ -43,7 +41,7 @@
       <tr>
 
         
-        <td style="color:#FB667A;">{{sale.payee | title}}</td>
+        <td style="color:red;">{{sale.payee | title}}</td>
         <td>{{sale.doll | title}}</td>
         <td>{{sale.quantity_sold}}</td>
         <td>UGX{{sale.unit_price}}</td>

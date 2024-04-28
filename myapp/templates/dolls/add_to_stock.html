@@ -10,12 +10,13 @@
    
     <h1 class="text-center
     " style="color:black; margin-left: 20px;" >ADD TO STOCK</h1>
-    <div class="card" style="opacity: 90%;width: 100%;margin-left: 20px; background-color: aliceblue;" >
+    <hr>
+    <div class="card" style="opacity: 90%; width: 100%; margin-left: 20px; background-color:rgba(153, 198, 165, 0.55); " >
       <div class="card-body">
         {% csrf_token %}
         {{form | crispy}}
-        
-        <button class="button" type="submit">Add</button>
+        <br><br>
+        <button class="button" type="submit" style="background-color: green; border: none; border-radius: 5px; width: 60px;">Add</button>
 
       </div>
     </div>

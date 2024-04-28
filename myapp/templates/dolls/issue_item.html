@@ -2,22 +2,23 @@
 {% load crispy_forms_tags %}
 {% load static %}
 {% block content %}
-<br />
+<br>
 <div class="back-container">
 
     <form method="POST" action="">
-         <div class="card-header" style="width: 76%; background-color: white; margin:0 auto;">
+        <div class="card-header" style="width: 76%; background-color: white; margin:0 auto;">
             <h1 class="text-center" style="color: black;">SALES FORM</h1>
-         </div>
-        <br />
-        <div class="card" style="opacity: 90%; background-color: aliceblue;width: 100%;margin:0 auto;">
+        </div>
+        <hr>
+        <div class="card" style="opacity: 90%; background-color: rgba(153, 198, 165, 0.55);width: 80%;margin:0 auto;">
             <div class="card-body">
 
                 {% csrf_token %}
                 {{sales_form | crispy}}
 
 
-                <button class="button" type="submit">SELL</button> <br>
+                <button class="button" type="submit"
+                    style="background-color: green; border: none;border-radius: 5px; width: 80px;">SELL</button> <br>
 
             </div>
         </div>
@@ -25,7 +26,5 @@
     </form>
 
 
-</div>
-</div>
 </div>
 {% endblock %}

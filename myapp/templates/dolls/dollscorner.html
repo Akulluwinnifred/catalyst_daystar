@@ -1,20 +1,17 @@
-{%extends 'base.html' %}
+
 {%load static %}
 {% block content %}
-
+<div class="container" style="margin-left: 10%; margin-right: 10%; margin-top: 30px;">
 <div>
-    <a href="{% url 'issue_item'  doll.id %}" class="hover_button" ><input type="submit" value="sell doll" class="btn btn-dark" placeholder="sell doll"/></a>
-    <a href="{% url 'add_to_stock' doll.id %}"  class="hover-button"><input type= "submit" value="Add to Stock" class="btn btn-dark" type="button"/></a>
+    <a href="{% url 'issue_item'  doll.id %}" class="hover_button" ><input type="submit" value="sell doll" class="btn btn-dark" style="background-color: green; border: none; border-radius: 5px; height: 30px; font-size: medium;" placeholder="sell doll"/></a>
+    <a href="{% url 'add_to_stock' doll.id %}"  class="hover-button"><input type= "submit" value="Add to Stock" class="btn btn-dark"  style="background-color: green; border: none; border-radius: 5px; height: 30px; font-size: medium;" type="button"/></a>
 </div>
 
 <br><br>
+    <h2 style="text-align: center;"> Dolls Details </h2>
+<hr>
 
-<div class="card-header" style="background-color:white;">
-    <h4> Dolls Details </h4>
-</div>
-
-
-<table class="table ">
+<table class="table " style=" background-color: rgba(153, 198, 165, 0.55); width: 100%;">
     <thead class="thead-dark table-">
         <tr>
             <th scope="col" class="project-h1">Category</th>
@@ -36,8 +33,6 @@
             <td>{{doll.quantity}}</td>
             <td>UGX{{doll.Unit_price}}</td>
 
-        
-
         </div>
 
 
@@ -46,6 +41,5 @@
 
 </table>
 </div>
-</div>
-</div>
+
 {% endblock %}

@@ -3,8 +3,8 @@
 
 {% block content %}
 <button class="p-2 bg-teal-500 rounded-lg shadow-lg"
-    style="margin-left: 10px;background-color: green; border-radius: 5px; border: #B4BDFF; width: 20%; height: 5%;"><a style="color: black; text-decoration: none;"
-        href="/babyreg">Add new baby</a></button>
+    style="margin-left: 10px;background-color: green; border-radius: 5px; border: #B4BDFF; width: 20%; height: 5%;"><a
+        style="color: black; text-decoration: none;" href="/babyreg">Add new baby</a></button>
 
 
 <h4 class="text-center">List of registered babies</h4>
@@ -12,49 +12,83 @@
 <div class="container">
 
 
-    <table class="table table-striped" style="width: 90%; margin-left: 20px;" >
+    <table class="table table-striped" style="width: 90%; margin-left: 20px;">
         <thead>
-          <tr>
+            <tr>
                 <th>#</th>
                 <th>Baby Number</th>
-                <th>Period of stay</th>
+                <!-- <th>Period of stay</th> -->
                 <th>Name</th>
                 <th>Gender</th>
                 <th>Age</th>
                 <th>Parents Name</th>
                 <th>action</th>
-           </tr>
-           </thead>
+            </tr>
+        </thead>
 
         <tbody>
             {% for each in babies %}
             <tr>
                 <td> {{each.id}}</td>
                 <td> {{each.Baby_Number}}</td>
-                <td>{{each.Period_of_stay}}</td>
+                <!-- <td>{{each.Period_of_stay}}</td> -->
                 <td>{{each.name}}</td>
                 <td>{{each.gender}}</td>
                 <td>{{each.age}}</td>
                 <td>{{ each.Parents_Name}}</td>
                 <td>
-                    <button class="p-2 bg-teal-500 rounded-lg shadow-lg"
+                    <!-- <button class="p-2 bg-teal-500 rounded-lg shadow-lg"
                     style="margin-left: 10px;background-color: green; border-radius: 5px; border: #B4BDFF; width: 90%; height: 5%;"><a style="color: black; text-decoration: none;"
-                        href="read/{{each.id}}">read</a></button>
+                        href="read/{{each.id}}">read</a></button> -->
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-success mr-1" data-bs-toggle="modal"
+                            data-bs-target="#myModal{{ each.id }}">
+                            read</i>
+                        </button>
 
-                    <!-- <a href="read/{{each.id}}">read</a> -->
+                        <!-- Modal -->
+<!-- Modal -->
+<div class="modal" id="myModal{{ each.id }}" tabindex="-1" aria-labelledby="myModallabel1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Baby: {{ each.name }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <ul class="list-unstyled">
+                    <li>Baby No: <strong>{{ each.Baby_Number }}</strong></li>
+                    <li>Name: <strong>{{ each.name }}</strong></li>
+                    <li>Gender: <strong>{{ each.gender }}</strong></li>
+                    <li>Date of birth: <strong>{{ each.Date_Of_Birth }}</strong></li>
+                    <li>Age: <strong>{{ each.age }}</strong></li>
+                    <li>Location: <strong>{{ each.location }}</strong></li>
+                    <li>Parents Name: <strong>{{ each.Parents_Name }}</strong></li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+                        <!-- <a href="read/{{each.id}}">read</a> -->
 
                 </td>
-            </tr>
-            {% endfor %}
-        </tbody>
+</div>
+</tr>
+{% endfor %}
+</tbody>
 
-    </table>
+</table>
 
 </div>
 
 <style>
-
-.container {
+    .container {
         padding-top: 20px;
         margin-top: 20px;
         max-width: 800px;
@@ -65,12 +99,10 @@
 
     }
 
- h2{
+    h2 {
 
-    text-align: center;
- }
-
-
+        text-align: center;
+    }
 </style>
 
 

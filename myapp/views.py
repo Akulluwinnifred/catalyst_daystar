@@ -56,6 +56,22 @@ def babyreg(request):
       return render(request,'babies/babyreg.html',{'form':form})
    
 
+def babypayment(request):
+   form = Payment_form()
+   
+   if request.method == 'POST':
+   
+      form = Payment_form(request.POST)
+      
+      if form.is_valid():
+         form.save()
+         messages.success(request,'Payment registered successfully')
+         return redirect('/babypayment')
+   else:
+      form = Payment_form()
+      return render(request,'baby_payments/babypayment.html',{'form':form})
+   
+
 def babyarrival(request):
    form = Babyarrivalform()
    
@@ -166,10 +182,6 @@ def baby_edit(request, id):
     return render(request, 'babies/baby_edit.html', {'form': form, 'baby': baby})
 
 
-
-def dollscorner(request, doll_id):
-    doll = get_object_or_404(Doll, id=doll_id)
-    return render(request, 'dolls/dollscorner.html', {'doll': doll})
 
 @login_required
 def receipt(request):

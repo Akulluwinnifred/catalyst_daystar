@@ -25,7 +25,7 @@ urlpatterns = [
     path("signedout/",views.babiesdeparture,name="babiesdeparture"),
     path("arrival/",views.babyarrival,name="babyarrival"),
     path("signedin/",views.babysignin,name="babysignin"),
-     path('baby_edit/<int:id>/', views.baby_edit, name='baby_edit'),
+    path('baby_edit/<int:id>/', views.baby_edit, name='baby_edit'),
 
      
      #sitters urls
@@ -37,12 +37,14 @@ urlpatterns = [
 
     #dollscorner urls
     path('doll/',views.doll,name='doll'),
-    path('dollscorner/<int:doll_id>/', views.dollscorner, name='dollscorner'),
     path('add_to_stock/<str:pk>', views.add_to_stock, name='add_to_stock'),
     path('all_sales/',views.all_sales,name='all_sales'),
     path('issue_item/<str:pk>',views.issue_item,name='issue_item'),
     path('receipt/',views.receipt,name='receipt'),
-    path('receipt_detail/<int:receipt_id>',views.receipt_detail,name='receipt_detail')
+    path('receipt_detail/<int:receipt_id>',views.receipt_detail,name='receipt_detail'),
+
+    #payments
+    path('babypayment/',views.babypayment,name='babypayment'),
     
 ]
 

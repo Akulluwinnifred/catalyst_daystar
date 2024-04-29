@@ -24,7 +24,7 @@
             <th scope="col" class="project-h1">Color</th>
             <th scope="col" class="project-h1">Quantity</th>
             <th scope="col" class="project-h1">Unit Price(UGX)</th>
-            <th scope="col" class="project-h1">Detail</th>
+            <th scope="col" class="project-h1">Action</th>
         </tr>
     </thead>
     {% for doll in dolls %}
@@ -38,8 +38,9 @@
             <td>UGX{{doll.Unit_price}}</td>
            <div> <!-- here we are hadling the buy item link n its handled by product_detail view -->
             
-            <td><a href="{% url 'dollscorner' doll_id=doll.id %}"><input type="button" value="SELL DOLL"></a></td>
-
+            <td><a href="{% url 'issue_item' doll.id %}"><input type="button" value="SELL DOLL"  style="background-color: green; color: white; border: none; border-radius: 5px; height: 30px; font-size: medium;"></a>
+            <a href="{% url 'add_to_stock' doll.id %}"><input type="button" value="ADD TO STOCK"  style="background-color: green; color: white; border: none; border-radius: 5px; height: 30px; font-size: medium;"></a>
+         </td>
 
 
         </div>

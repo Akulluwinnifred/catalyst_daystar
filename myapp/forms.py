@@ -31,8 +31,12 @@ class Sittersattendance_form(forms.ModelForm):
     class Meta:
         model = BabySitterattendance
         fields = '__all__'
-        widgets = {
-            'Date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),}
+
+class Payment_form(forms.ModelForm):
+    class Meta:
+        model = Payment
+        fields = '__all__'
+     
 
 
 class Departure_form(forms.ModelForm):
@@ -40,7 +44,7 @@ class Departure_form(forms.ModelForm):
         model = Departure
         fields = '__all__'
         widgets = {
-            'departure_time': forms.DateTimeInput(attrs={'type': 'datetime-local'}),}
+            'departure_time': forms.TimeInput(attrs={'type': 'datetime-local'}),}
       
  
 class PasswordChangeCustomForm(PasswordChangeForm):
@@ -77,9 +81,9 @@ class  DollForm(ModelForm):
 class Addform(ModelForm):
     class Meta:
         model = Doll
-        fields = ['received_quantity']
+        fields = [ 'c_doll', 'received_quantity']
 
 class SalesrecordForm(ModelForm):
     class Meta:
         model = Salesrecord
-        fields = [ 'quantity_sold', 'amount_received', 'payee']
+        fields = [ 'baby_name', 'quantity_sold', 'amount_received']

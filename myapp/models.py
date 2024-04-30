@@ -65,7 +65,7 @@ class RegisterBaby(models.Model):
     age = models.IntegerField(default=0)
     Period_of_stay = models.ForeignKey(Categorystay, on_delete=models.CASCADE)
     location = models.CharField(max_length=100)
-    Baby_Number = models.CharField(max_length=200,default=0)
+    Baby_Number = models.CharField(max_length=200,unique=True,blank=True, null=True)
     Parents_Name = models.CharField(max_length=200)
 
     def __str__(self):

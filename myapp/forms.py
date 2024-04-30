@@ -81,7 +81,7 @@ class  DollForm(ModelForm):
 class Addform(ModelForm):
     class Meta:
         model = Doll
-        fields = [ 'c_doll', 'received_quantity']
+        fields = ['received_quantity']
 
 class SalesrecordForm(ModelForm):
     class Meta:

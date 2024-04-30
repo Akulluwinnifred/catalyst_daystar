@@ -43,10 +43,11 @@ class BabySitter(models.Model):
         ('Others', 'Others'),
     ))
     Contact = models.CharField(max_length=15)
-    Sitter_Number = models.CharField(max_length=200)
+    Sitter_Number = models.CharField(max_length=200,unique=True,blank=True, null=True)
     Next_Of_Kin = models.CharField(max_length=200)
     Recommenders_Name = models.CharField(max_length=200)
     Recommenders_Contact = models.IntegerField()
+    
     
     def __str__(self):
         return self.name

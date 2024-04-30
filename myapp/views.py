@@ -134,7 +134,7 @@ def Sitterreg(request):
             return redirect('/sitterreg')
     else:
         getsitterform = Sitterreg_form()
-        return render(request, 'sitters/sitterreg.html', {'getsitterform': getsitterform})
+    return render(request, 'sitters/sitterreg.html', {'getsitterform': getsitterform})
     
 
 def sittersattendance(request):

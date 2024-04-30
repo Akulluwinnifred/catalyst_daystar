@@ -2,10 +2,22 @@
 
 
 {% block content %}
-<button class="p-2 bg-teal-500 rounded-lg shadow-lg"
-    style="margin-left: 10px;background-color: green; border-radius: 5px; border: #B4BDFF; width: 20%; height: 5%;"><a
-        style="color: black; text-decoration: none;" href="/babyreg">Add new baby</a></button>
+<button class="p-2 bg-teal-500 rounded-lg shadow-lg bg bg-success"
+    style="margin-left: 10px; border-radius: 5px; border: #B4BDFF; width: 20%; height: 5%;"><a
+        style="color: white; text-decoration: none;" href="/babyreg">Add new baby</a></button>
+<br><br><br>
+<form method="GET" action="{% url 'search_babies' %}" class="mb-3">
+    <div class="input-group" style="margin-left: 40px; width: 80%; margin-bottom: 10px;">
+    <input type="text" class="form-control" placeholder="Search" name="search_query">
+    <button class="btn btn-outline-secondary" type="submit"> search</button>
+    </div>
 
+</form>
+
+{% if search_query %}
+<p>Search results for: '{{ search_query }}'</p>
+
+{% endif %}
 
 <h4 class="text-center">List of registered babies</h4>
 
@@ -43,11 +55,22 @@
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-success mr-1" data-bs-toggle="modal"
                             data-bs-target="#myModal{{ each.id }}">
-                            read</i>
+                            <i class="fa-brands fa-readme"></i>
                         </button>
+                        <button type="button" class="btn btn-success mr-1" data-bs-toggle="modal"
+                            data-bs-target="#myModal{{ each.id }}">
+                            <i class="fa-solid fa-pen"></i>
+                        </button>
+                        <button type="button" class="btn btn-success mr-1" data-bs-toggle="modal"
+                            data-bs-target="#myModal{{ each.id }}"><i class="fa-solid fa-trash">
+                            </i>
+                        </button>
+                
+                    </div>
+                    
+                </td>
+                    
 
-                        <!-- Modal -->
-<!-- Modal -->
 <div class="modal" id="myModal{{ each.id }}" tabindex="-1" aria-labelledby="myModallabel1" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

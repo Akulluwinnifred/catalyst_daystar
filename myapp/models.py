@@ -15,25 +15,6 @@ class Paymenttype(models.Model):
         return self.name
     
     #baby payments
-class Payment(models.Model):
-    baby_name = models.CharField(max_length=100)
-    period_of_stay = models.ForeignKey(Categorystay, on_delete=models.CASCADE, null=True,blank=True)
-    payment_type = models.ForeignKey(Paymenttype, on_delete=models.CASCADE)
-    currency = models.CharField(max_length=5,default='Ugx')
-    amount_due = models.IntegerField(default=0)
-    amount_paid = models.IntegerField(default=0)
-    remaining_balance = models.IntegerField(default=0)
-    payment_status = models.CharField(max_length=200, choices=(
-        ('complete', 'complete'),
-        ('pending', 'pending'),
-    ))
-    paid_by = models.CharField(max_length=200,)
-    start_date = models.DateField(default=timezone.now)
-    end_date = models.DateField(default=timezone.now)
-
-    def __int__(self):
-        return self.baby_name
-
 
 class FixedLocation(models.Model):
     name = models.CharField(max_length=10)
@@ -81,7 +62,7 @@ class RegisterBaby(models.Model):
     name = models.CharField(max_length=200)
     gender = models.CharField(max_length=10,choices=GENDER_CHOICES)
     age = models.IntegerField(default=0)
-    Date_Of_Birth = models.DateField(default=timezone.now)
+    Period_of_stay = models.ForeignKey(Categorystay, on_delete=models.CASCADE)
     location = models.CharField(max_length=100)
     Baby_Number = models.CharField(max_length=200,default=0)
     Parents_Name = models.CharField(max_length=200)
@@ -90,22 +71,43 @@ class RegisterBaby(models.Model):
         return self.name
     
 class Arrivalbaby(models.Model):
-       baby_name = models.CharField(max_length=200)
+       baby_name = models.ForeignKey(RegisterBaby, on_delete=models.CASCADE,null=True,blank=True)
        Baby_Number = models.CharField(max_length=200,default=0)
        Period_of_stay = models.ForeignKey(Categorystay, on_delete=models.CASCADE)
        Brought_by = models.CharField(max_length=200)
-       Time_In = models.TimeField()
+       Time_In = models.DateTimeField()
        created_at = models.TimeField(auto_now_add=True)
        
        def __str__(self):
-          return self.baby_name
+          return self.Baby_Number
+       
+class Payment(models.Model):
+    baby_name = models.ForeignKey(RegisterBaby, on_delete=models.CASCADE,null=True,blank=True)
+    payment_rate = models.ForeignKey(Paymenttype, on_delete=models.CASCADE)
+    currency = models.CharField(max_length=5,default='Ugx')
+    amount_due = models.IntegerField(default=0)
+    amount_paid = models.IntegerField(default=0)
+    remaining_balance = models.IntegerField(default=0)
+    payment_status = models.CharField(max_length=200, choices=(
+        ('complete', 'complete'),
+        ('pending', 'pending'),
+    ))
+    paid_by = models.CharField(max_length=200,)
+    start_date = models.DateField(default=timezone.now)
+    end_date = models.DateField(default=timezone.now)
+
+    def __str__(self):
+        return (self.baby_name)
+
+
+
 
 class Departure(models.Model):
     baby_name = models.CharField(max_length=100)
-    departure_time = models.TimeField()
+    departure_time = models.DateTimeField()
     picked_up_by = models.CharField(max_length=100)
     comment = models.TextField(blank=True,verbose_name="Comment(optional)")
-    created_at = models.TimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.baby_name
@@ -117,10 +119,12 @@ class BabySitterattendance(models.Model):
          ('On_duty', 'On_duty'),
      )
      sitter_Number = models.CharField(max_length=200)
-     name = models.CharField(max_length=100)
+     name = models.ForeignKey(BabySitter, on_delete=models.CASCADE)
      date = models.DateField(default=timezone.now)
      attendance_status = models.CharField(max_length=10,choices=STATUS_CHOICES)
-     
+
+     def __str__(self):
+        return self.name
 
 
 # class InventoryTracker(models.Model):

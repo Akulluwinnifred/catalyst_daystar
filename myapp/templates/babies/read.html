@@ -48,8 +48,6 @@
         <thead>
             <tr class="table_dark">
                 <th>#</th>
-                <!-- <th>Period of stay</th> -->
-                <!-- <th>Fee</th> -->
                 <th>Name</th>
                 <th>Gender</th>
                 <th>Age</th>
@@ -57,8 +55,6 @@
                 <th>Brought by</th>
                 <th>location</th>
                 <th>Baby number</th>
-                <!-- <th>comment</th> -->
-                <!-- <th>timein</th> -->
                 <th>Action</th>
                
             </tr>
@@ -67,18 +63,12 @@
     
         <tr>
             <td>{{babies_informations.id}}</td>
-            <!-- <td>{{babies_informations.c_stay}}</td> -->
-            <!-- <td>{{babies_informations.Period_of_stay}}</td> -->
             <td>{{babies_informations.name}}</td>
             <td>{{babies_informations.gender}}</td>
             <td>{{babies_informations.age}}</td>
             <td>{{babies_informations.Parents_Name}}</td>
-           <!-- <td>{{babies_informations.Brought_by}}</td> -->
            <td>{{babies_informations.location}}</td>
            <td>{{babies_informations.Baby_Number}}</td>
-           <!-- <td>{{babies_informations.comment}}</td> -->
-           <!-- <td>{{babies_informations.Time_In}}</td> -->
-           <!-- <td>{{babies_informations.timeout}}</td> -->
            <td>
             <a href="{% url 'delete' id=babies_informations.id % }"><button class="btn btn-primary" style="margin-bottom: 5px; background-color: green; border: none;">Delete</button></a>
             <br>
@@ -97,4 +87,4 @@
         
    
 </body>
-</html>
+</html> 

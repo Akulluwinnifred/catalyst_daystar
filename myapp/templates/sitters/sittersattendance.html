@@ -2,6 +2,28 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+<style>
+
+  .container {
+          padding-top: 20px;
+          margin-top: 20px;
+          max-width: 500px;
+          background-color: rgba(153, 198, 165, 0.55);
+          padding: 20px;
+          margin-left: 200px;
+  
+      }
+  
+      
+    label {
+      /* color: #495057; */
+      font-weight: bold;
+    }
+      
+  </style>
+  
+
+<h2 style="text-align:center;"> SITTERS ATTENDANCE FORM</h2>
 <hr>
 
 
@@ -21,29 +43,10 @@
     <form method="post">
         {% csrf_token %}
         {{ form|crispy }}<br>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary bg bg-success" style="border: none">Submit</button>
     </form>
 
 </div>
 
-<style>
-
-.container {
-        padding-top: 20px;
-        margin-top: 20px;
-        max-width: 500px;
-        background-color: rgba(153, 198, 165, 0.55);
-        padding: 20px;
-        margin-left: 250px;
-
-    }
-
-    
-  label {
-    /* color: #495057; */
-    font-weight: bold;
-  }
-    
-</style>
 
 {% endblock %}

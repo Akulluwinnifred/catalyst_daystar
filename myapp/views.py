@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, render,redirect,reverse
 from django.http import HttpResponse
 from django.utils import timezone
 from . forms import *
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login ,logout
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -56,36 +56,52 @@ def babyreg(request):
       return render(request,'babies/babyreg.html',{'form':form})
    
 
-def babypayment(request):
-   form = Payment_form()
+# def babypayment(request):
+#    form = Payment_form()
    
-   if request.method == 'POST':
+#    if request.method == 'POST':
    
-      form = Payment_form(request.POST)
+#       form = Payment_form(request.POST)
       
-      if form.is_valid():
-         form.save()
-         messages.success(request,'Payment registered successfully')
-         return redirect('/babypayment')
-   else:
-      form = Payment_form()
-      return render(request,'baby_payments/babypayment.html',{'form':form})
+#       if form.is_valid():
+#          form.save()
+#          messages.success(request,'Payment registered successfully')
+#          return redirect('/babypayment')
+#    else:
+#       form = Payment_form()
+#       return render(request,'baby_payments/babypayment.html',{'form':form})
    
+def babypayment(request):
+    form = Payment_form()
+   
+    if request.method == 'POST':
+   
+       form = Payment_form(request.POST)
+      
+       if form.is_valid():
+          form.save()
+          messages.success(request,"Baby signed out successfully")
+          return redirect('/babypayment')
+    else:
+        form = Payment_form()
+    return render(request,'baby_payments/babypayment.html',{'form':form})
+
 
 def babyarrival(request):
-   form = Babyarrivalform()
-   
-   if request.method == 'POST':
-   
-      form = Babyarrivalform(request.POST)
-      
-      if form.is_valid():
-         form.save()
-         messages.success(request,'Baby signed in successfully')
-         return redirect('/arrival')
-   else:
-      form = Babyarrivalform()
-      return render(request,'babies/arrival.html',{'form':form})
+    if request.method == 'POST':
+        form = Babyarrivalform(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Baby signed in successfully')
+            return redirect('/arrival')
+        else:
+            messages.error(request, 'Form submission failed. Please check the data entered.')
+            # If the form is not valid, re-render the form with validation errors
+            return render(request, 'babies/arrival.html', {'form': form})
+    else:
+        # If the request method is not POST, create a new form instance and render the form
+        form = Babyarrivalform()
+        return render(request, 'babies/arrival.html', {'form': form})
    
    
 def departure(request):
@@ -167,7 +183,10 @@ def home(request):
     template = loader.get_template("home.html")
     return HttpResponse(template.render(context))
 
-
+def search_babies(request):
+    query = request.GET.get('search_query')
+    baby_list = RegisterBaby.objects.filter(name__icontains=query)
+    return render(request,'babies/all_babies.html',{'baby_list':baby_list,'search_query':query})
 
 
 def baby_edit(request, id):  

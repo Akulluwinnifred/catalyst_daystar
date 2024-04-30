@@ -6,30 +6,6 @@
 
 {% block content %}
 
-<h3 class="text-center" style="font-family: 'Times New Roman', Times, serif;">BABY REGISTRATION FORM</h3>
-<hr>
-
-{% for message in messages %}
-
-<div class="alert alert-warning alert-dismissible fade show" role="alert"
-    style="background-color: #4caf50; width: 40%; margin-left: 40px;">
-    {{ message }}
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-
-{% endfor %}
-
-<div class="container">
-
-    <form method="POST" class="babereg-form">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <br>
-        <button type="submit" class="btn btn-primary">Save</button>
-    </form>
-
-</div>
-
 <style>
     
     .container {
@@ -39,7 +15,7 @@
 
         background-color: rgba(153, 198, 165, 0.55);
         padding: 20px;
-        margin-left: 250px;
+        margin-left: 200px;
 
     }
 
@@ -63,12 +39,38 @@
         padding: 10px;
         border: none;
         border-radius: 5px;
-        background-color: #4caf50;
+        {% comment %} background-color: #4caf50; {% endcomment %}
         color: #fff;
         font-size: 16px;
         cursor: pointer;
     }
 
 </style>
+
+
+<h3 class="text-center" style="font-family: 'Times New Roman', Times, serif;">BABY REGISTRATION FORM</h3>
+<hr>
+
+{% for message in messages %}
+
+<div class="alert alert-warning alert-dismissible fade show" role="alert"
+    style="background-color: #4caf50; width: 40%; margin-left: 40px;">
+    {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+{% endfor %}
+
+<div class="container">
+
+    <form method="POST" class="babereg-form">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <br>
+        <button type="submit" class="btn btn-primary bg bg-success">Submit</button>
+    </form>
+
+</div>
+
 
 {% endblock %}

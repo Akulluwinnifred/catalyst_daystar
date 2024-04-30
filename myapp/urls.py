@@ -20,12 +20,13 @@ urlpatterns = [
     path('read/<int:id>/',views.read,name='read'),
     path('all_babies/',views.all_babies,name='all_babies'),
     path("babyreg/",views.babyreg,name="babyreg"),
-    path("read/<int:id>",views.read,name="read"),
+    # path("read/<int:id>",views.read,name="read"),
     path("departure/",views.departure,name="departure"),
     path("signedout/",views.babiesdeparture,name="babiesdeparture"),
     path("arrival/",views.babyarrival,name="babyarrival"),
     path("signedin/",views.babysignin,name="babysignin"),
     path('baby_edit/<int:id>/', views.baby_edit, name='baby_edit'),
+    path('search/',views.search_babies,name='search_babies'),
 
      
      #sitters urls

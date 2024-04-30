@@ -44,7 +44,7 @@ class Departure_form(forms.ModelForm):
         model = Departure
         fields = '__all__'
         widgets = {
-            'departure_time': forms.TimeInput(attrs={'type': 'datetime-local'}),}
+            'departure_time': forms.DateTimeInput(attrs={'type': 'datetime-local'}),}
       
  
 class PasswordChangeCustomForm(PasswordChangeForm):

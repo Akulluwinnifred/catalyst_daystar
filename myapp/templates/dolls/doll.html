@@ -3,8 +3,8 @@
 {% block content %}
 
 <div>
-    <a href="{% url 'receipt' %}" class="hover_button"><input type="submit" value="Receipts" class="btn btn-dark" style="background-color: green; border: none;" placeholder="Receipts"/></a>
-    <a href="{% url 'all_sales' %}"  class="hover-button"><input type= "submit" value="All_sales" class="btn btn-dark"  style="background-color: green; border: none;"type="button"/></a>
+    <a href="{% url 'receipt' %}" class="hover_button"><input type="submit" value="Receipts" class="btn btn-success" style="border: none;" placeholder="Receipts"/></a>
+    <a href="{% url 'all_sales' %}"  class="hover-button"><input type= "submit" value="All_sales" class="btn btn-success"  style="border: none;"type="button"/></a>
 </div>
 
 <div class="table-container">
@@ -38,8 +38,8 @@
             <td>UGX{{doll.Unit_price}}</td>
            <div> <!-- here we are hadling the buy item link n its handled by product_detail view -->
             
-            <td><a href="{% url 'issue_item' doll.id %}"><input type="button" value="SELL DOLL"  style="background-color: green; color: white; border: none; border-radius: 5px; height: 30px; font-size: medium;"></a>
-            <a href="{% url 'add_to_stock' doll.id %}"><input type="button" value="ADD TO STOCK"  style="background-color: green; color: white; border: none; border-radius: 5px; height: 30px; font-size: medium;"></a>
+            <td><a href="{% url 'issue_item' doll.id %}"><input type="button" class="bg bg-success" value="SELL DOLL"  style="color: white; border: none; border-radius: 5px; height: 30px; font-size: medium;"></a>
+            <a href="{% url 'add_to_stock' doll.id %}"><input type="button" class="bg bg-success" value="ADD TO STOCK"  style="color: white; border: none; border-radius: 5px; height: 30px; font-size: medium;"></a>
          </td>
 
 

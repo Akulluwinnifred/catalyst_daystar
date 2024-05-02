@@ -13,12 +13,12 @@
 
 {% endfor %}
 
-<h2 style="text-align: center;">DAILY ATTENDANCE FORM</h2>
-<hr>
+
 
 <div class="container">
-
+    <h3 class="text-center" style="font-family: 'Times New Roman', Times, serif;">BABY REGISTRATION FORM</h3>
     <form method="post">
+        
         {% csrf_token %}
         {{ form|crispy }}<br>
         <button type="submit" class="btn btn-primary bg bg-success" style="background-color: #4caf50; border: none;">Submit</button>

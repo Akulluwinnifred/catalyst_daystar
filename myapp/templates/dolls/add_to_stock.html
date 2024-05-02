@@ -8,11 +8,13 @@
 <div class="container">
   <form method="POST" action="">
    
-    <h1 class="text-center
-    " style="color:black; margin-left: 20px;" >ADD TO STOCK</h1>
-    <hr>
+    
+    
     <div class="card" style="opacity: 90%; width: 100%; margin-left: 20px; background-color:rgba(153, 198, 165, 0.55); " >
+      <h1 class="text-center
+    " style="color:black; margin-left: 20px;" >ADD TO STOCK</h1>
       <div class="card-body">
+      
         {% csrf_token %}
         {{form | crispy}}
         <br><br>

@@ -260,3 +260,35 @@ def doll(request):
     dolls=Doll.objects.all()
     return render(request,'dolls/doll.html',{'dolls':dolls})
 
+
+
+# def payment_baby(request):
+#     if request.method == 'POST':
+#         form = AddPayment(request.POST)
+#         if form.is_valid():
+#             payment = form.save(commit=False)
+#             payment.total_amount_due = calculate_total_amount_due(payment.payment_rate, payment.starting_date, payment.ending_date)
+#             payment.save()
+#             messages.success(request, 'Payment added successfully')
+#             return redirect('/payment_baby')
+#     else:
+#         form = AddPayment()
+#     return render(request, 'payment_baby.html', {'form': form})
+
+# def calculate_total_amount_due(payment_rate, starting_date, ending_date):
+#     if payment_rate == 'Full day':
+#         return 15000
+#     elif payment_rate == 'Half day':
+#         return 10000
+#     elif payment_rate == 'Monthly':
+        
+#         weekdays = 0
+#         while starting_date <= ending_date:
+#             if starting_date.weekday() < 5:  
+#                 weekdays += 1
+#             starting_date += datetime.timedelta(days=1)
+#         return 10000 * weekdays  
+
+
+#         def _str_(self):
+#             return str(self.baby_name)

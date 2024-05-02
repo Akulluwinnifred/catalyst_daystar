@@ -64,9 +64,9 @@
 </div>
 {% endfor %}
 
-<h1 style="color: black">Baby Departure Form</h1>
+
 <div class="form-container" style="background-color: rgba(153, 198, 165, 0.55);">
- 
+  <h1 style="color: black">Baby Departure Form</h1>
   <form method="post">
     {% csrf_token %}
     {{ form|crispy }}

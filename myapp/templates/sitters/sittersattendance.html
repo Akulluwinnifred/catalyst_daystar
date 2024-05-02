@@ -23,8 +23,8 @@
   </style>
   
 
-<h2 style="text-align:center;"> SITTERS ATTENDANCE FORM</h2>
-<hr>
+
+
 
 
 {% for message in messages %}
@@ -39,7 +39,7 @@
 
 
 <div class="container">
-
+  <h2 style="text-align:center;"> SITTERS ATTENDANCE FORM</h2>
     <form method="post">
         {% csrf_token %}
         {{ form|crispy }}<br>

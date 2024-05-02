@@ -4,26 +4,6 @@
 
 {% block content %}
 
-<div class="container">
-
-    <h2>LOGIN</h2>
-
-    <form method="post">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <br>
-        <button type="submit" class="btn btn-primary" style="background-color: green; border-radius: 5px; border: #B4BDFF; width: 20%; height: 5%;">Login</button>
-        <br><br>
-
-    </form>
-
-</div>
-
-<footer class="footer">
-    © 2024 Daystar daycare,All rights reserved.Designed by Akullu Winnifred
-    
-</footer>
-
 <style>
 
     .container {
@@ -59,5 +39,27 @@
 
         
 </style>
+
+<div class="container">
+
+    <h2>LOGIN</h2>
+
+    <form method="post">
+       
+        {% csrf_token %}
+        {{ form|crispy }}
+        <br>
+        <button type="submit" class="btn btn-primary" style="background-color: green; border-radius: 5px; border: #B4BDFF; width: 20%; height: 5%;">Login</button>
+        <br><br>
+
+    </form>
+
+</div>
+
+<footer class="footer">
+    © 2024 Daystar daycare,All rights reserved.Designed by Akullu Winnifred
+    
+</footer>
+
 
 {% endblock %}

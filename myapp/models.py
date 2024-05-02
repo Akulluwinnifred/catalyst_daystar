@@ -82,9 +82,11 @@ class Arrivalbaby(models.Model):
        def __str__(self):
           return self.Baby_Number
        
+
+       
 class Payment(models.Model):
     baby_name = models.ForeignKey(RegisterBaby, on_delete=models.CASCADE,null=True,blank=True)
-    payment_rate = models.ForeignKey(Paymenttype, on_delete=models.CASCADE)
+    period_of_stay = models.ForeignKey(Categorystay, on_delete=models.CASCADE)
     currency = models.CharField(max_length=5,default='Ugx')
     amount_due = models.IntegerField(default=0)
     amount_paid = models.IntegerField(default=0)
@@ -96,6 +98,7 @@ class Payment(models.Model):
     paid_by = models.CharField(max_length=200,)
     start_date = models.DateField(default=timezone.now)
     end_date = models.DateField(default=timezone.now)
+    
 
     def __str__(self):
         return (self.baby_name)

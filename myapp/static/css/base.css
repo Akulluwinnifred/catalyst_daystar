@@ -1,10 +1,17 @@
 .sidebar {
     width: 250px;
     padding: 20px;
-    background-color: #1b4965;
+    
+    background-color: #28a745;
     color: white;
-    float: left;
+    float: right;
     height: 143.5vh;
+    display: flex;
+    height: 100%;
+    flex: 0 0 250px; 
+    background-color: #337357;
+    color: white;
+    overflow-y: auto; 
   }
 
   .content {
@@ -18,13 +25,12 @@
     margin-bottom: 10px;
   }
 
-  .profile-picture {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    margin-right: 10px;
-    
-  }
+
+
+  
+
+
+ 
 
   .profile-container h3 {
     margin: 0;
@@ -46,11 +52,11 @@
   }
 
   .sidebar a:hover {
-    color: white;
-    background-color: darkblue;
+    color: black;
+    background-color: rgb(175, 218, 175);
   }
 
-  .sidebar-footer {
+  /* .sidebar-footer {
     margin-top: auto;
   }
 
@@ -61,25 +67,23 @@
 
   .sidebar-footer a:hover {
     text-decoration: underline;
-  }
+  } */
 
   .footer {
-    /* background-color: rgba(7, 7, 7, 0.05); */
-    background-color: #1b4965;
+  
+    background-color: #28a745;
     text-align: center;
     padding: 10px;
-    /* margin-top: 8%; */
     bottom: 0;
     display: flex;
     flex-direction: column;
     margin-bottom: 0;
     position: fixed;
     width: 100%;
-    /* color: white; */
+
   }
 
   body {
     min-height: 100vh;
-    /* display: flex;
-    flex-direction: column; */
+    
   }

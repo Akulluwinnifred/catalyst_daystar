@@ -1,6 +1,9 @@
 from django.db import models
 from django.utils import timezone
+import re
+from django.core.exceptions import ValidationError
 
+# Create your models here.
 
 class Categorystay(models.Model):
     name = models.CharField(max_length=50, null=True,blank=True)
@@ -22,6 +25,22 @@ class FixedLocation(models.Model):
     def __str__(self):
         return self.name
 
+def validate_letters(value):
+    if not re.match("^[a-zA-Z]*$", value):
+        raise ValidationError("Only letters are allowed.")
+
+def validate_numbers(value):
+    if not re.match("^[0-9]*$", value):
+        raise ValidationError("Only numbers are allowed.")
+
+def validate_contact_length(value):
+    if len(value) != 10:
+        raise ValidationError("Contact field must contain exactly 10 digits.")
+
+def validate_NIN_length(value):
+    if len(value) != 14:
+        raise ValidationError("NIN field must contain exactly 14 digits.")
+
 
 class BabySitter(models.Model):
 
@@ -30,11 +49,11 @@ class BabySitter(models.Model):
         ('female', 'Female'),
      )
     
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200,validators=[validate_letters])
     gender = models.CharField(max_length=10,choices=GENDER_CHOICES)
     location = models.ForeignKey(FixedLocation, on_delete=models.CASCADE)
     Date_Of_Birth = models.DateField(default=timezone.now)
-    NIN = models.CharField(max_length=14)
+    NIN = models.CharField(max_length=14,validators=[validate_NIN_length])
     Religion = models.CharField(max_length=30, null=True, blank=True,verbose_name="Religion(optional)")
     Level_Of_Education = models.CharField(max_length=200,choices=(
         ('Certificate', 'Certificate'),
@@ -42,11 +61,11 @@ class BabySitter(models.Model):
         ('Degree', 'Degree'),
         ('Others', 'Others'),
     ))
-    Contact = models.CharField(max_length=15)
-    Sitter_Number = models.CharField(max_length=200,unique=True,blank=True, null=True)
-    Next_Of_Kin = models.CharField(max_length=200)
-    Recommenders_Name = models.CharField(max_length=200)
-    Recommenders_Contact = models.IntegerField()
+    Contact = models.CharField(max_length=10,validators=[validate_contact_length])
+    Sitter_Number = models.CharField(max_length=200,unique=True,blank=False, null=True)
+    Next_Of_Kin = models.CharField(max_length=200,validators=[validate_letters])
+    Recommenders_Name = models.CharField(max_length=200,validators=[validate_letters])
+    Recommenders_Contact = models.CharField(max_length=10,validators=[validate_contact_length])
     
     
     def __str__(self):
@@ -60,13 +79,13 @@ class RegisterBaby(models.Model):
         ('female', 'Female'),
      )
     # Fee = models.ForeignKey(Payment, on_delete=models.CASCADE,null=True,blank=True)
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200,validators=[validate_letters])
     gender = models.CharField(max_length=10,choices=GENDER_CHOICES)
     age = models.IntegerField(default=0)
     Period_of_stay = models.ForeignKey(Categorystay, on_delete=models.CASCADE)
     location = models.CharField(max_length=100)
-    Baby_Number = models.CharField(max_length=200,unique=True,blank=True, null=True)
-    Parents_Name = models.CharField(max_length=200)
+    Baby_Number = models.CharField(max_length=200,unique=True,blank=False, null=True)
+    Parents_Name = models.CharField(max_length=200,validators=[validate_letters])
 
     def __str__(self):
         return self.name
@@ -87,6 +106,7 @@ class Arrivalbaby(models.Model):
 class Payment(models.Model):
     baby_name = models.ForeignKey(RegisterBaby, on_delete=models.CASCADE,null=True,blank=True)
     period_of_stay = models.ForeignKey(Categorystay, on_delete=models.CASCADE)
+    payment_rate = models.ForeignKey(Paymenttype, on_delete=models.CASCADE)
     currency = models.CharField(max_length=5,default='Ugx')
     amount_due = models.IntegerField(default=0)
     amount_paid = models.IntegerField(default=0)
@@ -107,7 +127,7 @@ class Payment(models.Model):
 
 
 class Departure(models.Model):
-    baby_name = models.CharField(max_length=100)
+    baby_name = models.CharField(max_length=100,validators=[validate_letters])
     departure_time = models.DateTimeField()
     picked_up_by = models.CharField(max_length=100)
     comment = models.TextField(blank=True,verbose_name="Comment(optional)")
@@ -122,7 +142,7 @@ class BabySitterattendance(models.Model):
      STATUS_CHOICES = (
          ('On_duty', 'On_duty'),
      )
-     sitter_Number = models.CharField(max_length=200)
+     sitter_Number = models.CharField(max_length=200,unique=True)
      name = models.ForeignKey(BabySitter, on_delete=models.CASCADE)
      date = models.DateField(default=timezone.now)
      attendance_status = models.CharField(max_length=10,choices=STATUS_CHOICES)
@@ -148,7 +168,7 @@ class Category_doll(models.Model):
 
 class Doll(models.Model):
     c_doll=models.ForeignKey(Category_doll, on_delete=models.CASCADE,null=True, blank=True)
-    name_of_the_doll =models.CharField(max_length=200,null=True, blank=True)
+    name_of_the_doll =models.CharField(max_length=200,null=True, blank=True,validators=[validate_letters])
     quantity=models.IntegerField(default=0)
     color=models.CharField(max_length=200, null=True,blank=True)
     size=models.CharField(max_length=200,null=True,blank=True)
@@ -162,7 +182,7 @@ class Doll(models.Model):
     
 class Salesrecord(models.Model):    
     doll=models.ForeignKey(Doll,  on_delete=models.CASCADE,null=False, blank=False)
-    baby_name=models.CharField(max_length=200)
+    baby_name=models.CharField(max_length=200,validators=[validate_letters])
     paid_by=models.CharField(max_length=200,null=True,blank=True)
     quantity_sold=models.IntegerField(default=0)
     amount_received=models.IntegerField(default=0)

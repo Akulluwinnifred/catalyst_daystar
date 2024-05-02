@@ -25,6 +25,9 @@ class Sitterreg_form(forms.ModelForm):
     class Meta:
         model = BabySitter
         fields = '__all__'
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['location'].disabled = True
 
 
 class Sittersattendance_form(forms.ModelForm):
@@ -36,6 +39,9 @@ class Payment_form(forms.ModelForm):
     class Meta:
         model = Payment
         fields = '__all__'
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['currency'].disabled = True
      
 
 

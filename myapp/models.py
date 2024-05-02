@@ -19,14 +19,8 @@ class Paymenttype(models.Model):
     
     #baby payments
 
-class FixedLocation(models.Model):
-    name = models.CharField(max_length=10)
-
-    def __str__(self):
-        return self.name
-
 def validate_letters(value):
-    if not re.match("^[a-zA-Z]*$", value):
+    if not re.match("^([a-zA-Z]+\s)*[a-zA-Z]+$", value):
         raise ValidationError("Only letters are allowed.")
 
 def validate_numbers(value):
@@ -51,7 +45,7 @@ class BabySitter(models.Model):
     
     name = models.CharField(max_length=200,validators=[validate_letters])
     gender = models.CharField(max_length=10,choices=GENDER_CHOICES)
-    location = models.ForeignKey(FixedLocation, on_delete=models.CASCADE)
+    location = models.CharField(max_length=10, default='kabalagala')
     Date_Of_Birth = models.DateField(default=timezone.now)
     NIN = models.CharField(max_length=14,validators=[validate_NIN_length])
     Religion = models.CharField(max_length=30, null=True, blank=True,verbose_name="Religion(optional)")
@@ -94,7 +88,7 @@ class Arrivalbaby(models.Model):
        baby_name = models.ForeignKey(RegisterBaby, on_delete=models.CASCADE,null=True,blank=True)
        Baby_Number = models.CharField(max_length=200,default=0)
        Period_of_stay = models.ForeignKey(Categorystay, on_delete=models.CASCADE)
-       Brought_by = models.CharField(max_length=200)
+       Brought_by = models.CharField(max_length=200,validators=[validate_letters])
        Time_In = models.DateTimeField()
        created_at = models.TimeField(auto_now_add=True)
        
@@ -116,8 +110,8 @@ class Payment(models.Model):
         ('pending', 'pending'),
     ))
     paid_by = models.CharField(max_length=200,)
-    start_date = models.DateField(default=timezone.now)
-    end_date = models.DateField(default=timezone.now)
+    date = models.DateField(default=timezone.now)
+
     
 
     def __str__(self):
@@ -129,7 +123,7 @@ class Payment(models.Model):
 class Departure(models.Model):
     baby_name = models.CharField(max_length=100,validators=[validate_letters])
     departure_time = models.DateTimeField()
-    picked_up_by = models.CharField(max_length=100)
+    picked_up_by = models.CharField(max_length=100,validators=[validate_letters])
     comment = models.TextField(blank=True,verbose_name="Comment(optional)")
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -168,9 +162,9 @@ class Category_doll(models.Model):
 
 class Doll(models.Model):
     c_doll=models.ForeignKey(Category_doll, on_delete=models.CASCADE,null=True, blank=True)
-    name_of_the_doll =models.CharField(max_length=200,null=True, blank=True,validators=[validate_letters])
+    name_of_the_doll =models.CharField(max_length=200,null=True, blank=True)
     quantity=models.IntegerField(default=0)
-    color=models.CharField(max_length=200, null=True,blank=True)
+    color=models.CharField(max_length=200, null=True,blank=True,validators=[validate_letters])
     size=models.CharField(max_length=200,null=True,blank=True)
     issued_quantity=models.IntegerField(default=0,blank=True,null=True) 
     received_quantity=models.IntegerField(default=0,null=True,blank=True)
@@ -183,7 +177,7 @@ class Doll(models.Model):
 class Salesrecord(models.Model):    
     doll=models.ForeignKey(Doll,  on_delete=models.CASCADE,null=False, blank=False)
     baby_name=models.CharField(max_length=200,validators=[validate_letters])
-    paid_by=models.CharField(max_length=200,null=True,blank=True)
+    paid_by=models.CharField(max_length=200,null=True,blank=True,validators=[validate_letters])
     quantity_sold=models.IntegerField(default=0)
     amount_received=models.IntegerField(default=0)
     sale_date=models.DateField(default=timezone.now)

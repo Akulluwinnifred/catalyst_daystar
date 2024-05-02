@@ -16,11 +16,15 @@ def index(request):
 def login(request):
     return render(request,'access/login.html')
 
+
+def logout(request):
+    return render(request,'access/logout.html')
+
 @login_required
 def base(request):
     return render(request,'base.html')
 
-
+@login_required
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeCustomForm(request.user, request.POST)
@@ -34,12 +38,12 @@ def change_password(request):
         form = PasswordChangeCustomForm(request.user)
     return render(request, 'access/change-password.html', {'form': form})
 
-
+@login_required
 def all_babies(request):
    babies =RegisterBaby.objects.all()
    return render(request,'babies/all_babies.html',{'babies':babies})
 
-
+@login_required
 def babyreg(request):
    form = Babyreg_form()
    
@@ -70,7 +74,8 @@ def babyreg(request):
 #    else:
 #       form = Payment_form()
 #       return render(request,'baby_payments/babypayment.html',{'form':form})
-   
+
+@login_required
 def babypayment(request):
     form = Payment_form()
    
@@ -87,6 +92,7 @@ def babypayment(request):
     return render(request,'baby_payments/babypayment.html',{'form':form})
 
 
+@login_required
 def babyarrival(request):
     if request.method == 'POST':
         form = Babyarrivalform(request.POST)
@@ -103,7 +109,8 @@ def babyarrival(request):
         form = Babyarrivalform()
         return render(request, 'babies/arrival.html', {'form': form})
    
-   
+
+@login_required
 def departure(request):
     form = Departure_form()
    
@@ -120,11 +127,13 @@ def departure(request):
     return render(request,'babies/departure.html',{'form':form})
 
 
+@login_required
 def read(request,id):
     babies_informations =RegisterBaby.objects.get(id=id)
     return render(request,'babies/read.html',{'babies_informations':babies_informations})
 
 
+@login_required
 def Sitterreg(request):
     if request.method == 'POST':
         getsitterform = Sitterreg_form(request.POST)
@@ -137,6 +146,7 @@ def Sitterreg(request):
     return render(request, 'sitters/sitterreg.html', {'getsitterform': getsitterform})
     
 
+@login_required
 def sittersattendance(request):
     if request.method == 'POST':
         form = Sittersattendance_form(request.POST)
@@ -149,23 +159,31 @@ def sittersattendance(request):
     return render(request, 'sitters/sittersattendance.html', {'form': form})
     
 
+@login_required
 def sitters(request):
     sitters = BabySitter.objects.all()
     return render(request,'sitters/all_sitters.html',{'sitters':sitters})
 
 
+@login_required
 def onduty(request):
     sitters = BabySitterattendance.objects.all()
     return render(request,'sitters/onduty.html',{'sitters':sitters})
 
+
+@login_required
 def babiesdeparture(request):
     babiesdeparture = Departure.objects.all()
     return render(request,'babies/signedout.html',{'babiesdeparture':babiesdeparture})
 
+
+@login_required
 def babysignin(request):
     babysignin = Arrivalbaby.objects.all()
     return render(request,'babies/signedin.html',{'babysignin':babysignin})
 
+
+@login_required
 def home(request):
     # Statistics
     count_babies = RegisterBaby.objects.count()
@@ -183,12 +201,16 @@ def home(request):
     template = loader.get_template("home.html")
     return HttpResponse(template.render(context))
 
+
+@login_required
 def search_babies(request):
     query = request.GET.get('search_query')
     baby_list = RegisterBaby.objects.filter(name__icontains=query)
     return render(request,'babies/all_babies.html',{'baby_list':baby_list,'search_query':query})
 
 
+
+@login_required
 def baby_edit(request, id):  
     baby = get_object_or_404(RegisterBaby, id=id)  
     if request.method == 'POST':
@@ -256,6 +278,7 @@ def all_sales(request):
     return render(request,'dolls/all_sales.html',{'sales':sales,'total':total,'change':change,'net':net})
 
 
+@login_required
 def doll(request):
     dolls=Doll.objects.all()
     return render(request,'dolls/doll.html',{'dolls':dolls})

@@ -204,3 +204,13 @@ class Salesrecord(models.Model):
         change= self.get_total() - self.amount_received
         return int(change)#sales is linked to products
 
+class BabyPayment(models.Model):
+    name = models.CharField(max_length=100)
+    payment_date = models.DateField()
+    full_day = models.BooleanField(default=False)
+    half_day = models.BooleanField(default=False)
+    monthly = models.BooleanField(default=False)
+    total_amount_due = models.DecimalField(max_digits=10, decimal_places=2)
+    amount_paid = models.DecimalField(max_digits=10, decimal_places=2)
+    def __str__(self):
+        return self.name

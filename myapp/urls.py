@@ -49,6 +49,7 @@ urlpatterns = [
 
     #payments
     path('babypayment/',views.babypayment,name='babypayment'),
+    path('payment/',views.payment,name='payment'),
     
 ]
 

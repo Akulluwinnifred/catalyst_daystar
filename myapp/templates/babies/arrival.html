@@ -16,8 +16,8 @@
 
 
 <div class="container">
-    <h3 class="text-center" style="font-family: 'Times New Roman', Times, serif;">BABY REGISTRATION FORM</h3>
-    <form method="post">
+    <h3 class="text-center" style="font-family: 'Times New Roman', Times, serif;">BABY ARRIVAL FORM</h3>
+    <form method="post" class="babereg-form">
         
         {% csrf_token %}
         {{ form|crispy }}<br>
@@ -30,13 +30,34 @@
    
    .container {
         padding-top: 20px;
-        margin-top: 20px;
+        margin-top: 60px;
+        margin-bottom: 30px;
         max-width: 500px;
 
         background-color: rgba(153, 198, 165, 0.55);
         padding: 20px;
-        margin-left: 250px;
+        margin-left: 200px;
 
+    }
+
+    .babereg-form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 20px;
+
+    }
+
+    .babereg-form button {
+        grid-column: span 2;
+        align-items: center;
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+        
     }
 
   

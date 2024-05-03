@@ -61,6 +61,12 @@ class Departure_form(forms.ModelForm):
         fields = '__all__'
         widgets = {
             'departure_time': forms.DateTimeInput(attrs={'type': 'datetime-local'}),}
+        
+class Babypayment_form(forms.ModelForm):
+    class Meta:
+        model = BabyPayment
+        fields = '__all__'
+        
       
  
 class PasswordChangeCustomForm(PasswordChangeForm):

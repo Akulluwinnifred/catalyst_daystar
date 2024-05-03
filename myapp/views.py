@@ -355,3 +355,15 @@ def delete_baby(request, baby_id):
 
 #         def _str_(self):
 #             return str(self.baby_name)
+
+
+def payment(request):
+    if request.method == 'POST':
+        form = Babypayment_form(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, ' Payment registered successfully')
+            return redirect('/payment')
+    else:
+        form = Babypayment_form()
+    return render(request,'baby_payments/payment.html',{'form':form})

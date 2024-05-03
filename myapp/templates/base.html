@@ -407,13 +407,15 @@
     .sidebar {
       background-color: #28a745;
       float: left;
-      overflow-y: auto; 
+      overflow-y: auto;
       height: 143.5vh;
+
     }
 
 .sidebar-container{
   float:left;
   background-color: #337357;
+  margin-left: 0;
 }
 
     .profile-picture {
@@ -423,12 +425,40 @@
 
       
     }
+
+
+    #navbar {
+      overflow: hidden;
+      background-color: #333;
+      position: fixed; 
+      top: 0; 
+      width: 100%; 
+      z-index: 1000; 
+    }
+
+    #side {
+      position: fixed; 
+      top: 0; 
+    }
+
+
+    .sidebar .active > a {
+      background-color: rgb(175, 218, 175);
+      font-weight: bold;
+    }
+  
+    /* Style for the active submenu item */
+    .sidebar .active .show > a {
+      background-color: rgb(175, 218, 175);
+      font-weight: bold;
+    }
+
   </style>
 </head>
 
 <body>
 
-  <nav class="navbar navbar-expand-lg" style="background-color:#337357; height: 70px;">
+  <nav  id="navbar" class="navbar navbar-expand-lg" style="background-color:#337357; height: 70px;">
     <div class="container-fluid">
       <div class="profile-container" >
         <img src="{% static 'images/daphine_logo.gif' %}" alt="Profile Picture" class="profile-picture">
@@ -442,7 +472,7 @@
  
 <div class="sidebar-container">
    
-  <div class="sidebar menu-hidden" style="background-color: #337357; display: none;">
+  <div id="side" class="sidebar" style="background-color: #337357;">
 
     <div class="search-container">
       <input type="text" id="sidebarSearchInput" placeholder="Search...">
@@ -538,24 +568,13 @@
                   </a>
                 </li>
 
-                {% comment %} <li>
-                  <a href="{% url 'assignedsitter' %}" class="nav-link px-0">
-                    <span class="d-none d-sm-inline" style="color: white !important">List of assigned sitters</span>
-                  </a>
-                </li> {% endcomment %}
-
-
                 <li class="w-100">
                   <a href="{% url 'all_babies' %}" class="nav-link px-0">
                     <span class="d-none d-sm-inline" style="color: white !important">Enrolled Babies</span>
                   </a>
                 </li>
 
-                {% comment %} <li class="w-100">
-                  <a href="{% url 'assign' %}" class="nav-link px-0">
-                    <span class="d-none d-sm-inline" style="color: white !important">Sitter assignment</span>
-                  </a>
-                </li> {% endcomment %}
+             
                 <li class="w-100">
                   <a href="{% url 'babiesdeparture' %}" class="nav-link px-0">
                     <span class="d-none d-sm-inline" style="color: white !important">Signed out Babies</span>
@@ -588,6 +607,11 @@
                 <li class="w-100">
                   <a href="{% url 'babypayment' %}" class="nav-link px-0">
                     <span class="d-none d-sm-inline" style="color: white !important">Record baby Payments</span>
+                  </a>
+                </li>
+                <li class="w-100">
+                  <a href="{% url 'payment' %}" class="nav-link px-0">
+                    <span class="d-none d-sm-inline" style="color: white !important">Record Payments</span>
                   </a>
                 </li>
 
@@ -687,12 +711,7 @@
   </footer>
 
   <script>
-    const logo = document.querySelector('.profile-container img');
-    const sidebar = document.querySelector('.sidebar');
-
-    logo.addEventListener('click', function () {
-      sidebar.style.display = 'block';
-    });
+  
 
     const searchInput = document.getElementById('sidebarSearchInput');
     const sidebarList = document.getElementById('sidebarList').getElementsByTagName('li');
@@ -710,6 +729,35 @@
     });
   </script>
 
+  
+  <script>
+    
+    const currentUrl = window.location.href;
+  
+  
+    const sidebarLinks = document.querySelectorAll('.sidebar a');
+  
+    
+    sidebarLinks.forEach(link => {
+      if (link.href === currentUrl) {
+        
+        link.parentNode.classList.add('active');
+  
+        
+        const parentUl = link.closest('ul');
+        if (parentUl && parentUl.id !== 'sidebarList') {
+          parentUl.classList.add('show');
+        
+          parentUl.parentNode.classList.add('active');
+        }
+      }
+    });
+  </script>
+  
+  
+
 </body>
 
 </html>
+
+

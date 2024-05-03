@@ -10,6 +10,8 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
+    height: 100%;
+    overflow: hidden;
     {% comment %} background-color: #f7f7f7; {% endcomment %}
 }
 
@@ -19,6 +21,7 @@ body {
     padding: 0;
     text-align: left; /* Align text to the left */
     position: relative;
+    overflow: auto;
 }
 
 .daycare-image {
@@ -74,13 +77,19 @@ body {
     border-radius: 30px;
     font-size: 20px;
     transition: background-color 0.3s;
+    margin-bottom: 20px;
 }
 
 .learn-more-button:hover {
     background-color: #F4473D;
 }
 
+
+
 .footer {
+    position: fixed; /* Fix the footer at the bottom */
+    bottom: 0;
+    width: 100%;
     background-color: #333;
     color: white;
     text-align: center;
@@ -99,7 +108,7 @@ body {
     <div class="overlay"></div>
     <img src="../static/images/daphine_logo.gif" alt="Little Stars Logo" class="logo" style=" border-radius:50%;">
     <div class="tagline" ><h1 style="color:#F4473D;">Welcome to Daystar Daycare</h1>Where Your Babies Shine Bright
-    <p>Our state-of-the-art facilities are designed to encourage <br> creativity, and social interaction. From sensory activities to<br> gentle lullabies, every moment at Little Daystar is filled with love .</p>
+    <p>Our state-of-the-art facilities are designed to encourage <br> creativity, and social interaction. From sensory activities to<br> gentle lullabies, every moment at Little Daystar is filled with love .</p><br>
     <a href="{% url 'base' %}" class="learn-more-button">Get Started</a></div>
 </div>
 

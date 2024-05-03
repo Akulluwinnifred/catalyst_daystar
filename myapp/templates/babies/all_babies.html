@@ -43,36 +43,24 @@
             <tr>
                 <td> {{each.id}}</td>
                 <td>B0{{each.Baby_Number}}</td>
-                <!-- <td>{{each.Period_of_stay}}</td> -->
                 <td>{{each.name}}</td>
                 <td>{{each.gender}}</td>
                 <td>{{each.age}}</td>
                 <td>{{ each.Parents_Name}}</td>
                 <td>
-                    <!-- <button class="p-2 bg-teal-500 rounded-lg shadow-lg"
-                    style="margin-left: 10px;background-color: green; border-radius: 5px; border: #B4BDFF; width: 90%; height: 5%;"><a style="color: black; text-decoration: none;"
-                        href="read/{{each.id}}">read</a></button> -->
+                  
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-success mr-1" data-bs-toggle="modal"
                             data-bs-target="#myModal{{ each.id }}">
                             <i class="fa-brands fa-readme"></i>
                         </button>
-                        <button type="button" class="btn btn-success mr-1" data-bs-toggle="modal"
-                            data-bs-target="#myModal{{ each.id }}">
-                            <i class="fa-solid fa-pen"></i>
-                        </button>
-                        <button type="button" class="btn btn-success mr-1" data-bs-toggle="modal"
-                            data-bs-target="#myModal{{ each.id }}"><i class="fa-solid fa-trash">
-                            </i>
-                        </button>
-                
-                    </div>
-                    
-                </td>
-                    
 
-<div class="modal" id="myModal{{ each.id }}" tabindex="-1" aria-labelledby="myModallabel1" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+                        <a href="{% url 'baby_edit' id=each.id %}" class="btn"><i class="fa-solid fa-pen"></i>
+                        <a href="{% url 'delete_baby' baby_id=each.id %}" class="btn"><i class="fa-solid fa-trash"></i>
+    
+
+     <div class="modal" id="myModal{{ each.id }}" tabindex="-1" aria-labelledby="myModallabel1" aria-hidden="true">
+     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Baby: {{ each.name }}</h5>
@@ -85,7 +73,6 @@
                     <li>Baby No: <strong>{{ each.Baby_Number }}</strong></li>
                     <li>Name: <strong>{{ each.name }}</strong></li>
                     <li>Gender: <strong>{{ each.gender }}</strong></li>
-                    <li>Date of birth: <strong>{{ each.Date_Of_Birth }}</strong></li>
                     <li>Age: <strong>{{ each.age }}</strong></li>
                     <li>Location: <strong>{{ each.location }}</strong></li>
                     <li>Parents Name: <strong>{{ each.Parents_Name }}</strong></li>
@@ -98,10 +85,32 @@
     </div>
 </div>
 
-                        <!-- <a href="read/{{each.id}}">read</a> -->
-
-                </td>
+{% comment %} <div class="modal" id="delete{{ each.id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            
+    <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <p>Are you sure you want to delete the baby? "{{ each.name }}"?</p>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary"
+                  data-bs-dismiss="modal">Cancel</button>
+              <form method="post" action="{% url 'delete_baby' each.id %}">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
+          </div>
+      </div>
+  </div>
+  </div> {% endcomment %}
+</td>
 </div>
+
 </tr>
 {% endfor %}
 </tbody>

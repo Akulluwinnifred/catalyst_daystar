@@ -4,8 +4,8 @@
 {% block content %}
 
 <button class="p-2 bg bg-success rounded-lg shadow-lg"
-style="margin-left: 10px;border-radius: 5px; border: #B4BDFF; width: 20%; height: 5%;"><a
-    href="/babyreg"></a> Add new sitter</a></button>
+style="margin-left: 10px;border-radius: 5px; border: #B4BDFF; width: 20%; height: 5%; color: white; text-decoration: none;"><a
+    href="/sitterreg" style="color: white; text-decoration: none;">Add new sitter</a></button>
 
 <h2>List of registered sitters</h2>
 <div class="container">
@@ -22,7 +22,7 @@ style="margin-left: 10px;border-radius: 5px; border: #B4BDFF; width: 20%; height
     <tbody>
         {% for sitter in sitters %}
       <tr>
-        <th scope="row">{{ sitter.Sitter_id }}</th>
+        <th scope="row">{{ sitter.id }}</th>
         <th>S0{{ sitter.Sitter_Number }}</th>
         <td>{{ sitter.name }}</td>
         <td>{{ sitter.gender }}</td>

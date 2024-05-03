@@ -144,7 +144,36 @@ def Sitterreg(request):
     else:
         getsitterform = Sitterreg_form()
     return render(request, 'sitters/sitterreg.html', {'getsitterform': getsitterform})
+
+
+@login_required
+# def assign(request):
+#     if request.method == 'POST':
+#         form = Assignbabies_form(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             messages.success(request, 'Sitter assigned successfully')
+#             return redirect('/assign')
+#     else:
+#         form = Assignbabies_form()
+#     return render(request, 'babies/assign.html', {'form':form})
     
+
+# def assign(request):
+#     if request.method == 'POST':
+#         form = Assignbabies_form(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('assignedsitter')
+#     else:
+#         # Get the list of arrived sitters and babies
+#         arrived_sitters = BabySitterattendance.objects.all()
+#         arrived_babies = Arrivalbaby.objects.all()
+#         form = Assignbabies_form()
+#         form.fields['sitter_name'].queryset = arrived_sitters
+#         form.fields['baby_name'].queryset = arrived_babies
+#     return render(request, 'babies/assign.html', {'form': form})
+
 
 @login_required
 def sittersattendance(request):
@@ -163,6 +192,11 @@ def sittersattendance(request):
 def sitters(request):
     sitters = BabySitter.objects.all()
     return render(request,'sitters/all_sitters.html',{'sitters':sitters})
+
+# @login_required
+# def assignedsitter(request):
+#     babies = Assignbabies.objects.all()
+#     return render(request,'babies/assignedsitters.html',{'babies':babies})
 
 
 @login_required
@@ -217,7 +251,7 @@ def baby_edit(request, id):
        form = Babyreg_form(request.POST, instance=baby)  
        if form.is_valid():
            form.save()
-           return redirect(reverse('read', kwargs={'id': id})) 
+           return redirect(all_babies) 
     else:
         form = Babyreg_form(instance=baby)
     return render(request, 'babies/baby_edit.html', {'form': form, 'baby': baby})
@@ -284,6 +318,12 @@ def doll(request):
     return render(request,'dolls/doll.html',{'dolls':dolls})
 
 
+def delete_baby(request, baby_id):
+    baby = get_object_or_404(RegisterBaby, id=baby_id)
+    if request.method == 'POST':
+        baby.delete()
+        return redirect('all_babies')
+    return render(request, 'babies/delete.html', {'baby': baby})
 
 # def payment_baby(request):
 #     if request.method == 'POST':

@@ -84,16 +84,27 @@ class RegisterBaby(models.Model):
     def __str__(self):
         return self.name
     
+
+class BabySitterattendance(models.Model):
+    sitter_Number = models.CharField(max_length=200,unique=True)
+    name = models.ForeignKey(BabySitter, on_delete=models.CASCADE)
+    date = models.DateField(default=timezone.now)
+    attendance_status = models.CharField(max_length=10,default= 'Onduty')
+
+    def __str__(self):
+        return str(self.name)
+    
 class Arrivalbaby(models.Model):
-       baby_name = models.ForeignKey(RegisterBaby, on_delete=models.CASCADE,null=True,blank=True)
+       baby_name = models.ForeignKey(RegisterBaby, on_delete=models.CASCADE)
        Baby_Number = models.CharField(max_length=200,default=0)
        Period_of_stay = models.ForeignKey(Categorystay, on_delete=models.CASCADE)
        Brought_by = models.CharField(max_length=200,validators=[validate_letters])
+       Assigned_to = models.ForeignKey(BabySitterattendance, on_delete=models.CASCADE)
        Time_In = models.DateTimeField()
        created_at = models.TimeField(auto_now_add=True)
        
        def __str__(self):
-          return self.Baby_Number
+          return str(self.baby_name)
        
 
        
@@ -132,17 +143,17 @@ class Departure(models.Model):
     
 
 
-class BabySitterattendance(models.Model):
-     STATUS_CHOICES = (
-         ('On_duty', 'On_duty'),
-     )
-     sitter_Number = models.CharField(max_length=200,unique=True)
-     name = models.ForeignKey(BabySitter, on_delete=models.CASCADE)
-     date = models.DateField(default=timezone.now)
-     attendance_status = models.CharField(max_length=10,choices=STATUS_CHOICES)
 
-     def __str__(self):
-        return self.name
+     
+
+
+# class Assignbabies(models.Model):
+#     baby_name = models.ForeignKey(Arrivalbaby, on_delete=models.CASCADE)
+#     sitter_name = models.ForeignKey(BabySitterattendance, on_delete=models.CASCADE)
+
+#     def __str__(self):
+#         return self.sitter_name
+
 
 
 # class InventoryTracker(models.Model):

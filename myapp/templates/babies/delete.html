@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<style>
+    .container {
+        padding-top: 20px;
+        margin-top: 20px;
+        max-width: 800px;
+
+        background-color: rgba(153, 198, 165, 0.55);
+        padding: 20px;
+        margin-left: 300px; 
+        text-align: center;
+
+    }
+
+    .footer {
+  
+        background-color: #28a745;
+        text-align: center;
+        padding: 10px;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 0;
+        position: fixed;
+        width: 100%;
+    
+      }
+
+
+    h2 {
+
+        text-align: center;
+        color:white;
+    }
+</style>
+
+
+<div class="container">
+    <h2>Delete Baby</h2>
+    <p>Are you sure you want to delete {{ baby.name }}?</p>
+    <form method="post" >
+        {% csrf_token %}
+        {{ form | crispy }}
+        <button type="submit" class="btn btn-secondary bg bg-success" >Delete</button>
+        <a href="{% url 'all_babies' %}" class="btn btn-secondary bg bg-success">Cancel</a>
+    </form>
+</div>
+
+{% endblock %}

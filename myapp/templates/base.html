@@ -433,9 +433,9 @@
       <div class="profile-container" >
         <img src="{% static 'images/daphine_logo.gif' %}" alt="Profile Picture" class="profile-picture">
       </div>
-          <li class="nav-item">
+          <nav class="nav-item">
             <a href="{% url 'logout' %}" class="nav-link btn btn-success"style="color: white;margin-top:0;">Logout</a>
-          </li>
+          </nav>
      
     </div>
   </nav>
@@ -538,12 +538,24 @@
                   </a>
                 </li>
 
+                {% comment %} <li>
+                  <a href="{% url 'assignedsitter' %}" class="nav-link px-0">
+                    <span class="d-none d-sm-inline" style="color: white !important">List of assigned sitters</span>
+                  </a>
+                </li> {% endcomment %}
+
 
                 <li class="w-100">
                   <a href="{% url 'all_babies' %}" class="nav-link px-0">
                     <span class="d-none d-sm-inline" style="color: white !important">Enrolled Babies</span>
                   </a>
                 </li>
+
+                {% comment %} <li class="w-100">
+                  <a href="{% url 'assign' %}" class="nav-link px-0">
+                    <span class="d-none d-sm-inline" style="color: white !important">Sitter assignment</span>
+                  </a>
+                </li> {% endcomment %}
                 <li class="w-100">
                   <a href="{% url 'babiesdeparture' %}" class="nav-link px-0">
                     <span class="d-none d-sm-inline" style="color: white !important">Signed out Babies</span>

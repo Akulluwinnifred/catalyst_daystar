@@ -34,6 +34,16 @@ class Sittersattendance_form(forms.ModelForm):
     class Meta:
         model = BabySitterattendance
         fields = '__all__'
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['attendance_status'].disabled = True
+
+
+# class Assignbabies_form(forms.ModelForm):
+#     class Meta:
+#         model = Assignbabies
+#         fields = '__all__'
+    
 
 class Payment_form(forms.ModelForm):
     class Meta:

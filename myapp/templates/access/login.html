@@ -5,51 +5,63 @@
 {% block content %}
 
 <style>
-
-    .container {
-        padding-top: 20px;
-        max-width: 300px;
-        margin: 0 auto; 
-        background-color: white;
-        padding: 20px;
-        margin-top: 10%;
-        
-            }
-
-            
-  label {
-    /* color: #495057; */
-    font-weight: bold;
-  }
-
-
-    body{
+    body {
+        margin: 0;
+        padding: 0;
         background-color: rgba(153, 198, 165, 0.55);
-        
     }
 
+    .container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh; /* Set container height to viewport height */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #bedcc4;
+        padding: 20px;
+    }
+
+    label {
+        font-weight: bold;
+    }
 
     .footer {
-            background-color: rgba(7, 7, 7, 0.05);
-            text-align: center;
-            padding: 10px;
-            margin-top: 8%;
-            font-weight: 900;
-        }
+        background-color: rgba(7, 7, 7, 0.05);
+        text-align: center;
+        padding: 10px;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        font-weight: 900;
+    }
 
-        
+    .login-form {
+        background-color: #ddeedf;
+        padding: 20px;
+        border-radius: 5px;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #deede0;
+        color: black;
+        filter: blur(0.5px);
+    }
 </style>
 
 <div class="container">
 
-    <h2>LOGIN</h2>
+    <h2>ADMIN LOGIN</h2>
 
-    <form method="post">
+    <form method="post" class="login-form">
        
         {% csrf_token %}
         {{ form|crispy }}
         <br>
-        <button type="submit" class="btn btn-primary" style="background-color: green; border-radius: 5px; border: #B4BDFF; width: 20%; height: 5%;">Login</button>
+        <button type="submit" class="btn btn-primary" style="border-radius: 10px; width: 60%; background-color:#438659; border:none; color: white;  height: 25%;">Sign In</button>
         <br><br>
 
     </form>
@@ -57,8 +69,7 @@
 </div>
 
 <footer class="footer">
-    © 2024 Daystar daycare,All rights reserved.Designed by Akullu Winnifred
-    
+    © 2024 Daystar Daycare. All rights reserved. Designed with ♥ by Akullu Winnifred.
 </footer>
 
 

@@ -239,7 +239,7 @@ def home(request):
 @login_required
 def search_babies(request):
     query = request.GET.get('search_query')
-    baby_list = RegisterBaby.objects.filter(name__icontains=query)
+    baby_list = RegisterBaby.objects.filter(name__contains=query)
     return render(request,'babies/all_babies.html',{'baby_list':baby_list,'search_query':query})
 
 

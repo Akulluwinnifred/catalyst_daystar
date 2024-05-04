@@ -16,7 +16,7 @@
     padding: 20px;
     border-radius: 10px;
     /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
-  
+  margin-bottom: 30px;
   }
 
   h1 {
@@ -50,10 +50,13 @@
     cursor: pointer;
     font-size: 16px;
     margin-top: 10px;
+    
   }
 
   button[type="submit"]:hover {
-    background-color: #0056b3;
+        background-color: #deede0;
+        color: black;
+        filter: blur(0.5px);
   }
 </style>
 {% for message in messages %}
@@ -70,7 +73,7 @@
   <form method="post">
     {% csrf_token %}
     {{ form|crispy }}
-    <button type="submit" class="bg bg-success">Submit</button>
+    <button type="submit" class="bg bg-success">Submit</button><br><br>
   </form>
 </div>
 {% endblock %}

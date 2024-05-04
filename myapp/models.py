@@ -199,7 +199,7 @@ class Salesrecord(models.Model):
         total= self.quantity_sold * self.unit_price
         return int( total)
     
-#here we are getting change.(money to be given to theparent)    
+#here we are getting change.(money to be given to the parent)    
     def get_change(self):
         change= self.get_total() - self.amount_received
         return int(change)#sales is linked to products
@@ -221,7 +221,6 @@ class Sitterpayment(models.Model):
     date=models.DateField(default=timezone.now)
     baby_count=models.IntegerField(default=0)
     amount=models.IntegerField(default=3000)
-    total_amount=models.IntegerField(default=0)
     
     def _str_(self):
         return f"Sitter Payment - {self.sitter_name}"

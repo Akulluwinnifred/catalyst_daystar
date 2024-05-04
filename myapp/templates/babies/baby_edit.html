@@ -1,4 +1,4 @@
-
+{% extends 'base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
 <!-- {% static 'css/styles.css' %} -->
@@ -52,11 +52,17 @@
         padding: 10px;
         border: none;
         border-radius: 5px;
-        {% comment %} background-color: #4caf50; {% endcomment %}
+        background-color: #4caf50;
         color: #fff;
         font-size: 16px;
         cursor: pointer;
     }
+
+    button[type="submit"]:hover {
+        background-color: #deede0;
+        color: black;
+        filter: blur(0.5px);
+  }
 
 </style>
 

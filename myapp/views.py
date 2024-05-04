@@ -318,6 +318,12 @@ def doll(request):
     return render(request,'dolls/doll.html',{'dolls':dolls})
 
 
+@login_required
+def sitterpaymentlist(request):
+    sitterpayment=Sitterpayment.objects.all()
+    return render(request,'baby_payments/sitterpaymentlist.html',{'sitterpayment':sitterpayment})
+
+
 def delete_baby(request, baby_id):
     baby = get_object_or_404(RegisterBaby, id=baby_id)
     if request.method == 'POST':
@@ -367,3 +373,13 @@ def payment(request):
     else:
         form = Babypayment_form()
     return render(request,'baby_payments/payment.html',{'form':form})
+
+def sitterpayment(request):
+    if request.method == 'POST':
+        form = Sitterpayment_form(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/sitterpaymentlist')
+    else:
+        form = Sitterpayment_form()
+    return render(request,'baby_payments/sitterpayment.html',{'form':form})

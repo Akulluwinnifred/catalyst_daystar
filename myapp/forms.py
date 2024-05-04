@@ -66,6 +66,15 @@ class Babypayment_form(forms.ModelForm):
     class Meta:
         model = BabyPayment
         fields = '__all__'
+
+
+class Sitterpayment_form(forms.ModelForm):
+    class Meta:
+        model = Sitterpayment
+        fields = '__all__'
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['amount'].disabled = True
         
       
  

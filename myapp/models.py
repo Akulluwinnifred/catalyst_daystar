@@ -214,3 +214,18 @@ class BabyPayment(models.Model):
     amount_paid = models.DecimalField(max_digits=10, decimal_places=2)
     def __str__(self):
         return self.name
+    
+
+class Sitterpayment(models.Model):
+    sitter_name=models.ForeignKey(BabySitterattendance, on_delete=models.CASCADE)
+    date=models.DateField(default=timezone.now)
+    baby_count=models.IntegerField(default=0)
+    amount=models.IntegerField(default=3000)
+    total_amount=models.IntegerField(default=0)
+    
+    def _str_(self):
+        return f"Sitter Payment - {self.sitter_name}"
+
+    def total_amount(self):
+        total= self.amount * self.baby_count
+        return int(total)

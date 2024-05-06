@@ -91,23 +91,6 @@ def babypayment(request):
         form = Payment_form()
     return render(request,'baby_payments/babypayment.html',{'form':form})
 
-
-@login_required
-def babyarrival(request):
-    if request.method == 'POST':
-        form = Babyarrivalform(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Baby signed in successfully')
-            return redirect('/arrival')
-        else:
-            messages.error(request, 'Form submission failed. Please check the data entered.')
-            # If the form is not valid, re-render the form with validation errors
-            return render(request, 'babies/arrival.html', {'form': form})
-    else:
-        # If the request method is not POST, create a new form instance and render the form
-        form = Babyarrivalform()
-        return render(request, 'babies/arrival.html', {'form': form})
    
 
 @login_required

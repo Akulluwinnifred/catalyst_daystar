@@ -66,25 +66,6 @@ class BabySitter(models.Model):
         return self.name
 
 
-class RegisterBaby(models.Model):
-
-    GENDER_CHOICES = (
-         ('male', 'Male'),
-        ('female', 'Female'),
-     )
-    # Fee = models.ForeignKey(Payment, on_delete=models.CASCADE,null=True,blank=True)
-    name = models.CharField(max_length=200,validators=[validate_letters])
-    gender = models.CharField(max_length=10,choices=GENDER_CHOICES)
-    age = models.IntegerField(default=0)
-    Period_of_stay = models.ForeignKey(Categorystay, on_delete=models.CASCADE)
-    location = models.CharField(max_length=100)
-    Baby_Number = models.CharField(max_length=200,unique=True,blank=False, null=True)
-    Parents_Name = models.CharField(max_length=200,validators=[validate_letters])
-
-    def __str__(self):
-        return self.name
-    
-
 class BabySitterattendance(models.Model):
     sitter_Number = models.CharField(max_length=200,unique=True)
     name = models.ForeignKey(BabySitter, on_delete=models.CASCADE)
@@ -93,21 +74,31 @@ class BabySitterattendance(models.Model):
 
     def __str__(self):
         return str(self.name)
-    
-class Arrivalbaby(models.Model):
-       baby_name = models.ForeignKey(RegisterBaby, on_delete=models.CASCADE)
-       Baby_Number = models.CharField(max_length=200,default=0)
-       Period_of_stay = models.ForeignKey(Categorystay, on_delete=models.CASCADE)
-       Brought_by = models.CharField(max_length=200,validators=[validate_letters])
-       Assigned_to = models.ForeignKey(BabySitterattendance, on_delete=models.CASCADE)
-       Time_In = models.DateTimeField()
-       created_at = models.TimeField(auto_now_add=True)
-       
-       def __str__(self):
-          return str(self.baby_name)
-       
 
-       
+class RegisterBaby(models.Model):
+
+    GENDER_CHOICES = (
+         ('male', 'Male'),
+        ('female', 'Female'),
+     )
+    # Fee = models.ForeignKey(Payment, on_delete=models.CASCADE,null=True,blank=True)
+    name = models.CharField(max_length=200,validators=[validate_letters])
+    Baby_Number = models.CharField(max_length=200,unique=True,blank=False, null=True)
+    gender = models.CharField(max_length=10,choices=GENDER_CHOICES)
+    age = models.IntegerField(default=0)
+    Period_of_stay = models.ForeignKey(Categorystay, on_delete=models.CASCADE)
+    location = models.CharField(max_length=100)
+    Parents_Name = models.CharField(max_length=200,validators=[validate_letters])
+    Period_of_stay = models.ForeignKey(Categorystay, on_delete=models.CASCADE)
+    Brought_by = models.CharField(max_length=200,validators=[validate_letters])
+    Assigned_to = models.ForeignKey(BabySitterattendance, on_delete=models.CASCADE)
+    Time_In = models.DateTimeField()
+
+    def __str__(self):
+        return self.name
+    
+
+
 class Payment(models.Model):
     baby_name = models.ForeignKey(RegisterBaby, on_delete=models.CASCADE,null=True,blank=True)
     period_of_stay = models.ForeignKey(Categorystay, on_delete=models.CASCADE)
@@ -132,7 +123,7 @@ class Payment(models.Model):
 
 
 class Departure(models.Model):
-    baby_name = models.CharField(max_length=100,validators=[validate_letters])
+    baby_name = models.ForeignKey(RegisterBaby, on_delete=models.CASCADE)
     departure_time = models.DateTimeField()
     picked_up_by = models.CharField(max_length=100,validators=[validate_letters])
     comment = models.TextField(blank=True,verbose_name="Comment(optional)")

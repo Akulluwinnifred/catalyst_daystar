@@ -3,6 +3,8 @@ from django.utils import timezone
 import re
 from django.core.exceptions import ValidationError
 
+
+
 # Create your models here.
 
 class Categorystay(models.Model):
@@ -91,6 +93,7 @@ class RegisterBaby(models.Model):
     Parents_Name = models.CharField(max_length=200,validators=[validate_letters])
     Period_of_stay = models.ForeignKey(Categorystay, on_delete=models.CASCADE)
     Brought_by = models.CharField(max_length=200,validators=[validate_letters])
+    Fee_in_UGX = models.IntegerField()
     Assigned_to = models.ForeignKey(BabySitterattendance, on_delete=models.CASCADE)
     Time_In = models.DateTimeField()
 
@@ -113,6 +116,29 @@ class Payment(models.Model):
     ))
     paid_by = models.CharField(max_length=200,)
     date = models.DateField(default=timezone.now)
+
+    def save(self, *args, **kwargs):
+      if self.period_of_stay.name == "Half day": 
+        self.amount_due = 10000
+      else:
+        self.amount_due = 15000
+      super(Payment, self).save(*args, **kwargs)
+
+    # def save(self, *args, **kwargs):
+    #     if self.period_of_stay.name == "Half day":
+    #         if self.payment_rate.name == "Monthly":
+    #             self.amount_due = 10000 * 30  # Assuming period_of_stay has a field called duration_in_days
+    #         else:
+    #             self.amount_due = 10000
+    #     else:  # Assuming period_of_stay is "Full day"
+    #         if self.payment_rate.name == "Monthly":
+    #             self.amount_due = 15000 * 30
+    #         else:
+    #             self.amount_due = 15000
+    #     super().save(*args, **kwargs)
+
+
+
 
     
 
@@ -178,7 +204,7 @@ class Doll(models.Model):
     
 class Salesrecord(models.Model):    
     doll=models.ForeignKey(Doll,  on_delete=models.CASCADE,null=False, blank=False)
-    baby_name=models.CharField(max_length=200,validators=[validate_letters])
+    baby_name=models.ForeignKey(RegisterBaby, on_delete=models.CASCADE)
     paid_by=models.CharField(max_length=200,null=True,blank=True,validators=[validate_letters])
     quantity_sold=models.IntegerField(default=0)
     amount_received=models.IntegerField(default=0)
@@ -196,7 +222,7 @@ class Salesrecord(models.Model):
         return int(change)#sales is linked to products
 
 class BabyPayment(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.ForeignKey(RegisterBaby, on_delete=models.CASCADE)
     payment_date = models.DateField()
     full_day = models.BooleanField(default=False)
     half_day = models.BooleanField(default=False)
@@ -219,3 +245,30 @@ class Sitterpayment(models.Model):
     def total_amount(self):
         total= self.amount * self.baby_count
         return int(total)
+    
+class Items(models.Model):
+        name = models.CharField(max_length=50, null=True,blank=True)
+
+        def __str__(self):
+            return self.name
+
+
+class Inventory(models.Model):
+    item_name = models.ForeignKey(Items, on_delete=models.CASCADE,null=True,blank=True)
+    date_purchased = models.DateField(default=timezone.now)
+    quantity_bought = models.IntegerField(default=0)
+    amount_in_Ugx = models.IntegerField()
+    quantity_issued_out = models.IntegerField(default=0)
+    quantity_in_stock = models.IntegerField(default=0)
+    stock_at_hand = models.IntegerField(default=0)
+
+    def __str__(self):
+        return str(self.item_name)
+
+    
+    def stock_at_hand(self):
+        totalquantity = self.quantity_in_stock + self.quantity_bought
+        return totalquantity
+    
+class Issuing(models.Model):
+    quantity_issued_out = models.IntegerField(default=0)

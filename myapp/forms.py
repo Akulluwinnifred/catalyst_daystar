@@ -110,3 +110,14 @@ class SalesrecordForm(ModelForm):
     class Meta:
         model = Salesrecord
         fields = [ 'baby_name', 'quantity_sold', 'amount_received']
+
+
+class InventoryForm(ModelForm):
+    class Meta:
+        model = Inventory
+        fields = [ 'date_purchased','quantity_bought', 'amount_in_Ugx','quantity_in_stock' ]
+    
+class Issuingform(ModelForm):
+    class Meta:
+        model = Issuing
+        fields = '__all__'

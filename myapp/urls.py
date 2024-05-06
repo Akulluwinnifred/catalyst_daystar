@@ -23,7 +23,6 @@ urlpatterns = [
     # path("read/<int:id>",views.read,name="read"),
     path("departure/",views.departure,name="departure"),
     path("signedout/",views.babiesdeparture,name="babiesdeparture"),
-    path("signedin/",views.babysignin,name="babysignin"),
     path('baby_edit/<int:id>/', views.baby_edit, name='baby_edit'),
     path('search/',views.search_babies,name='search_babies'),
     # path('assign/',views.assign,name='assign'),
@@ -51,7 +50,12 @@ urlpatterns = [
     path('payment/',views.payment,name='payment'),
     path('sitterpayment/',views.sitterpayment,name='sitterpayment'),
     path('sitterpaymentlist/',views.sitterpaymentlist,name='sitterpaymentlist'),
-    
+
+
+    #procurement
+    path('inventory/<str:pk>',views.inventory,name='inventory'),
+    path('allstock/',views.allstock,name='allstock'),
+    path('issuing/<str:pk>',views.issuing,name='issuing'),
 ]
 
 

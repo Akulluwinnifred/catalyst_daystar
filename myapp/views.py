@@ -46,18 +46,15 @@ def all_babies(request):
 @login_required
 def babyreg(request):
    form = Babyreg_form()
-   
    if request.method == 'POST':
-   
       form = Babyreg_form(request.POST)
-      
       if form.is_valid():
          form.save()
          messages.success(request,'Baby enrolled successfully')
          return redirect('/babyreg')
    else:
       form = Babyreg_form()
-      return render(request,'babies/babyreg.html',{'form':form})
+   return render(request,'babies/babyreg.html',{'form':form})
    
 
 # def babypayment(request):
@@ -85,7 +82,7 @@ def babypayment(request):
       
        if form.is_valid():
           form.save()
-          messages.success(request,"Baby signed out successfully")
+          messages.success(request,"Payment registered successfully")
           return redirect('/babypayment')
     else:
         form = Payment_form()
@@ -169,12 +166,51 @@ def sittersattendance(request):
     else:
         form = Sittersattendance_form()
     return render(request, 'sitters/sittersattendance.html', {'form': form})
+
+
+@login_required
+def inventory(request,pk):
+    new_item=Inventory.objects.get(id=pk)
+    if request.method == 'POST':
+        form = InventoryForm(request.POST)
+        if form.is_valid():
+            added_quantity=int(request.POST['quantity_bought'])
+            new_item.quantity_in_stock+=added_quantity
+            form.save()
+            return redirect('/allstock')
+    else:
+        form = InventoryForm()
+    return render(request, 'procurement/addstock.html', {'form': form})
+    
+@login_required
+def issuing(request,pk):
+    issued_item = Inventory.objects.get(id=pk)
+    form = Issuingform(request.POST)
+
+    if request.method == 'POST':
+        form = Issuingform(request.POST)
+        if form.is_valid():
+            new_issue = form.save(commit = False)
+            new_issue.Inventory=issued_item
+            new_issue.save()
+            issued_quantity = int(request.POST['quantity_issued_out'])
+            issued_item.quantity_in_stock -=issued_quantity
+            issued_item.save()
+            return redirect('/allstock')
+    else:
+        form = Issuingform()
+    return render(request, 'procurement/issuing.html', {'form': form})
     
 
 @login_required
 def sitters(request):
     sitters = BabySitter.objects.all()
     return render(request,'sitters/all_sitters.html',{'sitters':sitters})
+
+@login_required
+def allstock(request):
+    stocks = Inventory.objects.all()
+    return render(request,'procurement/allstock.html',{'stocks':stocks})
 
 # @login_required
 # def assignedsitter(request):
@@ -194,10 +230,7 @@ def babiesdeparture(request):
     return render(request,'babies/signedout.html',{'babiesdeparture':babiesdeparture})
 
 
-@login_required
-def babysignin(request):
-    babysignin = Arrivalbaby.objects.all()
-    return render(request,'babies/signedin.html',{'babysignin':babysignin})
+
 
 
 @login_required
@@ -206,13 +239,11 @@ def home(request):
     count_babies = RegisterBaby.objects.count()
     count_sitters = BabySitter.objects.count()
     count_departure = Departure.objects.count()
-    count_arrival = Arrivalbaby.objects.count()
     count_sitterattendance = BabySitterattendance.objects.count()
     context = {
         "count_babies": count_babies,
         "count_sitters": count_sitters,
         "count_departure": count_departure,
-        "count_arrival": count_arrival,
         "count_sitterattendance": count_sitterattendance,
     }
     template = loader.get_template("home.html")
@@ -356,6 +387,7 @@ def payment(request):
     else:
         form = Babypayment_form()
     return render(request,'baby_payments/payment.html',{'form':form})
+
 
 def sitterpayment(request):
     if request.method == 'POST':

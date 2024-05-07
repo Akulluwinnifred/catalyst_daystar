@@ -15,7 +15,8 @@
         margin-bottom: 30px;
         max-width: 500px;
 
-        background-color: rgba(153, 198, 165, 0.55);
+        /* background-color: rgba(153, 198, 165, 0.55); */
+        background: linear-gradient(to right, #93c29f, #438659);
         padding: 20px;
         margin-left: 200px;
 
@@ -73,7 +74,7 @@
 {% endfor %}
 
 <div class="container">
-    <h1 style="color: white; text-align: center;">Baby payment Form</h1><br>
+    <h1 style="color: black; text-align: center;">Baby payment Form</h1><br>
     <form method="POST" class="babepay-form">
         {% csrf_token %}
         {{ form|crispy }}
@@ -81,6 +82,35 @@
         <button type="submit" class="btn btn-primary bg bg-success">Submit</button>
     </form>
 
+
+<script>
+    function calculateAmountDue() {
+        var periodOfStay = document.getElementById('id_period_of_stay').value;
+        var paymentRate = document.getElementById('id_payment_rate').value;
+        var amountDueField = document.getElementById('id_amount_due');
+        console.log("Period of Stay:", periodOfStay);
+        console.log("Payment Rate:", paymentRate);
+
+        if (periodOfStay === "Half day") {
+            if (paymentRate === "Monthly") {
+                amountDueField.value = 10000 * 30;
+            } else {
+                amountDueField.value = 10000;
+            }
+        } else {
+            if (paymentRate === "Monthly") {
+                amountDueField.value = 15000 * 30;
+            } else {
+                amountDueField.value = 15000;
+            }
+        }
+    }
+</script>
+
 </div>
+
+
+
+
 
 {% endblock %}

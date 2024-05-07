@@ -2,15 +2,34 @@
 
 
 {% block content %}
+
+
+<style>
+    .container {
+        padding-top: 20px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        max-width: 900px;
+
+        background-color: rgba(153, 198, 165, 0.55);
+        padding: 20px;
+    }
+
+    h2 {
+
+        text-align: center;
+    }
+</style>
+
 <button class="p-2 bg-teal-500 rounded-lg shadow-lg bg bg-success"
-    style="margin-left: 10px; border-radius: 5px; border: #B4BDFF; width: 20%; height: 5%;"><a
+    style="margin-left: 30px; border-radius: 5px; border: #B4BDFF; width: 20%; height: 5%;"><a
         style="color: white; text-decoration: none;" href="/babyreg">Add new baby</a></button>
 <br><br><br>
 <form method="GET" action="{% url 'search_babies' %}" class="mb-3">
-    <div class="input-group" style="margin-left: 40px; width: 80%; margin-bottom: 10px; border: 20px border-color:#337357">
+    <div class="input-group" style="margin-left: 30px; width: 80%; margin-bottom: 10px; border: 20px; border-color: #337357;">
     <input type="text" class="form-control" placeholder="Search" name="search_query">
     <button class="btn btn-outline-secondary" type="submit"> search</button>
-    </div>
+    </div> 
 
 </form>
 
@@ -48,70 +67,13 @@
                 <td>{{each.age}}</td>
                 <td>{{ each.Parents_Name}}</td>
                 <td>
-                  
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success mr-1" data-bs-toggle="modal"
-                            data-bs-target="#myModal{{ each.id }}">
-                            <i class="fa-brands fa-readme"></i>
-                        </button>
-
-                        <a href="{% url 'baby_edit' id=each.id %}" class="btn"><i class="fa-solid fa-pen"></i>
-                        <a href="{% url 'delete_baby' baby_id=each.id %}" class="btn"><i class="fa-solid fa-trash"></i>
-    
-
-     <div class="modal" id="myModal{{ each.id }}" tabindex="-1" aria-labelledby="myModallabel1" aria-hidden="true">
-     <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Baby: {{ each.name }}</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true"></span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <ul class="list-unstyled">
-                    <li>Baby No: <strong>{{ each.Baby_Number }}</strong></li>
-                    <li>Name: <strong>{{ each.name }}</strong></li>
-                    <li>Gender: <strong>{{ each.gender }}</strong></li>
-                    <li>Age: <strong>{{ each.age }}</strong></li>
-                    <li>Location: <strong>{{ each.location }}</strong></li>
-                    <li>Parents Name: <strong>{{ each.Parents_Name }}</strong></li>
-                </ul>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-{% comment %} <div class="modal" id="delete{{ each.id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-            
-    <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal"
-                  aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-              <p>Are you sure you want to delete the baby? "{{ each.name }}"?</p>
-          </div>
-          <div class="modal-footer">
-              <button type="button" class="btn btn-secondary"
-                  data-bs-dismiss="modal">Cancel</button>
-              <form method="post" action="{% url 'delete_baby' each.id %}">
-                  {% csrf_token %}
-                  <button type="submit" class="btn btn-danger">Delete</button>
-              </form>
-          </div>
-      </div>
-  </div>
-  </div> {% endcomment %}
-</td>
-</div>
-
-</tr>
+<div>
+                <button type="button" class="btn btn-success mr-1"><a href="{% url 'read' id=each.id %}" class="btn" style="color: white;"><i class="fa-brands fa-readme"></i>
+                <a href="{% url 'baby_edit' id=each.id %}" class="btn" style="color: white;"><i class="fa-solid fa-pen"></i>
+               <a href="{% url 'delete_baby' baby_id=each.id %}" class="btn" style="color: white;"><i class="fa-solid fa-trash"></i></button>
+               </div>
+             </td>
+            </tr>
 {% endfor %}
 </tbody>
 
@@ -119,34 +81,6 @@
 
 </div>
 
-<style>
-    .container {
-        padding-top: 20px;
-        margin-top: 60px;
-        margin-bottom: 30px;
-        max-width: 800px;
-
-        background-color: rgba(153, 198, 165, 0.55);
-        padding: 20px;
-        /* margin-left: 100px; */
-
-    }
-
-    h2 {
-
-        text-align: center;
-    }
-</style>
-
-
 </div>
-
-
-
-
-
-
-
-
 
 {% endblock %}

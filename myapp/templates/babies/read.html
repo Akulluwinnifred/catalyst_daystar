@@ -12,14 +12,15 @@
    
 
     <style>
+
+body{
+     background-color: rgba(153, 198, 165, 0.55);
+        }
 .container {
         padding-top: 20px;
-        margin-top: 20px;
-        /* max-width: 800px; */
-
+        margin-top: 70px;
         background-color: rgba(153, 198, 165, 0.55);
         padding: 20px;
-        /* margin-left: 100px; */
 
     }
 
@@ -34,16 +35,10 @@
  }
 
         
-        </style>
-        
-
-
-    
+</style>
 
     <div class="container">
     <h2>Baby details</h2>
-    
-
     <table class="table table-bordered">
         <thead>
             <tr class="table_dark">
@@ -55,8 +50,6 @@
                 <th>Brought by</th>
                 <th>location</th>
                 <th>Baby number</th>
-                <th>Action</th>
-               
             </tr>
         </thead>
  <tbody>
@@ -67,18 +60,14 @@
             <td>{{babies_informations.gender}}</td>
             <td>{{babies_informations.age}}</td>
             <td>{{babies_informations.Parents_Name}}</td>
+            <td>{{babies_informations.Brought_by}}</td>
            <td>{{babies_informations.location}}</td>
            <td>{{babies_informations.Baby_Number}}</td>
-           <td>
-            <a href="{% url 'delete' id=babies_informations.id % }"><button class="btn btn-primary" style="margin-bottom: 5px; background-color: green; border: none;">Delete</button></a>
-            <br>
-      <a href="{% url 'baby_edit' id=babies_informations.id % }"><button class="btn btn-primary" style="margin-bottom: 5px; background-color: green; border: none;">Edit</button></a>
-            </td>
         </tr>
    
     
  </tbody>   
- <a href="{% url 'all_babies' %}"><button class="btn btn-primary" style="margin-bottom: 5px; background-color: green; border: none;">Go back</button></a>
+ <a href="{% url 'all_babies' %}"><button class="btn btn-primary bg bg-success" style="margin-bottom: 5px; border: none;">Go back</button></a>
 
 </div>
 

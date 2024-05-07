@@ -55,6 +55,8 @@ urlpatterns = [
     #procurement
     path('inventory/<str:pk>',views.inventory,name='inventory'),
     path('allstock/',views.allstock,name='allstock'),
+    path('adding/',views.adding,name='adding'),
+    path('issueditems/',views.issueditems,name='issueditems'),
     path('issuing/<str:pk>',views.issuing,name='issuing'),
 ]
 

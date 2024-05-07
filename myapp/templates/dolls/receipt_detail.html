@@ -20,7 +20,7 @@
 
                                 <h4 class="v">Daystar daycare, Kabalagala </h4>
                                 <h4 class="v">Kampala,Uganda.</h4>
-                                <h5>Contact us: +256782781848</h5>
+                                <h5>+256782781848</h5>
                                 <h5>Date: {{ receipt.sale_date }}</h5>
 
                                 <h6 style="padding-top: 20px;"> DOLL-RECEIPT-0{{receipt.id}}</h6>
@@ -29,8 +29,8 @@
                         </tr>
                         <tr>
                             <td colspan="2" style="text-align: left; padding-top: 30px; padding-left: 10px;">
-                                <h4 style="color: black;">Bill To</h4>
-                                <h3 style="color:red;">Child Name: {{receipt.baby_name | title}}</h3>
+                                <h4 style="color: black;">Paid for:  {{receipt.baby_name | title}}</h4>
+                                <!-- <h3 style="color:red;">Child Name: </h3> -->
                             
                             </td>
                         </tr>
@@ -56,17 +56,17 @@
                             <tr class="v">
                                 <td>{{receipt.doll| title}}</td>
                                 <td class="text-xs-center">{{receipt.quantity_sold }}</td>
-                                <td class="text-xs-center">Ugx{{receipt.get_total | title}}
+                                <td class="text-xs-center">{{receipt.get_total | title}}
                                 </td>
-                                <td class="text-xs-right">Ugx{{ receipt.amount_received }}
+                                <td class="text-xs-right">{{ receipt.amount_received }}
                                 </td>
-                                <td class="text-xs-right">Ugx{{ receipt.get_change }}</td>
+                                <td class="text-xs-right">{{ receipt.get_change }}</td>
                             </tr>
                         </tbody>
                     </table>
 
 
-                    <h5 class="text-center" id="A">Thank You For choosing Daystar daycare</h5>
+                    <h5 class="text-center" id="A">Come again! Daystar</h5>
                     <!-- <h6 class="text-center" id="D">Designed by Nalugya Vanessa</h6> -->
                      <!-- </div> -->
                 </div>

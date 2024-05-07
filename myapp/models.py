@@ -117,25 +117,19 @@ class Payment(models.Model):
     paid_by = models.CharField(max_length=200,)
     date = models.DateField(default=timezone.now)
 
-    def save(self, *args, **kwargs):
-      if self.period_of_stay.name == "Half day": 
-        self.amount_due = 10000
-      else:
-        self.amount_due = 15000
-      super(Payment, self).save(*args, **kwargs)
 
-    # def save(self, *args, **kwargs):
-    #     if self.period_of_stay.name == "Half day":
-    #         if self.payment_rate.name == "Monthly":
-    #             self.amount_due = 10000 * 30  # Assuming period_of_stay has a field called duration_in_days
-    #         else:
-    #             self.amount_due = 10000
-    #     else:  # Assuming period_of_stay is "Full day"
-    #         if self.payment_rate.name == "Monthly":
-    #             self.amount_due = 15000 * 30
-    #         else:
-    #             self.amount_due = 15000
-    #     super().save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        if self.period_of_stay.name == "Half day":
+            if self.payment_rate.name == "Monthly":
+                self.amount_due = 10000 * 30  # Assuming period_of_stay has a field called duration_in_days
+            else:
+                self.amount_due = 10000
+        else:  # Assuming period_of_stay is "Full day"
+            if self.payment_rate.name == "Monthly":
+                self.amount_due = 15000 * 30
+            else:
+                self.amount_due = 15000
+        super().save(*args, **kwargs)
 
 
 
@@ -143,7 +137,7 @@ class Payment(models.Model):
     
 
     def __str__(self):
-        return (self.baby_name)
+        return str(self.baby_name)
 
 
 
@@ -272,3 +266,7 @@ class Inventory(models.Model):
     
 class Issuing(models.Model):
     quantity_issued_out = models.IntegerField(default=0)
+
+
+
+

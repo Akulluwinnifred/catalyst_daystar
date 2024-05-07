@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from . models import *
 from django.template import loader
+from django.db.models import Sum
 
 
 def index(request):
@@ -126,34 +127,6 @@ def Sitterreg(request):
     return render(request, 'sitters/sitterreg.html', {'getsitterform': getsitterform})
 
 
-@login_required
-# def assign(request):
-#     if request.method == 'POST':
-#         form = Assignbabies_form(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             messages.success(request, 'Sitter assigned successfully')
-#             return redirect('/assign')
-#     else:
-#         form = Assignbabies_form()
-#     return render(request, 'babies/assign.html', {'form':form})
-    
-
-# def assign(request):
-#     if request.method == 'POST':
-#         form = Assignbabies_form(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('assignedsitter')
-#     else:
-#         # Get the list of arrived sitters and babies
-#         arrived_sitters = BabySitterattendance.objects.all()
-#         arrived_babies = Arrivalbaby.objects.all()
-#         form = Assignbabies_form()
-#         form.fields['sitter_name'].queryset = arrived_sitters
-#         form.fields['baby_name'].queryset = arrived_babies
-#     return render(request, 'babies/assign.html', {'form': form})
-
 
 @login_required
 def sittersattendance(request):
@@ -174,9 +147,10 @@ def inventory(request,pk):
     if request.method == 'POST':
         form = InventoryForm(request.POST)
         if form.is_valid():
-            added_quantity=int(request.POST['quantity_bought'])
+            quantity_bought = form.cleaned_data.get('quantity_bought')
+            added_quantity=int(quantity_bought)
             new_item.quantity_in_stock+=added_quantity
-            form.save()
+            new_item.save()
             return redirect('/allstock')
     else:
         form = InventoryForm()
@@ -398,3 +372,28 @@ def sitterpayment(request):
     else:
         form = Sitterpayment_form()
     return render(request,'baby_payments/sitterpayment.html',{'form':form})
+
+
+
+def adding(request):
+    if request.method == 'POST':
+        form = Addingstock(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('allstock')
+    else:
+        form = Addingstock()
+    return render(request,'procurement/adding.html',{'form':form})
+
+def issueditems(request):
+    issues = Inventory.objects.all()
+    total_issued_quantity = issues.aggregate(total_issued_quantity=Sum('quantity_issued_out'))['total_issued_quantity'] or 0
+    
+    # Calculating total received quantity
+    total_received_quantity = Inventory.objects.aggregate(total_received_quantity=Sum('quantity_bought'))['total_received_quantity'] or 0
+    
+    # Calculating net quantity
+    net_quantity = total_received_quantity - total_issued_quantity
+
+    return render(request, 'procurement/issueditems.html', {'issues': issues, 'total_issued_quantity': total_issued_quantity, 'total_received_quantity': total_received_quantity, 'net_quantity': net_quantity})
+    

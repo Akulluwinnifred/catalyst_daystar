@@ -216,12 +216,12 @@ class Salesrecord(models.Model):
         return int(change)#sales is linked to products
 
 class BabyPayment(models.Model):
-    name = models.ForeignKey(RegisterBaby, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200)
     payment_date = models.DateField()
-    full_day = models.BooleanField(default=False)
-    half_day = models.BooleanField(default=False)
-    monthly = models.BooleanField(default=False)
-    total_amount_due = models.DecimalField(max_digits=10, decimal_places=2)
+    full_day = models.BooleanField(default=False,blank=True)
+    half_day = models.BooleanField(default=False,blank=True)
+    monthly = models.BooleanField(default=False,blank=True)
+    total_amount_due = models.DecimalField(max_digits=10, decimal_places=2,default=False,blank=True)
     amount_paid = models.DecimalField(max_digits=10, decimal_places=2)
     def __str__(self):
         return self.name

@@ -6,6 +6,7 @@
 
 <script>
     window.onload = function() {
+        document.getElementById("form").value = 0
         document.getElementById("exampleCheck1").addEventListener("change", calculateamountdue)
         document.getElementById("exampleCheck2").addEventListener("change", calculateamountdue)
         document.getElementById("exampleCheck3").addEventListener("change", calculateamountdue)
@@ -28,11 +29,11 @@
         if (monthly == true) {
             amount = amount * 30
         }
-        document.getElementById("form").innerHTML = amount
+        document.getElementById("form").value = amount
         var paid = document.getElementById("form1").value
         console.log(document.getElementById("form1").value)
         var due = amount - paid
-        document.getElementById("form2").innerHTML = due
+        document.getElementById("form2").value = due
 
     }
 </script>
@@ -43,7 +44,9 @@
         margin-top: 60px;
         margin-bottom: 30px;
         max-width: 500px;
-        background-color: rgba(153, 198, 165, 0.55);
+        /* background-color: rgba(153, 198, 165, 0.55); */
+        background: linear-gradient(to right, #93c29f, #438659);
+
         padding: 20px;
         margin-left: 200px;
        
@@ -75,6 +78,9 @@
         cursor: pointer;
         
     }
+    h2{
+        text-align: center;
+    }
 
 </style>
 
@@ -89,52 +95,53 @@
 
 <div class="babe-form">
     <div class="form-container">
-{% csrf_token %}
-        <h2 >BABIE PAYMENT</h2>
-        <hr>
-        <div class="container">
-            <form>
 
+      
+    
+        <div class="container">
+            <h2 >BABIE PAYMENT</h2>
+            <form method="POST" action="/payment/" enctype="multipart/form-data">
+                  {% csrf_token %}
                 <div class="form-group">
                     <label for="exampleInputEmail1">Name</label>
                     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        placeholder="Name">
+                        placeholder="Name" name="name">
 
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Payment Date</label>
-                    <input type="date" class="form-control" id="exampleInputPassword1" placeholder="Date">
+                    <input type="date" name="date" class="form-control" id="exampleInputPassword1" placeholder="Date">
                 </div>
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Full day</label>
+                    <label class="form-check-label" for="exampleCheck1" name="Full day">Full day</label>
 
 
                 </div>
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="exampleCheck2">
-                    <label class="form-check-label" for="exampleCheck2">Half day</label>
+                    <label class="form-check-label" for="exampleCheck2"name="Half day">Half day</label>
 
                 </div>
 
                 <div class="form-check">
 
                     <input type="checkbox" class="form-check-input" id="exampleCheck3">
-                    <label class="form-check-label" for="exampleCheck3">Monthly</label>
+                    <label class="form-check-label" for="exampleCheck3" name="monthly">Monthly</label>
 
                 </div>
 
 
                 <div class="form-group">
                     <label for="form">Total Amount Due</label>
-                    <div type="textfield" class="form-control" id="form">
+                    <input type="textfield"  name="total_amount"class="form-control" id="form">
 
-                    </div>
+                
                 </div>
 
                 <div class="form-group">
                     <label for="form1">Amount Paid</label>
-                    <input type="textfield" class="form-control" id="form1">
+                    <input type="textfield" name="amount_paid"class="form-control" id="form1">
 
 
                 </div>
@@ -142,7 +149,7 @@
 
                 <div class="form-group">
                     <label for="form2">Remaining Balance</label>
-                    <label type="textfield" class="form-control" id="form2">
+                    <input type="textfield" name="remaining_balance" class="form-control" id="form2">
                 </div>
                 <br>
                 <button type="submit" class="btn btn-primary bg bg-success" style="border: none;">Submit</button>

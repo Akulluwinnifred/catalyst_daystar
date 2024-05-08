@@ -351,16 +351,36 @@ def delete_baby(request, baby_id):
 #             return str(self.baby_name)
 
 
+# def payment(request):
+#     if request.method == 'POST':
+#         form = Babypayment_form(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             messages.success(request, 'Payment registered successfully')
+#             return redirect('/payment')
+#     else:
+#         form = Babypayment_form()
+#     return render(request,'baby_payments/payment.html',{'form':form})
+
+
+
+
 def payment(request):
     if request.method == 'POST':
-        form = Babypayment_form(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, ' Payment registered successfully')
-            return redirect('/payment')
+        name=request.POST.get('name')
+        payment_date=request.POST.get('date')
+        full_day=request.POST.get('full_day')
+        half_day=request.POST.get('half_day')
+        monthly=request.POST.get('monthly')
+        total_amount_due=request.POST.get('total_amount_due')
+        amount_paid=request.POST.get('amount_paid')
+        pay = BabyPayment(name=name,payment_date=payment_date,total_amount_due=total_amount_due,amount_paid=amount_paid
+                          ,full_day=full_day,half_day=half_day,monthly=monthly)
+        pay.save()
+        return redirect('/payment')
     else:
-        form = Babypayment_form()
-    return render(request,'baby_payments/payment.html',{'form':form})
+        return render(request,'baby_payments/payment.html')
+
 
 
 def sitterpayment(request):

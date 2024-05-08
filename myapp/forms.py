@@ -35,24 +35,17 @@ class Sittersattendance_form(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['attendance_status'].disabled = True
 
-
-# class Assignbabies_form(forms.ModelForm):
-#     class Meta:
-#         model = Assignbabies
-#         fields = '__all__'
     
 
 class Payment_form(forms.ModelForm):
     class Meta:
         model = Payment
         fields = '__all__'
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['currency'].disabled = True
 
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields['currency'].disabled = True
         self.helper = FormHelper()
         self.helper.form_tag = False
         self.helper.layout = Layout(
@@ -90,6 +83,7 @@ class Payment_form(forms.ModelForm):
                     cleaned_data['amount_due'] = 15000
 
         return cleaned_data
+    
 
 class Departure_form(forms.ModelForm):
     class Meta:
@@ -98,6 +92,7 @@ class Departure_form(forms.ModelForm):
         widgets = {
             'departure_time': forms.DateTimeInput(attrs={'type': 'datetime-local'}),}
         
+
 class Babypayment_form(forms.ModelForm):
     class Meta:
         model = BabyPayment
@@ -145,10 +140,12 @@ class  DollForm(ModelForm):
         model = Doll
         fields = '__all__'
 
+
 class Addform(ModelForm):
     class Meta:
         model = Doll
         fields = ['received_quantity']
+
 
 class SalesrecordForm(ModelForm):
     class Meta:
@@ -165,6 +162,7 @@ class Issuingform(ModelForm):
     class Meta:
         model = Issuing
         fields = '__all__'
+
 
 class Addingstock(ModelForm):
     class Meta:

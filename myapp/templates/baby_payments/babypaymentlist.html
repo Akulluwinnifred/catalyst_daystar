@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<button class="p-2 bg-teal-500 rounded-lg shadow-lg bg bg-success"
+    style="margin-left: 10px; border-radius: 5px; border: #B4BDFF; width: 20%; height: 5%;"><a
+        style="color: white; text-decoration: none;" href="/sitterpayment">Add new payment</a></button>
+<br><br><br>
+<form method="GET" action="{% url 'search_babies' %}" class="mb-3">
+    <div class="input-group" style="margin-left: 40px; width: 80%; margin-bottom: 10px; border: 20px border-color:#337357">
+    <input type="text" class="form-control" placeholder="Search" name="search_query">
+    <button class="btn btn-outline-secondary" type="submit"> search</button>
+    </div>
+
+</form>
+
+{% if search_query %}
+<p>Search results for: '{{ search_query }}'</p>
+
+{% endif %}
+
+
+
+<div class="container">
+    <h4 class="text-center">BABY PAYMENT LIST</h4>
+
+    <table class="table table-striped" style="width: 90%; margin-left: 20px;">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Baby Name</th>
+                <th>Date</th>
+                <th>Amount paid</th>
+                <th>total Amount</th>
+                <th>Balance</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for each in babypayment %}
+            <tr>
+                <td> {{each.id}}</td>
+                <td>{{each.name}}</td>
+                <td>{{each.payment_date}}</td>
+                <td>{{each.amount_paid}}</td>
+                <td>{{each.total_amount_due}}</td>
+                <td>{{each.remaining_balance}}</td>
+    
+</div>
+
+</tr>
+{% endfor %}
+</tbody>
+
+</table>
+
+</div>
+
+<style>
+    .container {
+        padding-top: 20px;
+        margin-top: 60px;
+        margin-bottom: 30px;
+        max-width: 800px;
+
+        background-color: rgba(153, 198, 165, 0.55);
+        padding: 20px;
+        /* margin-left: 100px; */
+
+    }
+
+    h2 {
+
+        text-align: center;
+    }
+
+    
+</style>
+
+
+</div>
+{% endblock %}

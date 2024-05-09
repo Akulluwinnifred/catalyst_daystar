@@ -83,7 +83,6 @@ class RegisterBaby(models.Model):
          ('male', 'Male'),
         ('female', 'Female'),
      )
-    # Fee = models.ForeignKey(Payment, on_delete=models.CASCADE,null=True,blank=True)
     name = models.CharField(max_length=200,validators=[validate_letters])
     Baby_Number = models.CharField(max_length=200,unique=True,blank=False, null=True)
     gender = models.CharField(max_length=10,choices=GENDER_CHOICES)
@@ -216,13 +215,15 @@ class Salesrecord(models.Model):
         return int(change)#sales is linked to products
 
 class BabyPayment(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200,validators=[validate_letters])
     payment_date = models.DateField()
     full_day = models.BooleanField(default=False,blank=True)
     half_day = models.BooleanField(default=False,blank=True)
     monthly = models.BooleanField(default=False,blank=True)
-    total_amount_due = models.DecimalField(max_digits=10, decimal_places=2,default=False,blank=True)
+    monthly = models.BooleanField(default=False,blank=True)
+    total_amount_due = models.DecimalField(max_digits=10, decimal_places=2,blank=True)
     amount_paid = models.DecimalField(max_digits=10, decimal_places=2)
+    remaining_balance = models.DecimalField(max_digits=10, decimal_places=2,default=False,blank=True)
     def __str__(self):
         return self.name
     

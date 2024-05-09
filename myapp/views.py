@@ -312,58 +312,18 @@ def sitterpaymentlist(request):
     return render(request,'baby_payments/sitterpaymentlist.html',{'sitterpayment':sitterpayment})
 
 
+@login_required
+def babypaymentlist(request):
+    babypayment=BabyPayment.objects.all()
+    return render(request,'baby_payments/babypaymentlist.html',{'babypayment':babypayment})
+
+
 def delete_baby(request, baby_id):
     baby = get_object_or_404(RegisterBaby, id=baby_id)
     if request.method == 'POST':
         baby.delete()
         return redirect('all_babies')
     return render(request, 'babies/delete.html', {'baby': baby})
-
-# def payment_baby(request):
-#     if request.method == 'POST':
-#         form = AddPayment(request.POST)
-#         if form.is_valid():
-#             payment = form.save(commit=False)
-#             payment.total_amount_due = calculate_total_amount_due(payment.payment_rate, payment.starting_date, payment.ending_date)
-#             payment.save()
-#             messages.success(request, 'Payment added successfully')
-#             return redirect('/payment_baby')
-#     else:
-#         form = AddPayment()
-#     return render(request, 'payment_baby.html', {'form': form})
-
-# def calculate_total_amount_due(payment_rate, starting_date, ending_date):
-#     if payment_rate == 'Full day':
-#         return 15000
-#     elif payment_rate == 'Half day':
-#         return 10000
-#     elif payment_rate == 'Monthly':
-        
-#         weekdays = 0
-#         while starting_date <= ending_date:
-#             if starting_date.weekday() < 5:  
-#                 weekdays += 1
-#             starting_date += datetime.timedelta(days=1)
-#         return 10000 * weekdays  
-
-
-#         def _str_(self):
-#             return str(self.baby_name)
-
-
-# def payment(request):
-#     if request.method == 'POST':
-#         form = Babypayment_form(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             messages.success(request, 'Payment registered successfully')
-#             return redirect('/payment')
-#     else:
-#         form = Babypayment_form()
-#     return render(request,'baby_payments/payment.html',{'form':form})
-
-
-
 
 def payment(request):
     if request.method == 'POST':
@@ -372,12 +332,13 @@ def payment(request):
         full_day=request.POST.get('full_day')
         half_day=request.POST.get('half_day')
         monthly=request.POST.get('monthly')
-        total_amount_due=request.POST.get('total_amount_due')
+        total_amount_due=request.POST.get('total_amount')
         amount_paid=request.POST.get('amount_paid')
+        remaining_balance=request.POST.get('remaining_balance')
         pay = BabyPayment(name=name,payment_date=payment_date,total_amount_due=total_amount_due,amount_paid=amount_paid
-                          ,full_day=full_day,half_day=half_day,monthly=monthly)
+                          ,full_day=full_day,half_day=half_day,monthly=monthly,remaining_balance=remaining_balance)
         pay.save()
-        return redirect('/payment')
+        return redirect('/babypaymentlist')
     else:
         return render(request,'baby_payments/payment.html')
 
@@ -404,16 +365,3 @@ def adding(request):
     else:
         form = Addingstock()
     return render(request,'procurement/adding.html',{'form':form})
-
-def issueditems(request):
-    issues = Inventory.objects.all()
-    total_issued_quantity = issues.aggregate(total_issued_quantity=Sum('quantity_issued_out'))['total_issued_quantity'] or 0
-    
-    # Calculating total received quantity
-    total_received_quantity = Inventory.objects.aggregate(total_received_quantity=Sum('quantity_bought'))['total_received_quantity'] or 0
-    
-    # Calculating net quantity
-    net_quantity = total_received_quantity - total_issued_quantity
-
-    return render(request, 'procurement/issueditems.html', {'issues': issues, 'total_issued_quantity': total_issued_quantity, 'total_received_quantity': total_received_quantity, 'net_quantity': net_quantity})
-    

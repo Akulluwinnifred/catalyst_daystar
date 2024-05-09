@@ -50,13 +50,14 @@ urlpatterns = [
     path('payment/',views.payment,name='payment'),
     path('sitterpayment/',views.sitterpayment,name='sitterpayment'),
     path('sitterpaymentlist/',views.sitterpaymentlist,name='sitterpaymentlist'),
+    path('babypaymentlist/',views.babypaymentlist,name='babypaymentlist'),
 
 
     #procurement
     path('inventory/<str:pk>',views.inventory,name='inventory'),
     path('allstock/',views.allstock,name='allstock'),
     path('adding/',views.adding,name='adding'),
-    path('issueditems/',views.issueditems,name='issueditems'),
+    # path('issueditems/',views.issueditems,name='issueditems'),
     path('issuing/<str:pk>',views.issuing,name='issuing'),
 ]
 

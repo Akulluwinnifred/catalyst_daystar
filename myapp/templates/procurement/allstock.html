@@ -2,8 +2,32 @@
 
 
 {% block content %}
+<style>
+    .container {
+        padding-top: 20px;
+        margin-top: 60px;
+        margin-bottom: 30px;
+        max-width: 900px;
+
+        background-color: rgba(153, 198, 165, 0.55);
+        padding: 20px;
+        /* margin-left: 100px; */
+
+    }
+
+    h2 {
+font-family: Georgia, 'Times New Roman', Times, serif;
+        text-align: center;
+    }
+
+    
+</style>
+
+
+
 <form method="GET" action="{% url 'search_babies' %}" class="mb-3">
-    <div class="input-group" style="margin-left: 40px; width: 80%; margin-bottom: 10px; border: 20px border-color:#337357">
+    
+    <div class="input-group" style="margin-left: 40px; width: 80%; margin-bottom: 10px; border: 20px; border-color: #337357;">
     <input type="text" class="form-control" placeholder="Search" name="search_query">
     <button class="btn btn-outline-secondary" type="submit"> search</button>
     </div>
@@ -18,7 +42,7 @@
 
 <button class= "btn btn-primary bg bg-success" type="submit" style="border: none; margin-left: 30px;"><a href="{% url 'adding' %}" style="color: white; text-decoration: none;">ADD ITEMS</a></button>
 <div class="container">
-    <h4 class="text-center">STOCK AT HAND</h4>
+    <h2 class="text-center">STOCK AT HAND</h2>
 
     <table class="table table-striped" style="width: 90%; margin-left: 20px;">
         <thead>
@@ -26,9 +50,6 @@
                 <th>#</th>
                 <th>Item Name</th>
                 <th>Date</th>
-                <!-- <th>Quantity bought</th> -->
-                <!-- <th>Amount(UGX)</th> -->
-                <!-- <th>Quantity</th> -->
                 <th>Stock at hand</th>
                 <th>Action</th>
             </tr>
@@ -40,9 +61,6 @@
                 <td> {{each.id}}</td>
                 <td> {{each.item_name}}</td>
                 <td>{{each.date_purchased}}</td>
-                <!-- <td>{{each.quantity_bought}}</td> -->
-                <!-- <td>{{each.amount_in_Ugx}}</td> -->
-                <!-- <td>{{each.quantity}}</td> -->
                 <td>{{each.stock_at_hand}}</td>
                 <td>
                     <button class= "btn btn-primary bg bg-success" type="submit" style="border: none;"><a href="{% url 'issuing' each.id %}" style="color: white; text-decoration: none;">ISSUE OUT</a></button>
@@ -58,27 +76,6 @@
     </table>
 
 </div>
-
-<style>
-    .container {
-        padding-top: 20px;
-        margin-top: 60px;
-        margin-bottom: 30px;
-        max-width: 900px;
-
-        background-color: rgba(153, 198, 165, 0.55);
-        padding: 20px;
-        /* margin-left: 100px; */
-
-    }
-
-    h2 {
-
-        text-align: center;
-    }
-
-    
-</style>
 
 
 </div>

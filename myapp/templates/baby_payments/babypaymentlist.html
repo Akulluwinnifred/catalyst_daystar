@@ -2,6 +2,29 @@
 
 
 {% block content %}
+
+<style>
+    .container {
+        padding-top: 20px;
+        margin-top: 30px;
+        margin-bottom: 60px;
+        max-width: 800px;
+
+        background-color: rgba(153, 198, 165, 0.55);
+        padding: 20px;
+    
+
+    }
+
+    h2 {
+     font-family: Georgia, 'Times New Roman', Times, serif;
+        text-align: center;
+    }
+
+    
+</style>
+
+
 <button class="p-2 bg-teal-500 rounded-lg shadow-lg bg bg-success"
     style="margin-left: 60px; border-radius: 5px; border: #B4BDFF; width: 20%; height: 5%;"><a
         style="color: white; text-decoration: none;" href="/sitterpayment">Add new payment</a></button>
@@ -22,7 +45,7 @@
 
 
 <div class="container">
-    <h4 class="text-center">BABY PAYMENT LIST</h4>
+    <h2 class="text-center">BABY PAYMENT LIST</h2><hr>
 
     <table class="table table-striped" style="width: 90%; margin-left: 20px;">
         <thead>
@@ -56,27 +79,5 @@
 
 </div>
 
-<style>
-    .container {
-        padding-top: 20px;
-        margin-top: 30px;
-        margin-bottom: 60px;
-        max-width: 800px;
 
-        background-color: rgba(153, 198, 165, 0.55);
-        padding: 20px;
-    
-
-    }
-
-    h2 {
-
-        text-align: center;
-    }
-
-    
-</style>
-
-
-</div>
 {% endblock %}

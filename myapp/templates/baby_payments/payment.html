@@ -77,6 +77,7 @@
     }
     h2{
         text-align: center;
+        font-family: Georgia, 'Times New Roman', Times, serif;
     }
 
 </style>
@@ -93,10 +94,8 @@
 <div class="babe-form">
     <div class="form-container">
 
-      
-    
         <div class="container">
-            <h2 >BABY PAYMENT</h2>
+            <h2 >BABY PAYMENT</h2><hr>
             <form method="POST" action="/payment/" enctype="multipart/form-data">
                   {% csrf_token %}
                 <div class="form-group">

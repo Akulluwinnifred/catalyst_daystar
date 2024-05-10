@@ -13,11 +13,6 @@ class Categorystay(models.Model):
     def __str__(self):
         return self.name
     
-class Paymenttype(models.Model):
-    name = models.CharField(max_length=50, null=True,blank=True)
-
-    def __str__(self):
-        return self.name
     
     #baby payments
 
@@ -101,46 +96,6 @@ class RegisterBaby(models.Model):
     
 
 
-class Payment(models.Model):
-    baby_name = models.ForeignKey(RegisterBaby, on_delete=models.CASCADE,null=True,blank=True)
-    period_of_stay = models.ForeignKey(Categorystay, on_delete=models.CASCADE)
-    payment_rate = models.ForeignKey(Paymenttype, on_delete=models.CASCADE)
-    currency = models.CharField(max_length=5,default='Ugx')
-    amount_due = models.IntegerField(default=0)
-    amount_paid = models.IntegerField(default=0)
-    remaining_balance = models.IntegerField(default=0)
-    payment_status = models.CharField(max_length=200, choices=(
-        ('complete', 'complete'),
-        ('pending', 'pending'),
-    ))
-    paid_by = models.CharField(max_length=200,)
-    date = models.DateField(default=timezone.now)
-
-
-    def save(self, *args, **kwargs):
-        if self.period_of_stay.name == "Half day":
-            if self.payment_rate.name == "Monthly":
-                self.amount_due = 10000 * 30  # Assuming period_of_stay has a field called duration_in_days
-            else:
-                self.amount_due = 10000
-        else:  # Assuming period_of_stay is "Full day"
-            if self.payment_rate.name == "Monthly":
-                self.amount_due = 15000 * 30
-            else:
-                self.amount_due = 15000
-        super().save(*args, **kwargs)
-
-
-
-
-    
-
-    def __str__(self):
-        return str(self.baby_name)
-
-
-
-
 class Departure(models.Model):
     baby_name = models.ForeignKey(RegisterBaby, on_delete=models.CASCADE)
     departure_time = models.DateTimeField()
@@ -151,27 +106,6 @@ class Departure(models.Model):
     def __str__(self):
         return self.baby_name
     
-
-
-
-     
-
-
-# class Assignbabies(models.Model):
-#     baby_name = models.ForeignKey(Arrivalbaby, on_delete=models.CASCADE)
-#     sitter_name = models.ForeignKey(BabySitterattendance, on_delete=models.CASCADE)
-
-#     def __str__(self):
-#         return self.sitter_name
-
-
-
-# class InventoryTracker(models.Model):
-#     product = models.CharField(max_length=200)
-#     Unit_Price = models.IntegerField(default=0)
-#     Quantity_Price = models.IntegerField(default=0)
-#     Total_Price = models.IntegerField(default=0)
-#     Total_Amount = models.IntegerField(default=0)
 
 
 class Category_doll(models.Model):  

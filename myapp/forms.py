@@ -35,55 +35,6 @@ class Sittersattendance_form(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['attendance_status'].disabled = True
 
-    
-
-class Payment_form(forms.ModelForm):
-    class Meta:
-        model = Payment
-        fields = '__all__'
-
-    
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['currency'].disabled = True
-        self.helper = FormHelper()
-        self.helper.form_tag = False
-        self.helper.layout = Layout(
-            'baby_name',
-            'period_of_stay',
-            'payment_rate',
-            'currency',
-            'amount_due',
-            'amount_paid',
-            'remaining_balance',
-            'payment_status',
-            'paid_by',
-            'date',
-        )
-        self.fields['period_of_stay'].widget.attrs['onchange'] = 'calculateAmountDue()'
-        self.fields['payment_rate'].widget.attrs['onchange'] = 'calculateAmountDue()'
-
-    def clean(self):
-        cleaned_data = super().clean()
-        period_of_stay = cleaned_data.get('period_of_stay')
-        payment_rate = cleaned_data.get('payment_rate')
-        print("Period of Stay:", period_of_stay)
-        print("Payment Rate:", payment_rate)
-
-        if period_of_stay and payment_rate:
-            if period_of_stay.name == "Half day":
-                if payment_rate.name == "Monthly":
-                    cleaned_data['amount_due'] = 10000 * 30
-                else:
-                    cleaned_data['amount_due'] = 10000
-            else:  # Assuming period_of_stay is "Full day"
-                if payment_rate.name == "Monthly":
-                    cleaned_data['amount_due'] = 15000 * 30
-                else:
-                    cleaned_data['amount_due'] = 15000
-
-        return cleaned_data
-    
 
 class Departure_form(forms.ModelForm):
     class Meta:

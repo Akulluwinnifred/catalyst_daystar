@@ -46,7 +46,6 @@ urlpatterns = [
     path('receipt_detail/<int:receipt_id>',views.receipt_detail,name='receipt_detail'),
 
     #payments
-    path('babypayment/',views.babypayment,name='babypayment'),
     path('payment/',views.payment,name='payment'),
     path('sitterpayment/',views.sitterpayment,name='sitterpayment'),
     path('sitterpaymentlist/',views.sitterpaymentlist,name='sitterpaymentlist'),
@@ -57,7 +56,6 @@ urlpatterns = [
     path('inventory/<str:pk>',views.inventory,name='inventory'),
     path('allstock/',views.allstock,name='allstock'),
     path('adding/',views.adding,name='adding'),
-    # path('issueditems/',views.issueditems,name='issueditems'),
     path('issuing/<str:pk>',views.issuing,name='issuing'),
 ]
 

@@ -56,38 +56,6 @@ def babyreg(request):
    else:
       form = Babyreg_form()
    return render(request,'babies/babyreg.html',{'form':form})
-   
-
-# def babypayment(request):
-#    form = Payment_form()
-   
-#    if request.method == 'POST':
-   
-#       form = Payment_form(request.POST)
-      
-#       if form.is_valid():
-#          form.save()
-#          messages.success(request,'Payment registered successfully')
-#          return redirect('/babypayment')
-#    else:
-#       form = Payment_form()
-#       return render(request,'baby_payments/babypayment.html',{'form':form})
-
-@login_required
-def babypayment(request):
-    form = Payment_form()
-   
-    if request.method == 'POST':
-   
-       form = Payment_form(request.POST)
-      
-       if form.is_valid():
-          form.save()
-          messages.success(request,"Payment registered successfully")
-          return redirect('/babypayment')
-    else:
-        form = Payment_form()
-    return render(request,'baby_payments/babypayment.html',{'form':form})
 
    
 
@@ -186,11 +154,6 @@ def allstock(request):
     stocks = Inventory.objects.all()
     return render(request,'procurement/allstock.html',{'stocks':stocks})
 
-# @login_required
-# def assignedsitter(request):
-#     babies = Assignbabies.objects.all()
-#     return render(request,'babies/assignedsitters.html',{'babies':babies})
-
 
 @login_required
 def onduty(request):
@@ -277,6 +240,8 @@ def receipt_detail(request, receipt_id):
             receipt = Salesrecord.objects.get(id=receipt_id)
             return render(request,'dolls/receipt_detail.html',{'receipt':receipt})
 
+
+
 @login_required
 def add_to_stock(request,pk):
     issued_item=Doll.objects.get(id=pk)
@@ -290,6 +255,8 @@ def add_to_stock(request,pk):
             print(issued_item.quantity)
             return redirect('doll')
     return render(request, 'dolls/add_to_stock.html',{'form':form})
+
+
 
 @login_required
 def all_sales(request):
@@ -325,12 +292,14 @@ def delete_baby(request, baby_id):
         return redirect('all_babies')
     return render(request, 'babies/delete.html', {'baby': baby})
 
+
+
 def payment(request):
     if request.method == 'POST':
         name=request.POST.get('name')
         payment_date=request.POST.get('date')
-        full_day=request.POST.get('full_day')
-        half_day=request.POST.get('half_day')
+        full_day=request.POST.get('Full day')
+        half_day=request.POST.get('Half day')
         monthly=request.POST.get('monthly')
         total_amount_due=request.POST.get('total_amount')
         amount_paid=request.POST.get('amount_paid')

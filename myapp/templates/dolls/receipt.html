@@ -1,26 +1,24 @@
 {% extends 'base.html'%} 
 {% block content%}
 <br /><br>
-<div class="container" style="background-color: aliceblue;">
+<div class="container" style="background-color: rgba(153, 198, 165, 0.55); margin-bottom: 60px; margin-top: 0;">
     <h1 class="card-header text-center" class="v">ALL RECEIPTS</h1><br>
     {% for sale in sales %}
     <div class="card" style="opacity: 90%;  background-color: rgba(153, 198, 165, 0.55);" >
         
         <div class="card-body">
-            <h5 style="text-align: right;"><h5>Date: {{ receipt.sale_date}}</h5>
-        </h5>
-            <h2 class="v">DAYSTAR DAYCARE</h2>
-            <h3 class="card-title" style="color:red; ">Child name : {{sale.baby_name | title}}</h3>
+        
+            <h3 class="card-title" >Child name : {{sale.baby_name | title}}</h3>
         
             <h6 class="card-text">Doll Name : {{sale.doll}}</h6>
             <h6 class="card-text">Amount Paid: UGX{{ sale.amount_received }}</h6>
             <h6 class="card-text">Quantity: {{sale.quantity_sold }}</h6>
-            <h2>Total Price : UGX{{ sales.get_total }}</h2>
+            <h2>Total price : Ugx {{ sale.get_total }}</h2>
             <div style="flex: 1">
-                <h6 class="card-text">Amount Due: UGX{{ sale.get_change }}</h6>
+                <h6 class="card-text">Amount Due: Ugx {{ sale.get_change }}</h6>
                 <a href="{% url 'receipt_detail' sale.id %}">
                    
-                    <button class="button" type="submit"style="width:auto;border:none;">Print Receipt</button> <br>
+                    <button class="button bg bg-success" type="submit"style="width:auto; border:none; border-radius: 10px;">Print Receipt</button> <br>
                 </a>
             </div>
         </div>

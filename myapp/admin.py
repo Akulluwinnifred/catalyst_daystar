@@ -14,3 +14,4 @@ admin.site.register(Sitterpayment)
 admin.site.register(Inventory)
 admin.site.register(Issuing)
 admin.site.register(Items)
+

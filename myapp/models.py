@@ -7,32 +7,36 @@ from django.core.exceptions import ValidationError
 
 # Create your models here.
 
+#models for category stay
 class Categorystay(models.Model):
     name = models.CharField(max_length=50, null=True,blank=True)
 
     def __str__(self):
         return self.name
     
-    
-    #baby payments
 
+#letter validation
 def validate_letters(value):
     if not re.match("^([a-zA-Z]+\s)*[a-zA-Z]+$", value):
         raise ValidationError("Only letters are allowed.")
 
+#number validation function
 def validate_numbers(value):
     if not re.match("^[0-9]*$", value):
         raise ValidationError("Only numbers are allowed.")
 
+#contact length validation function
 def validate_contact_length(value):
     if len(value) != 10:
         raise ValidationError("Contact field must contain exactly 10 digits.")
 
+#NIN length validation function
 def validate_NIN_length(value):
     if len(value) != 14:
         raise ValidationError("NIN field must contain exactly 14 digits.")
 
 
+#babysitter model here
 class BabySitter(models.Model):
 
     GENDER_CHOICES = (
@@ -62,7 +66,7 @@ class BabySitter(models.Model):
     def __str__(self):
         return self.name
 
-
+#siter attendance model here
 class BabySitterattendance(models.Model):
     sitter_Number = models.CharField(max_length=200,unique=True)
     name = models.ForeignKey(BabySitter, on_delete=models.CASCADE)
@@ -72,6 +76,8 @@ class BabySitterattendance(models.Model):
     def __str__(self):
         return str(self.name)
 
+
+#baby registration model here
 class RegisterBaby(models.Model):
 
     GENDER_CHOICES = (
@@ -95,7 +101,7 @@ class RegisterBaby(models.Model):
         return self.name
     
 
-
+#baby departure model here
 class Departure(models.Model):
     baby_name = models.ForeignKey(RegisterBaby, on_delete=models.CASCADE)
     departure_time = models.DateTimeField()
@@ -107,14 +113,14 @@ class Departure(models.Model):
         return self.baby_name
     
 
-
+#dolls category model here
 class Category_doll(models.Model):  
      name = models.CharField(max_length=100,null=True, blank=True)
 
      def __str__(self):
         return self.name  
 
-
+#dolls model here
 class Doll(models.Model):
     c_doll=models.ForeignKey(Category_doll, on_delete=models.CASCADE,null=True, blank=True)
     name_of_the_doll =models.CharField(max_length=200,null=True, blank=True)
@@ -128,7 +134,9 @@ class Doll(models.Model):
 
     def __str__(self):
         return self.name_of_the_doll
-    
+
+
+#sales record for doll model here
 class Salesrecord(models.Model):    
     doll=models.ForeignKey(Doll,  on_delete=models.CASCADE,null=False, blank=False)
     baby_name=models.ForeignKey(RegisterBaby, on_delete=models.CASCADE)
@@ -143,11 +151,13 @@ class Salesrecord(models.Model):
         total= self.quantity_sold * self.unit_price
         return int( total)
     
-#here we are getting change.(money to be given to the parent)    
+#here i are getting change.(money to be given to the parent)    
     def get_change(self):
         change= self.get_total() - self.amount_received
         return int(change)#sales is linked to products
 
+
+#baby payment model here
 class BabyPayment(models.Model):
     name = models.CharField(max_length=200,validators=[validate_letters])
     payment_date = models.DateField()
@@ -162,6 +172,7 @@ class BabyPayment(models.Model):
         return self.name
     
 
+#sitter payment model here
 class Sitterpayment(models.Model):
     sitter_name=models.ForeignKey(BabySitterattendance, on_delete=models.CASCADE)
     date=models.DateField(default=timezone.now)
@@ -174,7 +185,8 @@ class Sitterpayment(models.Model):
     def total_amount(self):
         total= self.amount * self.baby_count
         return int(total)
-    
+
+ #model for category items here   
 class Items(models.Model):
         name = models.CharField(max_length=50, null=True,blank=True)
 
@@ -182,6 +194,7 @@ class Items(models.Model):
             return self.name
 
 
+#inventory form model here
 class Inventory(models.Model):
     item_name = models.ForeignKey(Items, on_delete=models.CASCADE,null=True,blank=True)
     date_purchased = models.DateField(default=timezone.now)
@@ -194,13 +207,16 @@ class Inventory(models.Model):
     def __str__(self):
         return str(self.item_name)
 
-    
+    #calculating the stock at hand (total stock available)
     def stock_at_hand(self):
         totalquantity = self.quantity_in_stock + self.quantity_bought
         return totalquantity
     
+
+#form for issuing out inventory
 class Issuing(models.Model):
     quantity_issued_out = models.IntegerField(default=0)
+
 
 
 

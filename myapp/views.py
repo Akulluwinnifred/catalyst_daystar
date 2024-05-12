@@ -226,8 +226,10 @@ def issuing(request,pk):
 #all stocks view here
 @login_required
 def allstock(request):
-    stocks = Inventory.objects.all()
-    return render(request,'procurement/allstock.html',{'stocks':stocks})
+    stocks = Inventory.objects.all().order_by('id')
+    stock_filter=ProcurementFilter(request.GET,queryset=stocks)
+    stocks = stock_filter.qs
+    return render(request,'procurement/allstock.html',{'stocks':stocks,'stock_filter':stock_filter})
 
 
 
@@ -320,23 +322,28 @@ def all_sales(request):
 #list of dolls views here
 @login_required
 def doll(request):
-    dolls=Doll.objects.all()
-    return render(request,'dolls/doll.html',{'dolls':dolls})
-
+    dolls=Doll.objects.all().order_by('id')
+    doll_filter=DollFilter(request.GET,queryset=dolls)
+    dolls = doll_filter.qs
+    return render(request,'dolls/doll.html',{'dolls':dolls,'doll_filter':doll_filter})
 
 
 #sitterpayment list views here
 @login_required
 def sitterpaymentlist(request):
-    sitterpayment=Sitterpayment.objects.all()
-    return render(request,'baby_payments/sitterpaymentlist.html',{'sitterpayment':sitterpayment})
+    sitterpayment=Sitterpayment.objects.all().order_by('id')
+    sitterpayment_filter=SitterpaymentFilter(request.GET,queryset=sitterpayment)
+    sitterpayment = sitterpayment_filter.qs
+    return render(request,'baby_payments/sitterpaymentlist.html',{'sitterpayment':sitterpayment,'sitterpayment_filter':sitterpayment_filter})
 
 
 #baby paymentlist views here
 @login_required
 def babypaymentlist(request):
-    babypayment=BabyPayment.objects.all()
-    return render(request,'baby_payments/babypaymentlist.html',{'babypayment':babypayment})
+    payment=BabyPayment.objects.all().order_by('id')
+    payment_filter=payment_Filter(request.GET,queryset=payment)
+    payment = payment_filter.qs
+    return render(request,'baby_payments/babypaymentlist.html',{'babypayment':payment,'payment_filter':payment_filter})
 
 
 #baby payment views here

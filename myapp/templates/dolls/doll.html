@@ -5,17 +5,23 @@
 <div>
     <a href="{% url 'receipt' %}" class="hover_button"><input type="submit" value="Receipts" class="btn btn-success" style="border: none;" placeholder="Receipts"/></a>
     <a href="{% url 'all_sales' %}"  class="hover-button"><input type= "submit" value="All_sales" class="btn btn-success"  style="border: none;"type="button"/></a>
-</div>
+</div><br><br>
 
-<div class="table-container">
-    <div class="card-header" style="width:30%; margin: 0 auto; background-color:white;">
+<form method="GET" style="margin-left: 10px;">
+    {{ doll_filter.form }}
+    <input type="submit" value = "search by name" class="btn btn-primary bg bg-success" style="border: none;">
+    </form><br><br>
+
+
+<div class="table-container" style=" background-color: rgba(153, 198, 165, 0.55);">
+    
+
+<table class="table table-bordered">
+    <div>
+        <a href="{% url 'doll' %}"> <i class="fa-solid fa-arrow-left" style="color: black; margin-left: 30px; margin-top: 10px;" ></i></a>
+       </div>
         <h3 class="text-center" style="color: rgb(5, 10, 11); padding-top: 20px; font-family: Georgia, 'Times New Roman', Times, serif;">DOLLS IN STOCKS</h3><hr>
 
-    </div>
-    
-</div>
-<table class="table table-bordered" style=" background-color: rgba(153, 198, 165, 0.55);">
-    
     <thead class="thead-dark table-bordered">
         <tr>
             <th scope="col" class="project-h1">Category</th>

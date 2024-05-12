@@ -9,7 +9,7 @@ from django.contrib import messages
 from . models import *
 from django.template import loader
 from django.db.models import Sum
-
+from .filters import *
 
 #views here
 
@@ -104,14 +104,6 @@ def babiesdeparture(request):
     return render(request,'babies/signedout.html',{'babiesdeparture':babiesdeparture})
 
 
-#search babies view here
-@login_required
-def search_babies(request):
-    query = request.GET.get('search_query')
-    baby_list = RegisterBaby.objects.filter(name__icontains=query)
-    return render(request,'babies/all_babies.html',{'baby_list':baby_list,'search_query':query})
-
-
 #view for edit baby here
 @login_required
 def baby_edit(request, id):  
@@ -170,15 +162,19 @@ def sittersattendance(request):
 #registered sitters view here
 @login_required
 def sitters(request):
-    sitters = BabySitter.objects.all()
-    return render(request,'sitters/all_sitters.html',{'sitters':sitters})
+    sitters = BabySitter.objects.all().order_by('id')
+    sitter_filter=SitterFilter(request.GET,queryset = sitters)
+    sitters = sitter_filter.qs
+    return render(request,'sitters/all_sitters.html',{'sitters':sitters,'sitter_filter':sitter_filter})
 
 
 #onduty sitters view here
 @login_required
 def onduty(request):
-    sitters = BabySitterattendance.objects.all()
-    return render(request,'sitters/onduty.html',{'sitters':sitters})
+    sitters = BabySitterattendance.objects.all().order_by('id')
+    sitterarrival=Sitter_arrivalFilter(request.GET,queryset=sitters)
+    sitters = sitterarrival.qs
+    return render(request,'sitters/onduty.html',{'sitters':sitters,'sitterarrival':sitterarrival})
 
 
 #inventory views

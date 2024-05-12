@@ -25,12 +25,19 @@
   </style>
   
 
-<button class="p-2 bg-teal-500 rounded-lg shadow-lg"
-style="margin-left: 80px;background-color: green; border-radius: 5px; border: #B4BDFF; width: 20%; height: 5%;"><a
-    href="/babyreg"></a> Add sitter on duty</a></button>
+<button class="p-2 bg-teal-500 rounded-lg shadow-lg bg bg-success"
+style="margin-left: 80px; border-radius: 5px; border: #B4BDFF; width: 20%; height: 5%; color: white;"><a
+    href="/onduty"></a> Add sitter on duty</a></button><br><br>
 
+    <form method="GET" style="margin-left: 80px;">
+      {{ sitterarrival.form }}
+      <input type="submit" value = "search by name" class="btn btn-primary bg bg-success" style="border: none;">
+      </form>
 
 <div class="container">
+  <div>
+    <a href="{% url 'onduty' %}"> <i class="fa-solid fa-arrow-left" style="color: black;"></i></a>
+   </div>
   <h2>LIST OF ONDUTY SITTERS</h2><hr>
 <table class="table table-striped" style="width: 90%; margin-left: 20px;" >
     <thead>
@@ -43,10 +50,10 @@ style="margin-left: 80px;background-color: green; border-radius: 5px; border: #B
       </tr>
     </thead>
     <tbody>
-        {% for each in sittersstatus %}
+        {% for each in sitters %}
       <tr>
-        <th scope="row">{{ each.Sitter_id }}</th>
-        <th>{{ each.Sitter_Number }}</th>
+        <th scope="row">{{ each.id }}</th>
+        <th>{{ each.sitter_Number }}</th>
         <td>{{ each.name }}</td>
         <td>{{ each.date }}</td>
         <td>{{ each.attendance_status }}</td>

@@ -25,12 +25,20 @@
   </style>
   
 
-<button class="p-2 bg-teal-500 rounded-lg shadow-lg"
-    style="margin-left: 10px;background-color: green; border-radius: 5px; border: #B4BDFF; width: 20%; height: 5%;"><a
-        href="/babyreg"></a> Signout new baby</a></button>
+<button class="p-2 bg-teal-500 rounded-lg shadow-lg bg bg-success"
+    style="margin-left: 100px;border-radius: 5px; border: #B4BDFF; width: 20%; height: 5%;"><a
+        href="/babyreg"></a> Signout new baby</a></button><br><br>
+
+        <form method="GET" style="margin-left: 100px;">
+          {{ baby_filter.form }}
+          <input type="submit" value = "search by name" class="btn btn-primary bg bg-success" style="border: none;">
+          </form>
 
 
 <div class="container">
+  <div>
+    <a href="{% url 'babiesdeparture' %}"> <i class="fa-solid fa-arrow-left" style="color: black;"></i></a>
+   </div>
   <h2>LIST OF CHECKEDOUT BABIES</h2><hr>
 
 <table class="table table-striped" style="width: 90%; margin-left: 20px;" >

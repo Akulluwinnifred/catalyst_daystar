@@ -8,7 +8,7 @@
     .container {
         padding-top: 20px;
         margin-top: 30px;
-        margin-bottom: 30px;
+        margin-bottom: 60px;
         max-width: 900px;
 
         background-color: rgba(153, 198, 165, 0.55);
@@ -22,25 +22,20 @@
 </style>
 
 <button class="p-2 bg-teal-500 rounded-lg shadow-lg bg bg-success"
-    style="margin-left: 30px; border-radius: 5px; border: #B4BDFF; width: 20%; height: 5%;"><a
+    style="margin-left: 20px; border-radius: 5px; border: #B4BDFF; width: 20%; height: 5%;"><a
         style="color: white; text-decoration: none;" href="/babyreg">Add new baby</a></button>
 <br><br><br>
-<form method="GET" action="{% url 'search_babies' %}" class="mb-3">
-    <div class="input-group" style="margin-left: 30px; width: 80%; margin-bottom: 10px; border: 20px; border-color: #337357;">
-    <input type="text" class="form-control" placeholder="Search" name="search_query">
-    <button class="btn btn-outline-secondary" type="submit"> search</button>
-    </div> 
 
-</form>
-
-{% if search_query %}
-<p>Search results for: '{{ search_query }}'</p>
-
-{% endif %}
-
+<form method="GET" style="margin-left: 20px;">
+    {{ baby_filter.form }}
+    <input type="submit" value = "search by name" class="btn btn-primary bg bg-success" style="border: none;">
+    </form>
 
 
 <div class="container">
+    <div>
+        <a href="{% url 'all_babies' %}"> <i class="fa-solid fa-arrow-left" style="color: black;"></i></a>
+       </div>
     <h4 class="text-center" style="font-family: Georgia, 'Times New Roman', Times, serif;">LIST OF REGISTERED BABIES</h4><hr>
 
     <table class="table table-striped" style="width: 90%; margin-left: 20px;">

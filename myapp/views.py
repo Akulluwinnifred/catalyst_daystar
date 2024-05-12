@@ -56,8 +56,10 @@ def base(request):
 #all babies view here
 @login_required
 def all_babies(request):
-   babies =RegisterBaby.objects.all()
-   return render(request,'babies/all_babies.html',{'babies':babies})
+   babies =RegisterBaby.objects.all().order_by('id')
+   baby_filter=Baby_Filter(request.GET,queryset = babies)
+   babies = baby_filter.qs
+   return render(request,'babies/all_babies.html',{'babies':babies,'baby_filter':baby_filter})
 
 
 #baby registration view here
@@ -100,8 +102,10 @@ def read(request,id):
 #baby departure view here
 @login_required
 def babiesdeparture(request):
-    babiesdeparture = Departure.objects.all()
-    return render(request,'babies/signedout.html',{'babiesdeparture':babiesdeparture})
+    babiesdeparture = Departure.objects.all().order_by('id')
+    baby_filter=Departure_Filter(request.GET,queryset = babiesdeparture)
+    babiesdeparture = baby_filter.qs
+    return render(request,'babies/signedout.html',{'babiesdeparture':babiesdeparture,'baby_filter':baby_filter})
 
 
 #view for edit baby here

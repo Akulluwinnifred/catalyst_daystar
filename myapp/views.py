@@ -98,6 +98,12 @@ def read(request,id):
     babies_informations =RegisterBaby.objects.get(id=id)
     return render(request,'babies/read.html',{'babies_informations':babies_informations})
 
+#read sitter view here
+@login_required
+def readsitter(request,id):
+    sitters =BabySitter.objects.get(id=id)
+    return render(request,'sitters/readsitter.html',{'sitters':sitters})
+
 
 #baby departure view here
 @login_required

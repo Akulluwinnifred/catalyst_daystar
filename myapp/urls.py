@@ -32,6 +32,7 @@ urlpatterns = [
     path("sitters/",views.sitters,name="sitters"),
     path("tracking/",views.sittersattendance,name="sittersattendance"),
     path("onduty/",views.onduty,name="onduty"),
+    path('readsitter/<int:id>/',views.readsitter,name='readsitter'),
 
 
     #dollscorner urls

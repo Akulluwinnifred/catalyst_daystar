@@ -52,6 +52,32 @@
         color: black;
         filter: blur(0.5px);
   }
+
+  @media (max-width: 768px){/* Add or override styles for sitterreg.html */
+.container {
+  padding-top: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  max-width: 500px;
+  background: linear-gradient(to right, #93c29f, #438659);
+  padding: 20px;
+  /* Adjust margin-left for smaller screens */
+  margin-left: 10px;
+}
+
+/* Adjust layout for smaller screens */
+.sitterreg-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Adjust button styles for responsiveness */
+.sitterreg-form button {
+  align-self: center;
+  width: 100%;
+}}
+
     
 </style>
 
@@ -67,6 +93,7 @@
 
 
 <div class="container">
+    
     <h3 class="text-center" style="font-family: Georgia, 'Times New Roman', Times, serif;">SITTER REGISTRATION FORM</h3><hr>
     <form method="POST" class="sitterreg-form">
         {% csrf_token %}

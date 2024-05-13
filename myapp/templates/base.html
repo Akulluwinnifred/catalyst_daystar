@@ -3,408 +3,296 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daystar Daycare</title>
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
-    <link rel="stylesheet" href="../static/styles/bootstrap/css/bootstrap.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        .sidebar {
-            width: 290px;
-            padding: 20px;
-            background: linear-gradient(to right, #21442e, #438659);
-            color: white;
-            float: left; 
-            height: 100vh;
-            position: fixed;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daystar Daycare</title>
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
+  <link rel="stylesheet" href="../static/styles/bootstrap/css/bootstrap.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    .sidebar {
+      width: 290px;
+      padding: 20px;
+      background: linear-gradient(to right, #21442e, #438659);
+      color: white;
+      float: left;
+      height: 100vh;
+      position: fixed;
+    }
 
-        .content {
-            margin-left: 290px;
-            padding: 20px;
-        }
+    .content {
+      margin-left: 290px;
+      padding: 20px;
+    }
 
-       
 
-        .profile-picture {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
 
-        .profile-container h3 {
-            margin: 0;
-            font-size: 24px;
-        }
+    .profile-picture {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
 
-        .search-container {
-            margin-bottom: 20px;
-        }
+    .profile-container h3 {
+      margin: 0;
+      font-size: 24px;
+    }
 
-        .sidebar ul {
-            list-style-type: none;
-            padding: 0;
-        }
+    .search-container {
+      margin-bottom: 20px;
+    }
 
-        .sidebar a {
-            color: white;
-            text-decoration: none;
-        }
+    .sidebar ul {
+      list-style-type: none;
+      padding: 0;
+    }
 
-        .sidebar a:hover {
-            color: #fff;
-            background-color: #438659;
-        }
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+    }
 
-        .sidebar-footer {
-            margin-top: auto;
-        }
+    .sidebar a:hover {
+      color: #fff;
+      background-color: #438659;
+    }
 
-        .sidebar-footer a {
-            color: white;
-            text-decoration: none;
-        }
+    .sidebar-footer {
+      margin-top: auto;
+    }
 
-        .footer{
-          /* background-color: #1c3828; */
-          /* background-color: #21442e; */
-          background: linear-gradient(to right, #21442e, #438659);
-          color: white;
-        }
+    .sidebar-footer a {
+      color: white;
+      text-decoration: none;
+    }
 
-     
-    </style>
-    {% load bootstrap5 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
+    .footer {
+      background: linear-gradient(to right, #21442e, #438659);
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 100%;
+        left: 0;
+        display: none;
+      }
+
+      .content {
+        margin-left: 0;
+      }
+
+      .open-btn {
+        display: block;
+        margin: 10px;
+      }
+    }
+  </style>
+  {% load bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
 </head>
 
 <body>
-    <div class="sidebar">
-        
-        <div class="container-fluid">
-            <div class="row">
-              <div class="search-container">
-                <input type="text" id="sidebarSearchInput" placeholder="Search...">
-            </div>
-                <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 "
-                    style="width: 250px">
-                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
-                        id="sidebarList">
-                        <li class="nav-item">
-                            <a href="{% url 'home' %}" class="nav-link align-middle px-0">
-                                <span class="ms-1 d-none d-sm-inline" style="color: white !important"><i
-                                        class="fa-solid fa-chart-simple" style="margin-right: 10px"></i>Statistics</span>
-                            </a>
-                        </li>
-                    
-                        <li>
-                          <a
-                            href="#submenu1"
-                            data-bs-toggle="collapse"
-                            class="nav-link px-0 align-middle"
-                          >
-                            <i class="fs-4 bi-speedometer2"></i>
-                            <span
-                              class="ms-1 d-none d-sm-inline"
-                              style="color: white !important"
-                              ><i
-                                class="fa-solid fa-users"
-                                style="margin-right: 10px"
-                              ></i>
-                              Sitters Management</span
-                            >
-                          </a>
-                          <ul
-                            class="collapse nav flex-column ms-1"
-                            id="submenu1"
-                            data-bs-parent="#menu"
-                          >
-                            <li class="w-100">
-                              <a href="{% url 'sitterreg' %}" class="nav-link px-0">
-                                <span
-                                  class="d-none d-sm-inline"
-                                  style="color: white !important"
-                                  >Sitters Registration</span
-                                >
-                              </a>
-                            </li>
-                            <li>
-                              <a href="{% url 'sittersattendance' %}" class="nav-link px-0">
-                                <span
-                                  class="d-none d-sm-inline"
-                                  style="color: white !important"
-                                  >Sitters Attendance</span
-                                >
-                              </a>
-                            </li>
-                            <li>
-                              <a href="{% url 'sitters' %}" class="nav-link px-0">
-                                <span
-                                  class="d-none d-sm-inline"
-                                  style="color: white !important"
-                                  >Registered sitters</span
-                                >
-                              </a>
-                            </li>
-                            <li>
-                              <a href="{% url 'onduty' %}" class="nav-link px-0">
-                                <span
-                                  class="d-none d-sm-inline"
-                                  style="color: white !important"
-                                  >Onduty sitters</span
-                                >
-                              </a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li>
-                            <a
-                              href="#submenu2"
-                              data-bs-toggle="collapse"
-                              class="nav-link px-0 align-middle"
-                            >
-                              <i class="fs-4 bi-speedometer2"></i>
-                              <span
-                                class="ms-1 d-none d-sm-inline"
-                                style="color: white !important"
-                                ><i
-                                class="fa-solid fa-users"
-                                style="margin-right: 10px"
-                              ></i>Babies Management</span
-                              >
-                            </a>
-                            <ul
-                              class="collapse nav flex-column ms-1"
-                              id="submenu2"
-                              data-bs-parent="#menu"
-                            >
-                              <li class="w-100">
-                                <a href="{% url 'babyreg' %}" class="nav-link px-0">
-                                  <span
-                                    class="d-none d-sm-inline"
-                                    style="color: white !important"
-                                    >Baby Registration</span
-                                  >
-                                </a>
-                              </li>
-                            
-                              <li>
-                                <a href="{% url 'departure' %}" class="nav-link px-0">
-                                  <span
-                                    class="d-none d-sm-inline"
-                                    style="color: white !important"
-                                    >Baby departure</span
-                                  >
-                                </a>
-                              </li>
-                              <li>
-                                <a href="{% url 'all_babies' %}" class="nav-link px-0">
-                                  <span
-                                    class="d-none d-sm-inline"
-                                    style="color: white !important"
-                                    >Enrolled babies</span
-                                  >
-                                </a>
-                              </li>
-                            
-                              <li>
-                                <a href="{% url 'babiesdeparture' %}" class="nav-link px-0">
-                                  <span
-                                    class="d-none d-sm-inline"
-                                    style="color: white !important"
-                                    >Checked out babies</span
-                                  >
-                                </a>
-                              </li>
-                              
-                            </ul>
-                          </li>
-                        <li>
-                          <a
-                            href="#submenu3"
-                            data-bs-toggle="collapse"
-                            class="nav-link px-0 align-middle"
-                          >
-                            <i class="fs-4 bi-speedometer2"></i>
-                            <span
-                              class="ms-1 d-none d-sm-inline"
-                              style="color: white !important"
-                              ><i
-                                class="fa-solid fa-file-invoice-dollar"
-                                style="margin-right: 10px"
-                              ></i
-                              >Payment</span
-                            >
-                          </a>
-                          <ul
-                            class="collapse nav flex-column ms-1"
-                            id="submenu3"
-                            data-bs-parent="#menu"
-                          >
-                            <li class="w-100">
-                              <a href="{% url 'babypaymentlist' %}" class="nav-link px-0">
-                                <span
-                                  class="d-none d-sm-inline"
-                                  style="color: white !important"
-                                  >Baby payments</span
-                                >
-                              </a>
-                            </li>
-                            <li class="w-100">
-                              <a href="{% url 'payment' %}" class="nav-link px-0">
-                                <span
-                                  class="d-none d-sm-inline"
-                                  style="color: white !important"
-                                  >Record Payments</span
-                                >
-                              </a>
-                            </li>
-                            <li class="w-100">
-                              <a href="{% url 'sitterpayment' %}" class="nav-link px-0">
-                                <span
-                                  class="d-none d-sm-inline"
-                                  style="color: white !important"
-                                  >Record sitter Payments</span
-                                >
-                              </a>
-                            </li>
-                            <li>
-                              <a href="{% url 'sitterpaymentlist' %}" class="nav-link px-0">
-                                <span
-                                  class="d-none d-sm-inline"
-                                  style="color: white !important"
-                                  >View sitter Payments</span
-                                >
-                              </a>
-                            </li>
-                            
-                          </ul>
-                        </li>
-                    
-                        <li>
-                          <a
-                            href="#submenu5"
-                            data-bs-toggle="collapse"
-                            class="nav-link px-0 align-middle"
-                          >
-                            <i class="fs-4 bi-speedometer2"></i>
-                            <span
-                              class="ms-1 d-none d-sm-inline"
-                              style="color: white !important"
-                              ><i
-                                class="fa-solid fa-warehouse"
-                                style="margin-right: 10px"
-                              ></i
-                              >Procurement</span
-                            >
-                          </a>
-                          <ul
-                            class="collapse nav flex-column ms-1"
-                            id="submenu5"
-                            data-bs-parent="#menu"
-                          >
-                            <li class="w-100">
-                              <a href="{% url 'allstock' %}" class="nav-link px-0">
-                                <span
-                                  class="d-none d-sm-inline"
-                                  style="color: white !important"
-                                  >Inventory</span
-                                >
-                              </a>
-                            </li>
-                            <li>
-                              <a href="{% url 'doll' %}" class="nav-link px-0">
-                                <span
-                                  class="d-none d-sm-inline"
-                                  style="color: white !important"
-                                  >Manage doll inventory</span
-                                >
-                              </a>
-                            </li>
-          
-                            <li>
-                              <a href="#" class="nav-link px-0">
-                                <span
-                                  class="d-none d-sm-inline"
-                                  style="color: white !important"
-                                  >View History</span
-                                >
-                              </a>
-                            </li>
-                          </ul>
-                        </li>
-          
-                        <li>
-                      
-                            <li>
-                              <a href="{% url 'change-password' %}" class="nav-link px-0">
-                                <span
-                                  class="d-none d-sm-inline"
-                                  style="color: white !important"
-                                  ><i class="fa fa-key" aria-hidden="true"
-                                  style="margin-right: 10px"></i>Change password</i></span
-                                >
-                              </a>
-                            </li>
-                            <li>
-                              <a href="{% url 'logout' %}" class="nav-link px-0">
-                                <span
-                                  class="d-none d-sm-inline"
-                                  style="color: white !important"
-                                  ><i class="fa-solid fa-right-from-bracket"
-                                  style="margin-right: 10px"></i>Log out</i></span
-                                >
-                              </a>
-                            </li>
-                          </ul>
-                        </li>
-                         <!-- Sidebar Footer -->
-            
-            </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          
-                    </ul>
-                    
-                </div>
-            </div>
-        </div>
+  <div class="sidebar">
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-3 col-lg-2 d-md-block bg-dark sidebar">
+
+          <div class="search-container">
+            <input type="text" id="sidebarSearchInput" placeholder="Search...">
+          </div>
+          <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 " style="width: 250px">
+            <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
+              id="sidebarList">
+              <li class="nav-item">
+                <a href="{% url 'home' %}" class="nav-link align-middle px-0">
+                  <span class="ms-1 d-none d-sm-inline" style="color: white !important"><i
+                      class="fa-solid fa-chart-simple" style="margin-right: 10px"></i>Statistics</span>
+                </a>
+              </li>
+
+              <li>
+                <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                  <i class="fs-4 bi-speedometer2"></i>
+                  <span class="ms-1 d-none d-sm-inline" style="color: white !important"><i class="fa-solid fa-users"
+                      style="margin-right: 10px"></i>
+                    Sitters Management</span>
+                </a>
+                <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                  <li class="w-100">
+                    <a href="{% url 'sitterreg' %}" class="nav-link px-0">
+                      <span class="d-none d-sm-inline" style="color: white !important">Sitters Registration</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{% url 'sittersattendance' %}" class="nav-link px-0">
+                      <span class="d-none d-sm-inline" style="color: white !important">Sitters Attendance</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{% url 'sitters' %}" class="nav-link px-0">
+                      <span class="d-none d-sm-inline" style="color: white !important">Registered sitters</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{% url 'onduty' %}" class="nav-link px-0">
+                      <span class="d-none d-sm-inline" style="color: white !important">Onduty sitters</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                  <i class="fs-4 bi-speedometer2"></i>
+                  <span class="ms-1 d-none d-sm-inline" style="color: white !important"><i class="fa-solid fa-users"
+                      style="margin-right: 10px"></i>Babies Management</span>
+                </a>
+                <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+                  <li class="w-100">
+                    <a href="{% url 'babyreg' %}" class="nav-link px-0">
+                      <span class="d-none d-sm-inline" style="color: white !important">Baby Registration</span>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="{% url 'departure' %}" class="nav-link px-0">
+                      <span class="d-none d-sm-inline" style="color: white !important">Baby departure</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{% url 'all_babies' %}" class="nav-link px-0">
+                      <span class="d-none d-sm-inline" style="color: white !important">Enrolled babies</span>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="{% url 'babiesdeparture' %}" class="nav-link px-0">
+                      <span class="d-none d-sm-inline" style="color: white !important">Checked out babies</span>
+                    </a>
+                  </li>
+
+                </ul>
+              </li>
+              <li>
+                <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                  <i class="fs-4 bi-speedometer2"></i>
+                  <span class="ms-1 d-none d-sm-inline" style="color: white !important"><i
+                      class="fa-solid fa-file-invoice-dollar" style="margin-right: 10px"></i>Payment</span>
+                </a>
+                <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
+                  <li class="w-100">
+                    <a href="{% url 'babypaymentlist' %}" class="nav-link px-0">
+                      <span class="d-none d-sm-inline" style="color: white !important">Baby payments</span>
+                    </a>
+                  </li>
+                  <li class="w-100">
+                    <a href="{% url 'payment' %}" class="nav-link px-0">
+                      <span class="d-none d-sm-inline" style="color: white !important">Record Payments</span>
+                    </a>
+                  </li>
+                  <li class="w-100">
+                    <a href="{% url 'sitterpayment' %}" class="nav-link px-0">
+                      <span class="d-none d-sm-inline" style="color: white !important">Record sitter Payments</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{% url 'sitterpaymentlist' %}" class="nav-link px-0">
+                      <span class="d-none d-sm-inline" style="color: white !important">View sitter Payments</span>
+                    </a>
+                  </li>
+
+                </ul>
+              </li>
+
+              <li>
+                <a href="#submenu5" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                  <i class="fs-4 bi-speedometer2"></i>
+                  <span class="ms-1 d-none d-sm-inline" style="color: white !important"><i class="fa-solid fa-warehouse"
+                      style="margin-right: 10px"></i>Procurement</span>
+                </a>
+                <ul class="collapse nav flex-column ms-1" id="submenu5" data-bs-parent="#menu">
+                  <li class="w-100">
+                    <a href="{% url 'allstock' %}" class="nav-link px-0">
+                      <span class="d-none d-sm-inline" style="color: white !important">Inventory</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{% url 'doll' %}" class="nav-link px-0">
+                      <span class="d-none d-sm-inline" style="color: white !important">Manage doll inventory</span>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#" class="nav-link px-0">
+                      <span class="d-none d-sm-inline" style="color: white !important">View History</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+              <li>
+
+              <li>
+                <a href="{% url 'change-password' %}" class="nav-link px-0">
+                  <span class="d-none d-sm-inline" style="color: white !important"><i class="fa fa-key"
+                      aria-hidden="true" style="margin-right: 10px"></i>Change password</i></span>
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'logout' %}" class="nav-link px-0">
+                  <span class="d-none d-sm-inline" style="color: white !important"><i
+                      class="fa-solid fa-right-from-bracket" style="margin-right: 10px"></i>Log out</i></span>
+                </a>
+              </li>
+            </ul>
+            </li>
+            <!-- Sidebar Footer -->
+
+          </div>
+      </div>
     </div>
-    <div class="content">
-        {% block content %}
-        {% endblock %}
-    </div>
-    <footer class="footer">
-      © 2024 Daystar Daycare. All rights reserved. Designed with ♥ by Akullu Winnifred.
+  </div>
+  </div>
+  </div>
+
+  </ul>
+
+  </div>
+  </div>
+  </div>
+  </div>
+  <div class="content">
+    {% block content %}
+    {% endblock %}
+  </div>
+  <footer class="footer">
+    © 2024 Daystar Daycare. All rights reserved. Designed with ♥ by Akullu Winnifred.
   </footer>
 
-    <script>
-        const searchInput = document.getElementById('sidebarSearchInput');
-        const sidebarList = document.getElementById('sidebarList').getElementsByTagName('li');
+  <script>
+    const searchInput = document.getElementById('sidebarSearchInput');
+    const sidebarList = document.getElementById('sidebarList').getElementsByTagName('li');
 
-        searchInput.addEventListener('input', function () {
-            const searchTerm = searchInput.value.toLowerCase();
-            for (const item of sidebarList) {
-                const text = item.textContent.toLowerCase();
-                if (text.includes(searchTerm)) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-            }
-        });
-    </script>
+    searchInput.addEventListener('input', function () {
+      const searchTerm = searchInput.value.toLowerCase();
+      for (const item of sidebarList) {
+        const text = item.textContent.toLowerCase();
+        if (text.includes(searchTerm)) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      }
+    });
+  </script>
 </body>
 
 </html>

@@ -5,30 +5,13 @@
 
 {% block content %}
 
-
-
-<div class="container_form">
-    <h3 class="text-center" style="font-family: Georgia, 'Times New Roman', Times, serif;">BABY REGISTRATION FORM</h3><hr>
-    <form method="POST" class="babereg-form">
-        
-        {% csrf_token %}
-        {{ form|crispy }}
-        <br>
-        <button type="submit" class="btn btn-primary bg bg-success">Update</button>
-        <button type="submit" class="btn btn-primary bg bg-success" href="{% url 'all_babies' %}">cancel</button>
-    </form>
-
-</div>
-
 <style>
     
-    .container_form {
+    .container{
         padding-top: 20px;
         margin-top: 60px;
         margin-bottom: 30px;
         max-width: 500px;
-
-        /* background-color: rgba(153, 198, 165, 0.55); */
         background: linear-gradient(to right, #93c29f, #438659);
         padding: 20px;
         margin-left: 250px;
@@ -66,6 +49,48 @@
         filter: blur(0.5px);
   }
 
+  @media (max-width: 768px){/* Add or override styles for sitterreg.html */
+.container {
+  padding-top: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  max-width: 500px;
+  background: linear-gradient(to right, #93c29f, #438659);
+  padding: 20px;
+  /* Adjust margin-left for smaller screens */
+  margin-left: 10px;
+}
+
+/* Adjust layout for smaller screens */
+.babereg-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Adjust button styles for responsiveness */
+.babereg-form button {
+  align-self: center;
+  width: 100%;
+}}
+
+
 </style>
+
+
+
+<div class="container">
+    <h3 class="text-center" style="font-family: Georgia, 'Times New Roman', Times, serif;">BABY REGISTRATION FORM</h3><hr>
+    <form method="POST" class="babereg-form">
+        
+        {% csrf_token %}
+        {{ form|crispy }}
+        <br>
+        <button type="submit" class="btn btn-primary bg bg-success">Update</button>
+        <button type="submit" class="btn btn-primary bg bg-success" href="{% url 'all_babies' %}">cancel</button>
+    </form>
+
+</div>
+
 
 {% endblock %}

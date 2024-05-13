@@ -4,42 +4,39 @@
 {% block content %}
 
 <style>
-
   .container {
-          padding-top: 20px;
-          margin-top: 60px;
-          margin-bottom: 30px;
-          max-width: 800px;
-  
-          background-color: rgba(153, 198, 165, 0.55);
-          padding: 20px;
-          /* margin-left: 100px; */
-  
-      }
-  
-   h2{
-  font-family: Georgia, 'Times New Roman', Times, serif;
-      text-align: center;
-   }
-  
-  </style>
-  
+    padding-top: 20px;
+    margin-top: 60px;
+    margin-bottom: 30px;
+    max-width: 800px;
+
+    background-color: rgba(153, 198, 165, 0.55);
+    padding: 20px;
+  }
+
+  h2 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+  }
+</style>
+
 
 <button class="p-2 bg-teal-500 rounded-lg shadow-lg bg bg-success"
-style="margin-left: 80px; border-radius: 5px; border: #B4BDFF; width: 20%; height: 5%; color: white;"><a
+  style="margin-left: 80px; border-radius: 5px; border: #B4BDFF; width: 20%; height: 5%; color: white;"><a
     href="/onduty"></a> Add sitter on duty</a></button><br><br>
 
-    <form method="GET" style="margin-left: 80px;">
-      {{ sitterarrival.form }}
-      <input type="submit" value = "search by name" class="btn btn-primary bg bg-success" style="border: none;">
-      </form>
+<form method="GET" style="margin-left: 80px;">
+  {{ sitterarrival.form }}
+  <input type="submit" value="search by name" class="btn btn-primary bg bg-success" style="border: none;">
+</form>
 
 <div class="container">
   <div>
     <a href="{% url 'onduty' %}"> <i class="fa-solid fa-arrow-left" style="color: black;"></i></a>
-   </div>
-  <h2>LIST OF ONDUTY SITTERS</h2><hr>
-<table class="table table-striped" style="width: 90%; margin-left: 20px;" >
+  </div>
+  <h2>LIST OF ONDUTY SITTERS</h2>
+  <hr>
+  <table class="table table-striped" style="width: 90%; margin-left: 20px;">
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -50,7 +47,7 @@ style="margin-left: 80px; border-radius: 5px; border: #B4BDFF; width: 20%; heigh
       </tr>
     </thead>
     <tbody>
-        {% for each in sitters %}
+      {% for each in sitters %}
       <tr>
         <th scope="row">{{ each.id }}</th>
         <th>{{ each.sitter_Number }}</th>

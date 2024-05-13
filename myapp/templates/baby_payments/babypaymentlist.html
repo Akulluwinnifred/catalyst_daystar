@@ -12,16 +12,14 @@
 
         background-color: rgba(153, 198, 165, 0.55);
         padding: 20px;
-    
+
 
     }
 
     h2 {
-     font-family: Georgia, 'Times New Roman', Times, serif;
+        font-family: Georgia, 'Times New Roman', Times, serif;
         text-align: center;
     }
-
-    
 </style>
 
 
@@ -32,15 +30,16 @@
 
 <form method="GET" style="margin-left: 60px;">
     {{ payment_filter.form }}
-    <input type="submit" value = "search by name" class="btn btn-primary bg bg-success" style="border: none;">
-    </form>
+    <input type="submit" value="search by name" class="btn btn-primary bg bg-success" style="border: none;">
+</form>
 
 
 <div class="container">
     <div>
         <a href="{% url 'babypaymentlist' %}"> <i class="fa-solid fa-arrow-left" style="color: black;"></i></a>
-       </div>
-    <h2 class="text-center">BABY PAYMENT LIST</h2><hr>
+    </div>
+    <h2 class="text-center">BABY PAYMENT LIST</h2>
+    <hr>
 
     <table class="table table-striped" style="width: 90%; margin-left: 20px;">
         <thead>
@@ -63,14 +62,13 @@
                 <td>{{each.total_amount_due}}</td>
                 <td>{{each.amount_paid}}</td>
                 <td>{{each.remaining_balance}}</td>
-    
-</div>
 
-</tr>
-{% endfor %}
-</tbody>
 
-</table>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
 
 </div>
 

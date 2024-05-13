@@ -5,7 +5,7 @@
 
 
 <script>
-    window.onload = function() {
+    window.onload = function () {
         document.getElementById("form").value = 0
         document.getElementById("exampleCheck1").addEventListener("change", calculateamountdue)
         document.getElementById("exampleCheck2").addEventListener("change", calculateamountdue)
@@ -47,14 +47,14 @@
 
         padding: 20px;
         margin-left: 200px;
-       
+
 
     }
 
-    
-  label {
-    font-weight: bold;
-  }
+
+    label {
+        font-weight: bold;
+    }
 
     .babereg-form {
         display: grid;
@@ -73,13 +73,36 @@
         color: #fff;
         font-size: 16px;
         cursor: pointer;
-        
+
     }
-    h2{
+
+    h2 {
         text-align: center;
         font-family: Georgia, 'Times New Roman', Times, serif;
     }
 
+    @media (max-width: 768px) {
+        .container {
+            padding-top: 20px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            max-width: 500px;
+            background: linear-gradient(to right, #93c29f, #438659);
+            padding: 20px;
+            margin-left: 10px;
+        }
+
+        .babereg-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .babereg-form button {
+            align-self: center;
+            width: 100%;
+        }
+    }
 </style>
 
 
@@ -92,67 +115,68 @@
 {% endfor %}
 
 <div class="babe-form">
-    <div class="form-container">
-
-        <div class="container">
-            <h2 >BABY PAYMENT</h2><hr>
-            <form method="POST" action="/payment/" enctype="multipart/form-data">
-                  {% csrf_token %}
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Name</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        placeholder="Name" name="name">
-
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Payment Date</label>
-                    <input type="date" name="date" class="form-control" id="exampleInputPassword1" placeholder="Date">
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1" name="full_day">Full day</label>
 
 
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck2">
-                    <label class="form-check-label" for="exampleCheck2"name="half_day">Half day</label>
+    <div class="container">
+        <h2>BABY PAYMENT</h2>
+        <hr>
+        <form method="POST" action="/payment/" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="exampleInputEmail1">Name</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    placeholder="Name" name="name">
 
-                </div>
-
-                <div class="form-check">
-
-                    <input type="checkbox" class="form-check-input" id="exampleCheck3">
-                    <label class="form-check-label" for="exampleCheck3" name="monthly">Monthly</label>
-
-                </div>
-
-
-                <div class="form-group">
-                    <label for="form">Total Amount Due</label>
-                    <input type="textfield"  name="total_amount" class="form-control" id="form">
-
-                
-                </div>
-
-                <div class="form-group">
-                    <label for="form1">Amount Paid</label>
-                    <input type="textfield" name="amount_paid"class="form-control" id="form1">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Payment Date</label>
+                <input type="date" name="date" class="form-control" id="exampleInputPassword1" placeholder="Date">
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1" name="full_day">Full day</label>
 
 
-                </div>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck2">
+                <label class="form-check-label" for="exampleCheck2" name="half_day">Half day</label>
+
+            </div>
+
+            <div class="form-check">
+
+                <input type="checkbox" class="form-check-input" id="exampleCheck3">
+                <label class="form-check-label" for="exampleCheck3" name="monthly">Monthly</label>
+
+            </div>
 
 
-                <div class="form-group">
-                    <label for="form2">Remaining Balance</label>
-                    <input type="textfield" name="remaining_balance" class="form-control" id="form2">
-                </div>
-                <br>
-                <button type="submit" class="btn btn-primary bg bg-success" style="border: none;">Submit</button>
-            </form>
-        </div>
+            <div class="form-group">
+                <label for="form">Total Amount Due</label>
+                <input type="textfield" name="total_amount" class="form-control" id="form">
+
+
+            </div>
+
+            <div class="form-group">
+                <label for="form1">Amount Paid</label>
+                <input type="textfield" name="amount_paid" class="form-control" id="form1">
+
+
+            </div>
+
+
+            <div class="form-group">
+                <label for="form2">Remaining Balance</label>
+                <input type="textfield" name="remaining_balance" class="form-control" id="form2">
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary bg bg-success" style="border: none;">Submit</button>
+        </form>
     </div>
 </div>
+
 
 
 {% endblock %}

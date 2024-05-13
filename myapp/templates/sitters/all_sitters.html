@@ -4,43 +4,42 @@
 {% block content %}
 
 <style>
-
   .container {
-          padding-top: 20px;
-          margin-top: 60px;
-          margin-bottom: 60px;
-          max-width: 800px;
-  
-          background-color: rgba(153, 198, 165, 0.55);
-          padding: 20px;
-          margin-left: 100px;
-  
-      }
-  
-   h2{
+    padding-top: 20px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    max-width: 800px;
+
+    background-color: rgba(153, 198, 165, 0.55);
+    padding: 20px;
+    margin-left: 100px;
+
+  }
+
+  h2 {
     font-family: Georgia, 'Times New Roman', Times, serif;
-  
-      text-align: center;
-   }
-  
-  </style>
-  
+
+    text-align: center;
+  }
+</style>
+
 
 <button class="p-2 bg bg-success rounded-lg shadow-lg"
-style="margin-left: 100px;border-radius: 5px; border: #B4BDFF; width: 20%; height: 5%; color: white; text-decoration: none;"><a
+  style="margin-left: 100px;border-radius: 5px; border: #B4BDFF; width: 20%; height: 5%; color: white; text-decoration: none;"><a
     href="/sitterreg" style="color: white; text-decoration: none;">Add new sitter</a></button><br><br>
 
 <form method="GET" style="margin-left: 100px;">
-{{ sitter_filter.form }}
-<input type="submit" value = "search by name" class="btn btn-primary bg bg-success" style="border: none;">
+  {{ sitter_filter.form }}
+  <input type="submit" value="search by name" class="btn btn-primary bg bg-success" style="border: none;">
 </form>
 
 <div class="container">
   <div>
- <a href="{% url 'sitters' %}"> <i class="fa-solid fa-arrow-left" style="color: black;"></i></a>
-</div>
-  <h2>LIST OF REGISTERED SITTERS</h2><hr>
-<table class="table table-striped" style="width: 90%; margin-left: 20px;" >
+    <a href="{% url 'sitters' %}"> <i class="fa-solid fa-arrow-left" style="color: black;"></i></a>
+  </div>
+  <h2>LIST OF REGISTERED SITTERS</h2>
+  <hr>
+  <table class="table table-striped" style="width: 90%; margin-left: 20px;">
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -52,7 +51,7 @@ style="margin-left: 100px;border-radius: 5px; border: #B4BDFF; width: 20%; heigh
       </tr>
     </thead>
     <tbody>
-        {% for sitter in sitters %}
+      {% for sitter in sitters %}
       <tr>
         <th scope="row">{{ sitter.id }}</th>
         <th>S0{{ sitter.Sitter_Number }}</th>
@@ -60,7 +59,8 @@ style="margin-left: 100px;border-radius: 5px; border: #B4BDFF; width: 20%; heigh
         <td>{{ sitter.gender }}</td>
         <td>{{ sitter.Contact }}</td>
         <td>
-          <button type="button" class="btn btn-success mr-1"><a href="{% url 'readsitter' id=sitter.id %}" class="btn" style="color: white;"><i class="fa-brands fa-readme"></i>
+          <button type="button" class="btn btn-success mr-1"><a href="{% url 'readsitter' id=sitter.id %}" class="btn"
+              style="color: white;"><i class="fa-brands fa-readme"></i>
         </td>
       </tr>
       {% endfor %}

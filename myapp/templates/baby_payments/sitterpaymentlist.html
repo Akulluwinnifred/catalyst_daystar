@@ -16,11 +16,9 @@
     }
 
     h2 {
-font-family: Georgia, 'Times New Roman', Times, serif;
+        font-family: Georgia, 'Times New Roman', Times, serif;
         text-align: center;
     }
-
-    
 </style>
 
 
@@ -31,14 +29,14 @@ font-family: Georgia, 'Times New Roman', Times, serif;
 
 <form method="GET" style="margin-left: 70px;">
     {{ sitterpayment_filter.form }}
-    <input type="submit" value = "search by name" class="btn btn-primary bg bg-success" style="border: none;">
-    </form>
+    <input type="submit" value="search by name" class="btn btn-primary bg bg-success" style="border: none;">
+</form>
 
 
 <div class="container">
     <div>
         <a href="{% url 'sitterpaymentlist' %}"> <i class="fa-solid fa-arrow-left" style="color: black;"></i></a>
-       </div>
+    </div>
     <h2>SITTER PAYMENT LIST</h2>
 
     <table class="table table-striped" style="width: 90%; margin-left: 20px;">
@@ -60,14 +58,14 @@ font-family: Georgia, 'Times New Roman', Times, serif;
                 <td>{{each.date}}</td>
                 <td>{{each.baby_count}}</td>
                 <td>{{each.total_amount}}</td>
-    
-</div>
 
-</tr>
-{% endfor %}
-</tbody>
 
-</table>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
 
 </div>
 

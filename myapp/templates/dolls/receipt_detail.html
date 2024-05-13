@@ -2,7 +2,6 @@
 {% load static%}
 {% block content%}
 
-
 <div class="container" style="margin-bottom: 60px;">
     <div class="row">
         <div class="col-md-10" style="margin-left: 60px;">
@@ -13,8 +12,8 @@
                     <table style="width: 100%; border-collapse: collapse;">
                         <tr>
                             <td style="vertical-align: top;">
-    
-                        
+
+
                             </td>
                             <td style="text-align: right;">
 
@@ -29,21 +28,21 @@
                         </tr>
                         <tr>
                             <td colspan="2" style="text-align: left; padding-top: 30px; padding-left: 10px;">
-                                <h4 style="color: black;"><b>Paid for:</b>  {{receipt.baby_name | title}}</h4>
+                                <h4 style="color: black;"><b>Paid for:</b> {{receipt.baby_name | title}}</h4>
                                 <h4 style="color: black;"><b>Doll name: </b> {{receipt.doll| title}}</h4>
-                                <h4 style="color: black;"><b>Quantity:</b>  {{receipt.quantity_sold }}</h4>
+                                <h4 style="color: black;"><b>Quantity:</b> {{receipt.quantity_sold }}</h4>
                                 <h4 style="color: black;"><b>Amount: </b> {{receipt.get_total | title}}</h4>
-                                <h4 style="color: black;"><b>Amount paid:</b>  {{ receipt.amount_received }}</h4>
+                                <h4 style="color: black;"><b>Amount paid:</b> {{ receipt.amount_received }}</h4>
                                 <h4 style="color: black;"><b>Amount due: </b> {{ receipt.get_change }}</h4><br>
                                 <h5 class="text-center" id="A"><b>Come again! Daystar</b></h5>
-                            
+
                             </td>
                         </tr>
                     </table>
 
                 </div>
 
-                
+
             </div>
         </div>
     </div>

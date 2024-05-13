@@ -7,7 +7,6 @@
 {% block content %}
 
 <style>
-    
     .container {
         padding-top: 20px;
         margin-top: 30px;
@@ -16,42 +15,28 @@
         max-width: 500px;
         background: linear-gradient(to right, #93c29f, #438659);
         padding: 20px;
-        
-       
+
+
 
     }
 
-    
-  label {
-    font-weight: bold;
-  }
 
+    label {
+        font-weight: bold;
+    }
 
-    /* .babereg-form button {
-        grid-column: span 2;
-        align-items: center;
-        width: 100%;
-        padding: 10px;
-        border: none;
-        border-radius: 5px;
-        color: #fff;
-        font-size: 16px;
-        cursor: pointer;
-        
-    } */
-     .babereg-form button:hover {
+    .babereg-form button:hover {
         background-color: #deede0;
         color: black;
         filter: blur(0.5px);
     }
-
 </style>
 
 
 <div class="container">
     <h3 class="text-center" style="font-family: 'Times New Roman', Times, serif;">STOCK PURCHASE FORM</h3>
     <form method="POST" class="babereg-form">
-        
+
         {% csrf_token %}
         {{ form|crispy }}
         <br>

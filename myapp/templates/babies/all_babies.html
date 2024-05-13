@@ -28,22 +28,23 @@
 
 <form method="GET" style="margin-left: 20px;">
     {{ baby_filter.form }}
-    <input type="submit" value = "search by name" class="btn btn-primary bg bg-success" style="border: none;">
-    </form>
+    <input type="submit" value="search by name" class="btn btn-primary bg bg-success" style="border: none;">
+</form>
 
 
 <div class="container">
     <div>
         <a href="{% url 'all_babies' %}"> <i class="fa-solid fa-arrow-left" style="color: black;"></i></a>
-       </div>
-    <h4 class="text-center" style="font-family: Georgia, 'Times New Roman', Times, serif;">LIST OF REGISTERED BABIES</h4><hr>
+    </div>
+    <h4 class="text-center" style="font-family: Georgia, 'Times New Roman', Times, serif;">LIST OF REGISTERED BABIES
+    </h4>
+    <hr>
 
     <table class="table table-striped" style="width: 90%; margin-left: 20px;">
         <thead>
             <tr>
                 <th>#</th>
                 <th>Baby Number</th>
-                <!-- <th>Period of stay</th> -->
                 <th>Name</th>
                 <th>Gender</th>
                 <th>Age</th>
@@ -62,17 +63,20 @@
                 <td>{{each.age}}</td>
                 <td>{{ each.Parents_Name}}</td>
                 <td>
-<div>
-                <button type="button" class="btn btn-success mr-1"><a href="{% url 'read' id=each.id %}" class="btn" style="color: white;"><i class="fa-brands fa-readme"></i>
-                <a href="{% url 'baby_edit' id=each.id %}" class="btn" style="color: white;"><i class="fa-solid fa-pen"></i>
-               <a href="{% url 'delete_baby' baby_id=each.id %}" class="btn" style="color: white;"><i class="fa-solid fa-trash"></i></button>
-               </div>
-             </td>
+                    <div>
+                        <button type="button" class="btn btn-success mr-1"><a href="{% url 'read' id=each.id %}"
+                                class="btn" style="color: white;"><i class="fa-brands fa-readme"></i>
+                                <a href="{% url 'baby_edit' id=each.id %}" class="btn" style="color: white;"><i
+                                        class="fa-solid fa-pen"></i>
+                                    <a href="{% url 'delete_baby' baby_id=each.id %}" class="btn"
+                                        style="color: white;"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </td>
             </tr>
-{% endfor %}
-</tbody>
+            {% endfor %}
+        </tbody>
 
-</table>
+    </table>
 
 </div>
 

@@ -15,29 +15,24 @@
     }
 
     h2 {
-font-family: Georgia, 'Times New Roman', Times, serif;
+        font-family: Georgia, 'Times New Roman', Times, serif;
         text-align: center;
     }
-
-    
 </style>
 
-
-
-
-
-<button class= "btn btn-primary bg bg-success" type="submit" style="border: none; margin-left: 30px;"><a href="{% url 'adding' %}" style="color: white; text-decoration: none;">ADD ITEMS</a></button>
+<button class="btn btn-primary bg bg-success" type="submit" style="border: none; margin-left: 30px;"><a
+        href="{% url 'adding' %}" style="color: white; text-decoration: none;">ADD ITEMS</a></button>
 <br><br>
 <form method="GET" style="margin-left: 30px;">
     {{ stock_filter.form }}
-    <input type="submit" value = "search by name" class="btn btn-primary bg bg-success" style="border: none;">
-    </form>
+    <input type="submit" value="search by name" class="btn btn-primary bg bg-success" style="border: none;">
+</form>
 
 
 <div class="container">
     <div>
         <a href="{% url 'allstock' %}"> <i class="fa-solid fa-arrow-left" style="color: black;"></i></a>
-       </div>
+    </div>
     <h2 class="text-center">STOCK AT HAND</h2>
 
     <table class="table table-striped" style="width: 90%; margin-left: 20px;">
@@ -59,15 +54,19 @@ font-family: Georgia, 'Times New Roman', Times, serif;
                 <td>{{each.date_purchased}}</td>
                 <td>{{each.stock_at_hand}}</td>
                 <td>
-                    <button class= "btn btn-primary bg bg-success" type="submit" style="border: none;"><a href="{% url 'issuing' each.id %}" style="color: white; text-decoration: none;">ISSUE OUT</a></button>
-                    <button class= "btn btn-primary bg bg-success" type="submit" style="border: none;"><a href="{% url 'inventory' each.id %}" style="color: white; text-decoration: none;">ADD STOCK</a></button>
+                    <button class="btn btn-primary bg bg-success" type="submit" style="border: none;"><a
+                            href="{% url 'issuing' each.id %}" style="color: white; text-decoration: none;">ISSUE
+                            OUT</a></button>
+                    <button class="btn btn-primary bg bg-success" type="submit" style="border: none;"><a
+                            href="{% url 'inventory' each.id %}" style="color: white; text-decoration: none;">ADD
+                            STOCK</a></button>
                 </td>
-    
+
 
 
             </tr>
-        {% endfor %}
-    </tbody>
+            {% endfor %}
+        </tbody>
 
     </table>
 

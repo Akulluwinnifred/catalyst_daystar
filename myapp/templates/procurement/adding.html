@@ -7,20 +7,23 @@
 {% block content %}
 
 <style>
-    
     .container {
         padding-top: 20px;
-        margin-top: 30px;
-        margin-left: 200px;
+        margin-top: 60px;
         margin-bottom: 30px;
+        max-width: 500px;
         background: linear-gradient(to right, #93c29f, #438659);
+
         padding: 20px;
+        margin-left: 200px;
+
+
     }
 
-    
-  label {
-    font-weight: bold;
-  }
+
+    label {
+        font-weight: bold;
+    }
 
     .babereg-form {
         display: grid;
@@ -39,21 +42,45 @@
         color: #fff;
         font-size: 16px;
         cursor: pointer;
-        
+
     }
-     .babereg-form button:hover {
+
+    .babereg-form button:hover {
         background-color: #deede0;
         color: black;
         filter: blur(0.5px);
     }
 
+    @media (max-width: 768px) {
+        .container {
+            padding-top: 20px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            max-width: 500px;
+            background: linear-gradient(to right, #93c29f, #438659);
+            padding: 20px;
+            margin-left: 10px;
+        }
+
+        .babereg-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .babereg-form button {
+            align-self: center;
+            width: 100%;
+        }
+    }
 </style>
 
 
 <div class="container">
-    <h3 class="text-center" style="font-family: Georgia, 'Times New Roman', Times, serif;">STOCK PURCHASE FORM</h3><hr>
+    <h3 class="text-center" style="font-family: Georgia, 'Times New Roman', Times, serif;">STOCK PURCHASE FORM</h3>
+    <hr>
     <form method="POST" class="babereg-form">
-        
+
         {% csrf_token %}
         {{ form|crispy }}
         <br>

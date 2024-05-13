@@ -3,83 +3,73 @@
 
 {% block content %}
 <style>
-
   .container {
-          padding-top: 20px;
-          margin-top: 60px;
-        margin-bottom: 30px;
-          max-width: 500px;
-          /* background-color: rgba(153, 198, 165, 0.55); */
-          background: linear-gradient(to right, #93c29f, #438659);
-          padding: 20px;
-          margin-left: 200px;
-  
-      }
-  
-      
-    label {
-      /* color: #495057; */
-      font-weight: bold;
-    }
-      
-    button[type="submit"]:hover {
-        background-color: #deede0;
-        color: black;
-        filter: blur(0.5px);
+    padding-top: 20px;
+    margin-top: 60px;
+    margin-bottom: 30px;
+    max-width: 500px;
+    background: linear-gradient(to right, #93c29f, #438659);
+    padding: 20px;
+    margin-left: 200px;
+
   }
 
 
-  @media (max-width: 768px){/* Add or override styles for sitterreg.html */
-.container {
-  padding-top: 20px;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  max-width: 500px;
-  background: linear-gradient(to right, #93c29f, #438659);
-  padding: 20px;
-  /* Adjust margin-left for smaller screens */
-  margin-left: 10px;
-}
+  label {
+    font-weight: bold;
+  }
 
-/* Adjust layout for smaller screens */
-.sitterreg-form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-/* Adjust button styles for responsiveness */
-.sitterreg-form button {
-  align-self: center;
-  width: 100%;
-}}
+  button[type="submit"]:hover {
+    background-color: #deede0;
+    color: black;
+    filter: blur(0.5px);
+  }
 
 
-  </style>
-  
+  @media (max-width: 768px) {
+    .container {
+      padding-top: 20px;
+      margin-top: 30px;
+      margin-bottom: 30px;
+      max-width: 500px;
+      background: linear-gradient(to right, #93c29f, #438659);
+      padding: 20px;
+      margin-left: 10px;
+    }
+
+    .sitterreg-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
 
 
-
-
+    .sitterreg-form button {
+      align-self: center;
+      width: 100%;
+    }
+  }
+</style>
 
 {% for message in messages %}
 
 <div class="alert alert-warning alert-dismissible fade show" role="alert"
-    style="background-color: #4caf50; width: 40%; margin-left: 40px;">
-    {{ message }}
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  style="background-color: #4caf50; width: 40%; margin-left: 40px;">
+  {{ message }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 
 {% endfor %}
 
 
 <div class="container">
-  <h2 style="text-align:center; font-family: Georgia, 'Times New Roman', Times, serif;"> SITTER ATTENDANCE FORM</h2><hr>
-    <form method="post">
-        {% csrf_token %}
-        {{ form|crispy }}<br>
-        <button type="submit" class="btn btn-primary bg bg-success" style="border: none">Submit</button>
-    </form>
+  <h2 style="text-align:center; font-family: Georgia, 'Times New Roman', Times, serif;"> SITTER ATTENDANCE FORM</h2>
+  <hr>
+  <form method="post">
+    {% csrf_token %}
+    {{ form|crispy }}<br>
+    <button type="submit" class="btn btn-primary bg bg-success" style="border: none">Submit</button>
+  </form>
 
 </div>
 

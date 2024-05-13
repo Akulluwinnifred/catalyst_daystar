@@ -3,60 +3,68 @@
 {% block content %}
 
 <div>
-    <a href="{% url 'receipt' %}" class="hover_button"><input type="submit" value="Receipts" class="btn btn-success" style="border: none;" placeholder="Receipts"/></a>
-    <a href="{% url 'all_sales' %}"  class="hover-button"><input type= "submit" value="All_sales" class="btn btn-success"  style="border: none;"type="button"/></a>
+    <a href="{% url 'receipt' %}" class="hover_button"><input type="submit" value="Receipts" class="btn btn-success"
+            style="border: none;" placeholder="Receipts" /></a>
+    <a href="{% url 'all_sales' %}" class="hover-button"><input type="submit" value="All_sales" class="btn btn-success"
+            style="border: none;" type="button" /></a>
 </div><br><br>
 
 <form method="GET" style="margin-left: 10px;">
     {{ doll_filter.form }}
-    <input type="submit" value = "search by name" class="btn btn-primary bg bg-success" style="border: none;">
-    </form><br><br>
+    <input type="submit" value="search by name" class="btn btn-primary bg bg-success" style="border: none;">
+</form><br><br>
 
 
 <div class="table-container" style=" background-color: rgba(153, 198, 165, 0.55);">
-    
-
-<table class="table table-bordered">
-    <div>
-        <a href="{% url 'doll' %}"> <i class="fa-solid fa-arrow-left" style="color: black; margin-left: 30px; margin-top: 10px;" ></i></a>
-       </div>
-        <h3 class="text-center" style="color: rgb(5, 10, 11); padding-top: 20px; font-family: Georgia, 'Times New Roman', Times, serif;">DOLLS IN STOCKS</h3><hr>
-
-    <thead class="thead-dark table-bordered">
-        <tr>
-            <th scope="col" class="project-h1">Category</th>
-            <th scope="col" class="project-h1">Dolls name</th>
-            <th scope="col" class="project-h1">Size</th>
-            <th scope="col" class="project-h1">Color</th>
-            <th scope="col" class="project-h1">Quantity</th>
-            <th scope="col" class="project-h1">Unit Price(UGX)</th>
-            <th scope="col" class="project-h1">Action</th>
-        </tr>
-    </thead>
-    {% for doll in dolls %}
-    <tbody>
-        <tr>
-            <td>{{doll.c_doll}}</td>
-            <td>{{doll.name_of_the_doll}}</td>
-            <td>{{doll.size}}</td>
-            <td>{{doll.color}}</td>
-            <td>{{doll.quantity}}</td>
-            <td>UGX{{doll.Unit_price}}</td>
-           <div> <!-- here we are hadling the buy item link n its handled by product_detail view -->
-            
-            <td><a href="{% url 'issue_item' doll.id %}"><input type="button" class="bg bg-success" value="SELL DOLL"  style="color: white; border: none; border-radius: 5px; height: 30px; font-size: medium;"></a>
-            <a href="{% url 'add_to_stock' doll.id %}"><input type="button" class="bg bg-success" value="ADD TO STOCK"  style="color: white; border: none; border-radius: 5px; height: 30px; font-size: medium;"></a>
-         </td>
 
 
+    <table class="table table-bordered">
+        <div>
+            <a href="{% url 'doll' %}"> <i class="fa-solid fa-arrow-left"
+                    style="color: black; margin-left: 30px; margin-top: 10px;"></i></a>
         </div>
+        <h3 class="text-center"
+            style="color: rgb(5, 10, 11); padding-top: 20px; font-family: Georgia, 'Times New Roman', Times, serif;">
+            DOLLS IN STOCKS</h3>
+        <hr>
+
+        <thead class="thead-dark table-bordered">
+            <tr>
+                <th scope="col" class="project-h1">Category</th>
+                <th scope="col" class="project-h1">Dolls name</th>
+                <th scope="col" class="project-h1">Size</th>
+                <th scope="col" class="project-h1">Color</th>
+                <th scope="col" class="project-h1">Quantity</th>
+                <th scope="col" class="project-h1">Unit Price(UGX)</th>
+                <th scope="col" class="project-h1">Action</th>
+            </tr>
+        </thead>
+        {% for doll in dolls %}
+        <tbody>
+            <tr>
+                <td>{{doll.c_doll}}</td>
+                <td>{{doll.name_of_the_doll}}</td>
+                <td>{{doll.size}}</td>
+                <td>{{doll.color}}</td>
+                <td>{{doll.quantity}}</td>
+                <td>UGX{{doll.Unit_price}}</td>
+                <div>
+
+                    <td><a href="{% url 'issue_item' doll.id %}"><input type="button" class="bg bg-success"
+                                value="SELL DOLL"
+                                style="color: white; border: none; border-radius: 5px; height: 30px; font-size: medium;"></a>
+                        <a href="{% url 'add_to_stock' doll.id %}"><input type="button" class="bg bg-success"
+                                value="ADD TO STOCK"
+                                style="color: white; border: none; border-radius: 5px; height: 30px; font-size: medium;"></a>
+                    </td>
 
 
-        </tr>
-    </tbody>
-    {% endfor %}
-</table>
-</div>
-</div>
+                </div>
+
+
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
 </div>
 {% endblock %}

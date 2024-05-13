@@ -3,20 +3,21 @@
 {% load static %}
 {% block content%}
 
-<br />
-
 <div class="container">
   <form method="POST" action="">
-   
-    <div class="card" style="opacity: 90%; width: 100%; margin-left: 20px; background-color:rgba(153, 198, 165, 0.55); " >
+
+    <div class="card"
+      style="opacity: 90%; width: 100%; margin-left: 20px; background-color:rgba(153, 198, 165, 0.55); ">
       <h1 class="text-center
-    " style="color:black; margin-left: 20px; font-family: Georgia, 'Times New Roman', Times, serif;" >ADD TO STOCK</h1><hr>
+     " style="color:black; margin-left: 20px; font-family: Georgia, 'Times New Roman', Times, serif;">ADD TO STOCK</h1>
+      <hr>
       <div class="card-body">
-      
+
         {% csrf_token %}
         {{form | crispy}}
         <br><br>
-        <button class="button bg bg-success" type="submit" style="border: none; border-radius: 5px; width: 60px;">Add</button>
+        <button class="button bg bg-success" type="submit"
+          style="border: none; border-radius: 5px; width: 60px;">Add</button>
 
       </div>
     </div>

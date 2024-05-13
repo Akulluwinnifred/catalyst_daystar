@@ -1,10 +1,11 @@
 {% extends 'base.html'%}
- {% block content%}
+{% block content%}
 
 
 <div class="container" style=" background-color: rgba(153, 198, 165, 0.55);">
-    <h1 class="text-center" style="color: black; font-family: Georgia, 'Times New Roman', Times, serif;">TOTAL SALES MADE</h1>
- <hr>
+  <h1 class="text-center" style="color: black; font-family: Georgia, 'Times New Roman', Times, serif;">TOTAL SALES MADE
+  </h1>
+  <hr>
   <table class="table">
     <thead class="thead-dark">
       <tr>
@@ -41,7 +42,7 @@
     <tbody>
       <tr>
 
-        
+
         <td style="color:red;">{{sale.baby_name | title}}</td>
         <td>{{sale.doll | title}}</td>
         <td>{{sale.quantity_sold}}</td>

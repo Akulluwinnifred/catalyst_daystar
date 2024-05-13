@@ -1,12 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    body {
+        background-color: rgba(153, 198, 165, 0.55);
+    }
 
-    {% extends 'base.html' %}
-    {% block content %}
-    <style>
-
-body{
-     background-color: rgba(153, 198, 165, 0.55);
-        }
-.container {
+    .container {
         padding-top: 20px;
         margin-top: 70px;
         background-color: rgba(153, 198, 165, 0.55);
@@ -14,23 +13,22 @@ body{
 
     }
 
-    table table-bordered{
+    table table-bordered {
         background-color: rgba(153, 198, 165, 0.55);
-        
+
     }
 
- h2{
-font-family: Georgia, 'Times New Roman', Times, serif;
-    text-align: center;
- }
-
-        
+    h2 {
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        text-align: center;
+    }
 </style>
 
-    <div class="container">
-        <div><a href="{% url 'all_babies' %}"> <i class="fa-solid fa-arrow-left" style="color: black;"></i></a>
-        </div>
-    <h2>BABY DETAILS</h2><hr>
+<div class="container">
+    <div><a href="{% url 'all_babies' %}"> <i class="fa-solid fa-arrow-left" style="color: black;"></i></a>
+    </div>
+    <h2>BABY DETAILS</h2>
+    <hr>
     <table class="table table-bordered">
         <thead>
             <tr class="table_dark">
@@ -44,24 +42,22 @@ font-family: Georgia, 'Times New Roman', Times, serif;
                 <th>Baby number</th>
             </tr>
         </thead>
- <tbody>
-    
-        <tr>
-            <td>{{babies_informations.id}}</td>
-            <td>{{babies_informations.name}}</td>
-            <td>{{babies_informations.gender}}</td>
-            <td>{{babies_informations.age}}</td>
-            <td>{{babies_informations.Parents_Name}}</td>
-            <td>{{babies_informations.Brought_by}}</td>
-           <td>{{babies_informations.location}}</td>
-           <td>{{babies_informations.Baby_Number}}</td>
-        </tr>
-   
-    
- </tbody>   
- 
+        <tbody>
+
+            <tr>
+                <td>{{babies_informations.id}}</td>
+                <td>{{babies_informations.name}}</td>
+                <td>{{babies_informations.gender}}</td>
+                <td>{{babies_informations.age}}</td>
+                <td>{{babies_informations.Parents_Name}}</td>
+                <td>{{babies_informations.Brought_by}}</td>
+                <td>{{babies_informations.location}}</td>
+                <td>{{babies_informations.Baby_Number}}</td>
+            </tr>
+
+
+        </tbody>
+
 
 </div>
- {% endblock %}
-       
-        
+{% endblock %}

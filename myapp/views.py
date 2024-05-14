@@ -72,6 +72,8 @@ def babyreg(request):
          form.save()
          messages.success(request,'Baby enrolled successfully')
          return redirect('/babyreg')
+      else:
+          return render(request,'babies/babyreg.html',{'form':form})
    else:
       form = Babyreg_form()
    return render(request,'babies/babyreg.html',{'form':form})

@@ -19,7 +19,7 @@ class Sitter_arrivalFilter(django_filters.FilterSet):
 class Baby_Filter (django_filters.FilterSet):
     class Meta:
         model=RegisterBaby
-        fields=['name'] 
+        fields=['Assigned_to'] 
 
 
 class payment_Filter(django_filters.FilterSet):

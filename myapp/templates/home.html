@@ -46,6 +46,12 @@
   h1 {
     font-size: 20px;
     font-family: Georgia, 'Times New Roman', Times, serif;
+
+  }
+
+  a{
+    text-decoration: none;
+    color: black;
   }
 
   h2 {
@@ -109,7 +115,7 @@
 
   <div class="card">
     <div class="card-inner">
-      <h1>ENROLLED BABIES</h1>
+      <a href="{% url 'all_babies' %}"><h1>ENROLLED BABIES</h1></a>
       <span class="material-icons-outlined">group</span>
     </div>
     <h3>{{ count_babies }} </h3>
@@ -118,7 +124,7 @@
 
   <div class="card">
     <div class="card-inner">
-      <h1>BABIES CHECKED OUT</h1>
+      <a href="{% url 'babiesdeparture' %}"><h1>BABIES CHECKED OUT</h1></a>
       <span class="material-icons-outlined">group</span>
     </div>
     <h3>{{ count_departure }}</h3>
@@ -130,7 +136,7 @@
 <div class="main-cards">
   <div class="card">
     <div class="card-inner">
-      <h1>ENROLLED SITTERS</h1>
+      <a href="{% url 'sitters' %}"><h1>ENROLLED SITTERS</h1></a>
       <span class="material-icons-outlined">group</span>
     </div>
     <h3>{{ count_sitters }}</h3>
@@ -138,7 +144,7 @@
 
   <div class="card">
     <div class="card-inner">
-      <h1>SITTERS ON DUTY</h1>
+      <a href="{% url 'onduty' %}"><h1>SITTERS ON DUTY</h1></a>
       <span class="material-icons-outlined">group</span>
     </div>
     <h3>{{ count_sitterattendance }} </h3>

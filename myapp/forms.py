@@ -1,7 +1,7 @@
 from django.forms import ModelForm
 from .models import *
 from django import forms
-from django.contrib.auth.forms import PasswordChangeForm,PasswordResetForm
+from django.contrib.auth.forms import PasswordChangeForm
 from django.forms import CharField, PasswordInput,TextInput,EmailField, PasswordInput
 
 

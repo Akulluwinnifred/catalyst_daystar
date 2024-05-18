@@ -16,7 +16,6 @@
         left: 0;
         width: 100%;
         height: 100vh;
-        /* Set container height to viewport height */
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -43,6 +42,7 @@
         background-color: #ddeedf;
         padding: 20px;
         border-radius: 5px;
+        width: 25%;
     }
 
     button[type="submit"]:hover {
@@ -54,19 +54,32 @@
     h2 {
         font-family: Georgia, 'Times New Roman', Times, serif;
     }
+
+    .form-group{
+        margin-bottom: 20px;
+    }
+
+    #id_username{
+        height: 12%;
+        border-radius: 5px;
+        border: 2px solid black;
+    }
+    #id_password{
+        height: 12%;
+        border: 2px solid black;
+        border-radius: 5px;
+    }
 </style>
 
 <div class="container">
 
-    <h2>ADMIN LOGIN</h2>
-
     <form method="post" class="login-form">
-
+        <h2>ADMIN LOGIN</h2><hr><br>
         {% csrf_token %}
         {{ form|crispy }}
         <br>
         <button type="submit" class="btn btn-primary"
-            style="border-radius: 10px; width: 60%; background-color:#438659; border:none; color: white;  height: 25%;">Sign
+            style="border-radius: 10px; width: 60%; background-color:#438659; border:none; color: white;  height: 13%; margin-bottom: 15px;">Sign
             In</button>
         <br><br>
 

@@ -2,18 +2,27 @@
 {% load static %}
 {% block content %}
 
-<div>
-    <a href="{% url 'receipt' %}" class="hover_button"><input type="submit" value="Receipts" class="btn btn-success"
-            style="border: none;" placeholder="Receipts" /></a>
-    <a href="{% url 'all_sales' %}" class="hover-button"><input type="submit" value="All_sales" class="btn btn-success"
-            style="border: none;" type="button" /></a>
-</div><br><br>
+<style>
+    .edit {
+        display: flex;
+        float: left;
+        width: 100%;
+    }
+</style>
 
-<form method="GET" style="margin-left: 10px;">
-    {{ doll_filter.form }}
-    <input type="submit" value="search by name" class="btn btn-primary bg bg-success" style="border: none;">
-</form><br><br>
+<div class="edit">
+    <div>
+        <a href="{% url 'receipt' %}" class="hover_button"><input type="submit" value="Receipts" class="btn btn-success"
+                style="border: none;" placeholder="Receipts" /></a>
+        <a href="{% url 'all_sales' %}" class="hover-button"><input type="submit" value="All_sales"
+                class="btn btn-success" style="border: none;" type="button" /></a>
+    </div><br><br>
 
+    <form method="GET" style="margin-left: 290px;">
+        {{ doll_filter.form }}
+        <input type="submit" value="search by name" class="btn btn-primary bg bg-success" style="border: none;">
+    </form><br><br>
+</div><br><br><br>
 
 <div class="table-container" style=" background-color: rgba(153, 198, 165, 0.55);">
 
@@ -33,7 +42,6 @@
                 <th scope="col" class="project-h1">Category</th>
                 <th scope="col" class="project-h1">Dolls name</th>
                 <th scope="col" class="project-h1">Size</th>
-                <th scope="col" class="project-h1">Color</th>
                 <th scope="col" class="project-h1">Quantity</th>
                 <th scope="col" class="project-h1">Unit Price(UGX)</th>
                 <th scope="col" class="project-h1">Action</th>
@@ -45,7 +53,6 @@
                 <td>{{doll.c_doll}}</td>
                 <td>{{doll.name_of_the_doll}}</td>
                 <td>{{doll.size}}</td>
-                <td>{{doll.color}}</td>
                 <td>{{doll.quantity}}</td>
                 <td>UGX{{doll.Unit_price}}</td>
                 <div>

@@ -19,18 +19,24 @@
 
         text-align: center;
     }
-</style>
 
+    .edit{
+  display: flex;
+  float: left;
+  width: 100%;
+}
+</style>
+<div class="edit">
 <button class="p-2 bg-teal-500 rounded-lg shadow-lg bg bg-success"
     style="margin-left: 20px; border-radius: 5px; border: #B4BDFF; width: 20%; height: 5%;"><a
         style="color: white; text-decoration: none;" href="/babyreg">Add new baby</a></button>
 <br><br><br>
 
-<form method="GET" style="margin-left: 20px;">
+<form method="GET" style="margin-left: 300px;">
     {{ baby_filter.form }}
     <input type="submit" value="search by sittername" class="btn btn-primary bg bg-success" style="border: none;">
 </form>
-
+</div><br><br>
 
 <div class="container">
     <div>
@@ -44,7 +50,6 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>Baby Number</th>
                 <th>Name</th>
                 <th>Gender</th>
                 <th>Parents Name</th>
@@ -57,7 +62,6 @@
             {% for each in babies %}
             <tr>
                 <td> {{each.id}}</td>
-                <td>B0{{each.Baby_Number}}</td>
                 <td>{{each.name}}</td>
                 <td>{{each.gender}}</td>
                 <td>{{ each.Parents_Name}}</td>

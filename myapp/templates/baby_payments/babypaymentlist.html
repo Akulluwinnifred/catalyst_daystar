@@ -18,19 +18,25 @@
         font-family: Georgia, 'Times New Roman', Times, serif;
         text-align: center;
     }
+
+    .edit{
+  display: flex;
+  float: left;
+  width: 100%;
+}
 </style>
 
-
+<div class="edit">
 <button class="p-2 bg-teal-500 rounded-lg shadow-lg bg bg-success"
     style="margin-left: 60px; border-radius: 5px; border: #B4BDFF; width: 20%; height: 5%;"><a
         style="color: white; text-decoration: none;" href="/sitterpayment">Add new payment</a></button>
 <br><br>
 
-<form method="GET" style="margin-left: 60px;">
+<form method="GET" style="margin-left: 200px;">
     {{ payment_filter.form }}
     <input type="submit" value="search by name" class="btn btn-primary bg bg-success" style="border: none;">
 </form>
-
+</div><br><br>
 
 <div class="container">
     <div>

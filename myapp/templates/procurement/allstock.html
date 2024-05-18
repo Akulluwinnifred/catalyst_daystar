@@ -18,16 +18,23 @@
         font-family: Georgia, 'Times New Roman', Times, serif;
         text-align: center;
     }
+
+    .edit{
+  display: flex;
+  float: left;
+  width: 100%;
+}
 </style>
 
+<div class="edit">
 <button class="btn btn-primary bg bg-success" type="submit" style="border: none; margin-left: 30px;"><a
         href="{% url 'adding' %}" style="color: white; text-decoration: none;">ADD ITEMS</a></button>
 <br><br>
-<form method="GET" style="margin-left: 30px;">
+<form method="GET" style="margin-left: 450px;">
     {{ stock_filter.form }}
     <input type="submit" value="search by name" class="btn btn-primary bg bg-success" style="border: none;">
 </form>
-
+</div><br><br>
 
 <div class="container">
     <div>

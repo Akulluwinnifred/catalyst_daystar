@@ -35,7 +35,7 @@
         <th scope="col">Unit Price(UGX)</th>
         <th scope="col">Total Cost</th>
         <th scope="col">Amount Paid</th>
-        <th scope="col">child's Debtors</th>
+        <th scope="col">balance</th>
       </tr>
     </thead>
     {% for sale in sales %}
@@ -43,7 +43,7 @@
       <tr>
 
 
-        <td style="color:red;">{{sale.baby_name | title}}</td>
+        <td>{{sale.baby_name | title}}</td>
         <td>{{sale.doll | title}}</td>
         <td>{{sale.quantity_sold}}</td>
         <td>UGX{{sale.unit_price}}</td>

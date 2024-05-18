@@ -20,19 +20,25 @@
     font-family: Georgia, 'Times New Roman', Times, serif;
     text-align: center;
   }
+
+  .edit{
+  display: flex;
+  float: left;
+  width: 100%;
+}
 </style>
 
-
+<div class="edit">
 <button class="p-2 bg-teal-500 rounded-lg shadow-lg bg bg-success"
   style="margin-left: 100px;border-radius: 5px; border: #B4BDFF; width: 20%; height: 5%;"><a href="/babyreg"></a>
   Signout new baby</a>
 </button><br><br>
 
-<form method="GET" style="margin-left: 100px;">
+<form method="GET" style="margin-left: 200px;">
   {{ baby_filter.form }}
   <input type="submit" value="search by name" class="btn btn-primary bg bg-success" style="border: none;">
 </form>
-
+</div>
 
 <div class="container">
   <div>

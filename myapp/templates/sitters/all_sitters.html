@@ -40,17 +40,26 @@
     }
   }
 
+.edit{
+  display: flex;
+  float: left;
+  width: 100%;
+}
+
+
 </style>
 
-
+<div class="edit">
 <button class="p-2 bg bg-success rounded-lg shadow-lg"
   style="margin-left: 100px;border-radius: 5px; border: #B4BDFF; width: 20%; height: 5%; color: white; text-decoration: none;"><a
     href="/sitterreg" style="color: white; text-decoration: none;">Add new sitter</a></button><br><br>
 
-<form method="GET" style="margin-left: 100px;">
+<form method="GET" style="margin-left: 200px;">
   {{ sitter_filter.form }}
   <input type="submit" value="search by name" class="btn btn-primary bg bg-success" style="border: none;">
 </form>
+</div>
+
 
 <div class="container">
   <div>

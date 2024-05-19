@@ -130,15 +130,6 @@ def baby_edit(request, id):
     return render(request, 'babies/baby_edit.html', {'form': form, 'baby': baby})
 
 
-#view for delete baby
-def delete_baby(request, baby_id):
-    baby = get_object_or_404(RegisterBaby, id=baby_id)
-    if request.method == 'POST':
-        baby.delete()
-        return redirect('all_babies')
-    return render(request, 'babies/delete.html', {'baby': baby})
-
-
 
 #sitters views
 

@@ -68,7 +68,6 @@ class BabySitter(models.Model):
 
 #siter attendance model here
 class BabySitterattendance(models.Model):
-    sitter_Number = models.CharField(max_length=200,unique=True)
     name = models.ForeignKey(BabySitter, on_delete=models.CASCADE)
     date = models.DateField(default=timezone.now)
     attendance_status = models.CharField(max_length=10,default= 'Onduty')

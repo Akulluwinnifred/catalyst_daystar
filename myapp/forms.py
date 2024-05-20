@@ -47,7 +47,7 @@ class Departure_form(forms.ModelForm):
 class Babypayment_form(forms.ModelForm):
     class Meta:
         model = BabyPayment
-        fields = '__all__'
+        fields = ['name', 'payment_date', 'full_day', 'half_day', 'monthly', 'total_amount_due', 'amount_paid', 'remaining_balance']
 
 
 #sitter payment form here

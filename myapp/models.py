@@ -163,10 +163,19 @@ class BabyPayment(models.Model):
     full_day = models.BooleanField(default=False,blank=True)
     half_day = models.BooleanField(default=False,blank=True)
     monthly = models.BooleanField(default=False,blank=True)
-    monthly = models.BooleanField(default=False,blank=True)
     total_amount_due = models.DecimalField(max_digits=10, decimal_places=2,blank=True)
     amount_paid = models.DecimalField(max_digits=10, decimal_places=2)
     remaining_balance = models.DecimalField(max_digits=10, decimal_places=2,default=False,blank=True)
+    status = models.CharField(max_length=10, choices=[('complete', 'Complete'), ('pending', 'Pending')], default='pending')
+    is_complete = models.BooleanField(default=False) 
+    def is_complete(self):
+        return self.amount_paid == self.total_amount_due
+
+    def save(self, *args, **kwargs):
+        # self.remaining_balance = self.total_amount_due - self.amount_paid
+        self.status = 'complete' if self.is_complete else 'pending'
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return self.name
     

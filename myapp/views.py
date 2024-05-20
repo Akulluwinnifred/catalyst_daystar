@@ -350,9 +350,9 @@ def payment(request):
     if request.method == 'POST':
         name=request.POST.get('name')
         payment_date=request.POST.get('date')
-        full_day=request.POST.get('Full day')
-        half_day=request.POST.get('Half day')
-        monthly=request.POST.get('monthly')
+        full_day=request.POST.get('full_day') == 'on'
+        half_day=request.POST.get('half_day') ==  'on'
+        monthly=request.POST.get('monthly') == 'on'
         total_amount_due=request.POST.get('total_amount')
         amount_paid=request.POST.get('amount_paid')
         remaining_balance=request.POST.get('remaining_balance')

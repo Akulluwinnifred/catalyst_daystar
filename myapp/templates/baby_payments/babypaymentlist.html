@@ -28,8 +28,8 @@
 
 <div class="edit">
 <button class="p-2 bg-teal-500 rounded-lg shadow-lg bg bg-success"
-    style="margin-left: 60px; border-radius: 5px; border: #B4BDFF; width: 20%; height: 5%;"><a
-        style="color: white; text-decoration: none;" href="/sitterpayment">Add new payment</a></button>
+    style="margin-left: 60px; border-radius: 5px; border: hsl(233, 100%, 85%); width: 20%; height: 5%;"><a
+        style="color: white; text-decoration: none;" href="/payment">Add new payment</a></button>
 <br><br>
 
 <form method="GET" style="margin-left: 200px;">
@@ -54,6 +54,7 @@
                 <th>total Amount</th>
                 <th>Amount paid</th>
                 <th>Balance</th>
+                <th>Status</th>
             </tr>
         </thead>
 
@@ -66,7 +67,13 @@
                 <td>{{each.total_amount_due}}</td>
                 <td>{{each.amount_paid}}</td>
                 <td>{{each.remaining_balance}}</td>
-
+                <td class="{% if each.is_complete %}complete{% else %}pending{% endif %}">
+                    {% if each.is_complete %}
+                    <span class="complete">Complete</span>
+                    {% else %}
+                    <span class="pending" style="color: red">Pending</span>
+                    {% endif %}
+                </td>
 
             </tr>
             {% endfor %}
